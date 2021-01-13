@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+             
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles/custom.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/jquery/dist/jquery.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -124,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "Angular-TestModel"
+  "defaultProject": "Angular-TestModel",
+  "cli": {
+    "analytics": "aa30ac18-0a17-4fb4-995f-99e75216aae6"
+  }
 }
