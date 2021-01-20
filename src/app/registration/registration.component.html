@@ -1,150 +1,175 @@
 <section class="col-md-12 bg-form">
-<div class="container">
-<div class="col-lg-6 form-box">
-
-   <form #myForm="ngForm" (ngSubmit)="registerData()" class="form-signin">
- <div class="row">
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>Title</label>
-<select   id="ddltitle" class="form-control" [(ngModel)]="title" name="title" >
-<option selected value="Mr">Mr</option>
-<option value="Mrs">Mrs</option>
-<option value="Miss">Miss</option>
-<option value="Dr">Dr</option>
-<option value="Dr(Mrs)">Dr(Mrs)</option>
-<option value="Chief">Chief</option>
-<option value="Chief(Mrs)">Chief(Mrs)</option>
-<option value="Engr">Engr</option>
-<option value="Engr(Mrs)">Engr(Mrs)</option>
-<option value="Alhaji">Alhaji</option>
-<option value="Alhaja">Alhaja</option>
-<option value="Rev">Rev</option>
-<option value="Pastor">Pastor</option>
-<option value="Admiral">Admiral</option>
-<option value="General">General</option>
-<option value="Air Comm.">Air Comm.</option>
-<option value="Captain">Captain</option>
-<option value="Lt. Col">Lt. Col</option>
-<option value="Rev(Mrs)">Rev(Mrs)</option>
-<option value="Bishop">Bishop</option>
-<option value="Arch Bishop">Arch Bishop</option>
-<option value="Primate">Primate</option>
-<option value="Architect">Architect</option>
-
-</select>
-</div>
-     </div>
-     <div class="col-lg-4">
-        <label>User Types</label>
-         <!-- <p>User Types</p> -->
-         <div class="form-check form-check-inline" style="padding-top: 8px;">
-<input   class="form-check-input" [(ngModel)]="userType" name="userType" type="radio"   value="individual"  >
-<label class="form-check-label" for="inlineRadio1"> Individual</label>
-</div>
-     </div>
-     <div class="col-lg-4">
-         <p>&nbsp;</p>
-         <div class="form-check form-check-inline">
-<input class="form-check-input"  [(ngModel)]="userType" name="userType" type="radio"   value="organisation">
-<label class="form-check-label" for="inlineRadio1"> Organisation</label>
-</div>
-     </div>
-     </div>
- 
- <div class="row" *ngIf = "userType === individual">
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>First Name</label>
-<input type="text" class="form-control"[(ngModel)]="firstName" name="firstName"  placeholder="First name">
-</div></div>
-     
- <div class="col-lg-4">
-         <div class="form-group">
-<label>Middle Name</label>
-<input type="text" class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle name">
-</div></div>
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>Last Name</label>
-<input type="text" class="form-control" [(ngModel)]="lastName" name="lastName"  placeholder="Last name">
-</div></div>
-     
-     </div>
-     <div class="row" *ngIf = "userType === organisation">
-        <div class="col-lg-8">
-            <div class="form-group">
-   <label>Organisation Name</label>
-   <input type="text" class="form-control" [(ngModel)]="organisationname" name="organisationname"  placeholder="Organisation name">
-   </div></div>
-        
-        </div>
-     
- <div class="row">
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>Phone / Mobile</label>
-<input type="tel" class="form-control"  [(ngModel)]="phone" name="phone" placeholder="Mobile">
-</div></div>
-     
- <div class="col-lg-4">
-         <div class="form-group">
-<label>Email</label>
-<input type="text" class="form-control"  [(ngModel)]="email" name="email" placeholder="Email">
-</div></div>
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>Password</label>
-<input type="password" class="form-control" [(ngModel)]="password" name="password"  placeholder="*****">
-</div></div>
-     
-     </div>
+    <div class="container">
+    <div class="col-lg-6 form-box">
+    
+       <form #myForm="ngForm" (ngSubmit)="myForm.form.valid && registerData(myForm.value)" class="form-signin">
      <div class="row">
-     <div class="col-lg-4">
-         <div class="form-group">
-<label>Confirm Password</label>
-<input type="password" class="form-control"  [(ngModel)]="confirmpassword" name="confirmpassword" placeholder="Confirm password">
-</div></div>
-     
- <div class="col-lg-8">
-         <div class="form-group">
-             <p>&nbsp;</p>
-<!-- <label> -->
-    <ngx-recaptcha2 #captchaElem
-    [siteKey]="siteKey" >
-  </ngx-recaptcha2>
-<!-- </label> -->
-</div></div>
-     
-     </div>
-
-
-<div class="checkbox mb-3">
-<label>
-<input type="checkbox"  value="1" [(ngModel)]="remember_me" name="remember_me"> Un-check this box if you are not a Legal Counsel
-</label>
-</div>
-<button class="btn btn-secondary" type="submit">Register </button>
-
-      <p class="mt-1 mb-1 text-muted "><label>
-If you already have an account, please <a class="textdecor" [routerLink]="['/login']">Sign in</a>
-</label></p>
-<!-- <div class="form-group">
-    <div class="row">
-        <div class="col-sm-2"></div>
-        <div class="col-sm-4">
-            <div *ngIf="myForm.form.valid;then formValid else formError"></div>
-            <ng-template #formValid><button class="btn btn-info add-new" type="submit">Register</button></ng-template>
-            <ng-template #formError><button class="btn rounded-btn color" type="button"
-                    (click)="submitInvalidForm()">Register</button></ng-template>
-            &nbsp;
-            <button type="button" class="btn rounded-btn eqSubmit color"
-                [routerLink]="['/login`']" href="javascript:void(0)">Sign in</button>
-        </div>
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>Title</label>
+    <select   id="ddltitle" class="form-control" [(ngModel)]="title" name="title" >
+    <option selected value="Mr">Mr</option>
+    <option value="Mrs">Mrs</option>
+    <option value="Miss">Miss</option>
+    <option value="Dr">Dr</option>
+    <option value="Dr(Mrs)">Dr(Mrs)</option>
+    <option value="Chief">Chief</option>
+    <option value="Chief(Mrs)">Chief(Mrs)</option>
+    <option value="Engr">Engr</option>
+    <option value="Engr(Mrs)">Engr(Mrs)</option>
+    <option value="Alhaji">Alhaji</option>
+    <option value="Alhaja">Alhaja</option>
+    <option value="Rev">Rev</option>
+    <option value="Pastor">Pastor</option>
+    <option value="Admiral">Admiral</option>
+    <option value="General">General</option>
+    <option value="Air Comm.">Air Comm.</option>
+    <option value="Captain">Captain</option>
+    <option value="Lt. Col">Lt. Col</option>
+    <option value="Rev(Mrs)">Rev(Mrs)</option>
+    <option value="Bishop">Bishop</option>
+    <option value="Arch Bishop">Arch Bishop</option>
+    <option value="Primate">Primate</option>
+    <option value="Architect">Architect</option>
+    
+    </select>
     </div>
-</div> -->
-</form>
-</div>
-</div>
-</section>
-
+         </div>
+         <div class="col-lg-4">
+            <label>User Types</label>
+             <!-- <p>User Types</p> -->
+             <div class="form-check form-check-inline" style="padding-top: 8px;">
+    <input   class="form-check-input" [(ngModel)]="userType" name="userType" type="radio"   value="individual"  >
+    <label class="form-check-label" for="inlineRadio1"> Individual</label>
+    </div>
+         </div>
+         <div class="col-lg-4">
+             <p>&nbsp;</p>
+             <div class="form-check form-check-inline">
+    <input class="form-check-input"  [(ngModel)]="userType" name="userType" type="radio"   value="organisation">
+    <label class="form-check-label" for="inlineRadio1"> Organisation</label>
+    </div>
+         </div>
+         </div>
+     
+     <div class="row" *ngIf = "userType === individual">
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>First Name</label>
+    <input type="text" required class="form-control" #ref1="ngModel" [(ngModel)]="firstName" name="firstName"  placeholder="First name">
+    <label *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required" class="text-danger">*Field is
+        mandatory</label></div></div>
+         
+     <div class="col-lg-4">
+             <div class="form-group">
+    <label>Middle Name</label>
+    <input type="text" required #ref2='ngModel' class="form-control" [(ngModel)]="middleName" name="middleName" placeholder="Middle name">
+    <label *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required" class="text-danger">*Field is mandatory</label>
+    </div></div>
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>Last Name</label>
+    <input type="text" required #ref3='ngModel' class="form-control" [(ngModel)]="lastName" name="lastName"  placeholder="Last name">
+    <label *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required" class="text-danger">*Field is mandatory</label>
+    </div></div>
+         
+         </div>
+         <div class="row" *ngIf = "userType === organisation">
+            <div class="col-lg-8">
+                <div class="form-group">
+       <label>Organisation Name</label>
+       <input type="text" class="form-control" [(ngModel)]="organisationname" name="organisationname"  placeholder="Organisation name">
+       </div></div>
+            
+            </div>
+         
+     <div class="row">
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>Phone / Mobile</label>
+    <input type="tel" class="form-control" required #ref4='ngModel' minlength="10" pattern="\d\d\d\d\d\d\d\d\d\d" [(ngModel)]="phone" name="phone" placeholder="Mobile">
+    <!-- <label *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.required" class="text-danger">*Field is
+        mandatory</label>
+    <label *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.pattern"
+        class="text-danger">Only numbers are allowed</label>
+    <label *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.maxlength" class="text-danger">Maximum 12 numbers are allowed</label>
+    <label *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.minlength" class="text-danger">Minimum 10 number are allowed</label> -->
+    </div></div>
+         
+     <div class="col-lg-4">
+             <div class="form-group">
+    <label>Email</label>
+    <input type="text" class="form-control"  #ref5='ngModel' required pattern="[A-Za-z].*[@].*[.].*" [(ngModel)]="email" name="email" placeholder="Email">
+    <label *ngIf="ref5.touched && ref5.errors?.required" class="text-danger">*Field is
+        mandatory</label>
+    <label *ngIf="(ref5.dirty || ref5.touched) && ref5.errors?.pattern"
+        class="text-danger">Characters 
+        followed by @ and .com</label></div></div>
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>Password</label>
+    <input type="password" #ref6="ngModel" required pattern="^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8}$" class="form-control" [(ngModel)]="password" name="password"  placeholder="*****">
+   <label *ngIf="ref6.touched && ref6.errors?.required" class="text-danger">*Field is
+    mandatory</label>
+    <label  *ngIf="(ref6.dirty || ref6.touched) && ref6.errors?.pattern" class="text-danger">8 characters length
+        2 letters in Upper Case
+        1 Special Character (!@#$&*)
+        2 numerals (0-9)
+        3 letters in Lower Case</label>
+    </div></div>
+         
+         </div>
+         <div class="row">
+         <div class="col-lg-4">
+             <div class="form-group">
+    <label>Confirm Password</label>
+    <input type="password" #ref7="ngModel" required pattern="{{password}}" class="form-control" [(ngModel)]="confirmpassword" name="confirmpassword"  placeholder="*****">
+    <label *ngIf="(ref7.dirty || ref7.touched) && ref7.errors?.required" class="text-danger">*Field is
+        mandatory</label>
+    <label *ngIf="ref7.errors?.pattern" class="text-danger">Password and confirm password must match</label>
+    </div></div>
+         
+     <!-- <div class="col-lg-8" style="    padding: 1px;">  -->
+             <div class="form-group">
+                 <!-- <p>&nbsp;</p> -->
+    <!-- <label> -->
+        <ngx-recaptcha2 #captchaElem
+        [siteKey]="siteKey" >
+      </ngx-recaptcha2>
+    <!-- </label> -->
+    </div>
+    <!-- </div> -->
+         
+         </div>
+    
+    
+    <div class="checkbox mb-3">
+    <label>
+    <input type="checkbox"  value="1" [(ngModel)]="remember_me" name="remember_me"> Un-check this box if you are not a Legal Counsel
+    </label>
+    </div>
+    <button class="btn btn-secondary" [disabled]="myForm.invalid" type="submit">Register </button>
+    
+          <p class="mt-1 mb-1 text-muted "><label>
+    If you already have an account, please <a class="textdecor" [routerLink]="['/login']">Sign in</a>
+    </label></p>
+    <!-- <div class="form-group">
+        <div class="row">
+            <div class="col-sm-2"></div>
+            <div class="col-sm-4">
+                <div *ngIf="myForm.form.valid;then formValid else formError"></div>
+                <ng-template #formValid><button class="btn btn-info add-new" type="submit">Register</button></ng-template>
+                <ng-template #formError><button class="btn rounded-btn color" type="button"
+                        (click)="submitInvalidForm()">Register</button></ng-template>
+                &nbsp;
+                <button type="button" class="btn rounded-btn eqSubmit color"
+                    [routerLink]="['/login']" href="javascript:void(0)">Sign in</button>
+            </div>
+        </div>
+    </div> -->
+    </form>
+    </div>
+    </div>
+    </section>
+    
+    

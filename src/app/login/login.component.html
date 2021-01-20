@@ -2,21 +2,28 @@
 <div class="container">
 <div class="col-lg-6 form-box">
 
-<form #myform="ngForm" (ngSubmit)="loginUser()" class="form-signin">
-    
-    <label for="inputEmail">User Name</label>
-    <input type="text" id="inputEmail" [(ngModel)]="userName" name="userName" class="form-control mb-3" placeholder="User name" required autofocus>
-   
-    <label for="inputPassword">Password</label>
-    <input type="password" id="inputPassword"  [(ngModel)]="password" name="password" class="form-control mb-3" placeholder="Password" required>
-    <div class="checkbox mb-3">
-   
-        <label>
+<form #myform="ngForm" (ngSubmit)="myform.form.valid && loginUser(myform.value)" class="form-signin">
+    <div class="form-group">
+  <label for="inputEmail">User Name</label>
+    <input type="text" id="inputEmail" #ref1="ngModel" required [(ngModel)]="userName" name="userName" class="form-control mb-3" placeholder="User name" required autofocus>
+    <label *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required" class="text-danger">*Field is
+        mandatory</label>
+    </div>
+  
+        <div class="form-group">
+           <label for="inputPassword">Password</label>
+    <input type="password" id="inputPassword" #ref2="ngModel" required  [(ngModel)]="password" name="password" class="form-control mb-3" placeholder="Password" required>
+    <label *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required" class="text-danger">*Field is
+        mandatory</label>  
+</div>
+
+   <div class="checkbox mb-3">
+   <label>
     <input type="checkbox"[(ngModel)]="remember_me" name="remember_me"  value="remember_me"> Remember me
     </label>
 </div>
     
-<button class="btn btn-secondary" type="submit">Log in</button>
+<button class="btn btn-secondary"  [disabled]="myform.invalid"  type="submit">Log in</button>
     <p class="mt-4 mb-0 text-muted">
     <label>
     <a class="textdecor" href="#">Forgot Password?</a>

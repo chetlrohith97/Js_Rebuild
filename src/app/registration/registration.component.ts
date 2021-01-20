@@ -9,13 +9,13 @@ import { ErrormessagesService } from '@shared/services/index'
 })
 export class RegistrationComponent implements OnInit {
   formErrors = {
-    "firstname":'',"middleName":'',"lastName":'',"phone":'',"email":'',"password":'',
+    "firstName":'',"middleName":'',"lastName":'',"phone":'',"email":'',"password":'',
     "confirmpassword":'',"iamnot":'',"remember_me":""
   }
-  myForm!: NgForm;
-  @ViewChild('myForm', {  static: true }) currentForm!: NgForm;
+  
+  // myForm :NgForm | undefined
+  // @ViewChild('myForm', {  static: true }) currentForm :NgForm |undefined
 title = "Mr";
-// userType !:string;
 userType ="individual"
 individual= "individual";
 organisation="organisation";
@@ -30,38 +30,41 @@ confirmpassword!:string;
 iamnot!:string;
 remember_me = "remember_me";
 siteKey!: string
-  constructor(private errorMessagesfields:ErrormessagesService) {
-    this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'
+
+  constructor(
+    // private errorMessagesfields:ErrormessagesService
+    ) {
+      // Able to get error because of this sitekey in the console//
+    this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5' // i am not roboot APIkey
    }
 
   ngOnInit(): void {
   }
 
-  // ngAfterViewChecked() {
-  //   this.formChange();
+  // ngAfterViewChecked(){
+  //   this.formChanged()
   // }
-
-  // formChange() {
-  //   if (this.currentForm === this.myForm) { return; }
+  // formChanged(){
+  //   if(this.currentForm === this.myForm) {return};
   //   this.myForm = this.currentForm;
-  //   if (this.myForm) {
-  //     this.myForm.form.valueChanges
-  //   //  this.myForm.valueChanges
-  //       .subscribe(data => this.onValueChanged());
+  //   if(this.myForm){
+  //     this.myForm.valueChanges?.subscribe(data => this.onValueChanged(data))
   //   }
   // }
-
-  // onValueChanged( ) {
-  //   if (!this.myForm) { return; }
+  // onValueChanged(data:any){
+  //   if(!this.myForm){return;}
   //   const form = this.myForm.form;
-  //   for (const field in this.formErrors) {
-  //     // this.formErrors[]
-  //     this.formErrors[field] = '';
+
+  //   for( const field in this.formErrors){
+  //     Object.keys(this.formErrors);
   //     const control = form.get(field);
-  //     if (control && control.dirty && !control.valid) {
-  //       const messages = this.errorMessagesfields.errorMessage[field];
-  //       for (const key in control.errors) {
-  //         this.formErrors[field] = messages[key];
+  //     if( control && control.dirty && !control.valid){
+  //       const messages = Object.keys(this.errorMessagesfields.errorMessage)
+  //       console.log(messages)
+  //       for(let i = 0; i< Object.keys(this.formErrors).length; i++ ){
+  //         const key: String = Object.keys(this.formErrors)[i];
+  //         console.log(key)
+        
   //       }
   //     }
   //   }
@@ -70,17 +73,24 @@ siteKey!: string
   //   if (!this.myForm) { return; }
   //   const form = this.myForm.form;
   //   for (const field in this.formErrors) {
-  //     this.formErrors[field] = '';
+  //     Object.keys(this.formErrors);
   //     const control = form.get(field);
   //     if (control && !control.valid) {
-  //       const messages = this.errorMessagesfields.errorMessage[field];
+  //       const messages = Object.keys(this.errorMessagesfields.errorMessage)
+  //       console.log(this.formErrors)
+  //       console.log(Object.keys(this.formErrors))
   //       for (const key in control.errors) {
-  //         this.formErrors[field] = messages[key];
+
+  //         console.log(messages)
+  //         console.log(control)
+  //         console.log(key)
+  //         console.log(form.get(field))
+  //         // this.formErrors[field] = messages[key];
   //       }
   //     }
   //   }
   // }
-  registerData(){
+  registerData(v:any){
     if(this.userType === this.individual){
       this.organisationname = ''
     }
@@ -92,8 +102,6 @@ siteKey!: string
     const user={
      title : this.title,
      userType : this.userType,
-    //  individual :this.individual,
-    //  organisation :this.organisation,
      firstname :this.firstName,
      middleName:this.middleName,
      organisationname:this.organisationname,

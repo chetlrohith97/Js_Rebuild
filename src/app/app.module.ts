@@ -14,7 +14,7 @@ import { NavbarComponent } from './layout/component/navbar/navbar.component';
 import { FooterComponent } from './layout/component/footer/footer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
-import { AuthService } from './layout/shared/services';
+import { AuthService, ErrormessagesService } from './layout/shared/services';
 import { NgxCaptchaModule } from 'ngx-captcha';
 
 @NgModule({
@@ -34,10 +34,11 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
     NgxCaptchaModule
 
   ],
-  providers: [AuthService],
+  providers: [AuthService,ErrormessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
