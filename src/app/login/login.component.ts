@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
   }
-  loginUser(){
+  loginUser(v:any){
     const user ={
       userName: this.userName,
       password: this.password,
