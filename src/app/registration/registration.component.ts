@@ -24,6 +24,7 @@ firstName!:string;
 middleName!:string;
 lastName!:string;
 phone!:string;
+userName!:string;
 email!:string;
 password!:string;
 confirmpassword!:string;
@@ -104,6 +105,7 @@ siteKey!: string
      userType : this.userType,
      firstname :this.firstName,
      middleName:this.middleName,
+     userName: this.userName,
      organisationname:this.organisationname,
      lastName: this.lastName,
      phone: this.phone,
