@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ErrormessagesService } from '@shared/services/index'
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from '@shared/services/index';
 
 @Component({
   selector: 'app-registration',
@@ -12,9 +12,6 @@ export class RegistrationComponent implements OnInit {
     "firstName":'',"middleName":'',"lastName":'',"phone":'',"email":'',"password":'',
     "confirmpassword":'',"iamnot":'',"remember_me":""
   }
-  
-  // myForm :NgForm | undefined
-  // @ViewChild('myForm', {  static: true }) currentForm :NgForm |undefined
 title = "Mr";
 userType ="individual"
 individual= "individual";
@@ -29,12 +26,12 @@ email!:string;
 password!:string;
 confirmpassword!:string;
 iamnot!:string;
-remember_me = "remember_me";
+remember_me ="remember_me";
 siteKey!: string
-
-  constructor(
-    // private errorMessagesfields:ErrormessagesService
-    ) {
+User_Role_ID :boolean= true
+data!:any
+  constructor(private authService : AuthService,
+    private rotuer:Router) {
       // Able to get error because of this sitekey in the console//
     this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5' // i am not roboot APIkey
    }
@@ -42,56 +39,8 @@ siteKey!: string
   ngOnInit(): void {
   }
 
-  // ngAfterViewChecked(){
-  //   this.formChanged()
-  // }
-  // formChanged(){
-  //   if(this.currentForm === this.myForm) {return};
-  //   this.myForm = this.currentForm;
-  //   if(this.myForm){
-  //     this.myForm.valueChanges?.subscribe(data => this.onValueChanged(data))
-  //   }
-  // }
-  // onValueChanged(data:any){
-  //   if(!this.myForm){return;}
-  //   const form = this.myForm.form;
-
-  //   for( const field in this.formErrors){
-  //     Object.keys(this.formErrors);
-  //     const control = form.get(field);
-  //     if( control && control.dirty && !control.valid){
-  //       const messages = Object.keys(this.errorMessagesfields.errorMessage)
-  //       console.log(messages)
-  //       for(let i = 0; i< Object.keys(this.formErrors).length; i++ ){
-  //         const key: String = Object.keys(this.formErrors)[i];
-  //         console.log(key)
-        
-  //       }
-  //     }
-  //   }
-  // }
-  // submitInvalidForm() {
-  //   if (!this.myForm) { return; }
-  //   const form = this.myForm.form;
-  //   for (const field in this.formErrors) {
-  //     Object.keys(this.formErrors);
-  //     const control = form.get(field);
-  //     if (control && !control.valid) {
-  //       const messages = Object.keys(this.errorMessagesfields.errorMessage)
-  //       console.log(this.formErrors)
-  //       console.log(Object.keys(this.formErrors))
-  //       for (const key in control.errors) {
-
-  //         console.log(messages)
-  //         console.log(control)
-  //         console.log(key)
-  //         console.log(form.get(field))
-  //         // this.formErrors[field] = messages[key];
-  //       }
-  //     }
-  //   }
-  // }
-  registerData(v:any){
+  registerData(v:object){
+    
     if(this.userType === this.individual){
       this.organisationname = ''
     }
@@ -100,23 +49,44 @@ siteKey!: string
       this.lastName = '',
       this.middleName = ''
     }
+    if(this.User_Role_ID === true){
+     this.data = 23 
+    }
+    else{
+      this.data = 1
+    }
     const user={
-     title : this.title,
+      Suffix : this.title,
      userType : this.userType,
-     firstname :this.firstName,
-     middleName:this.middleName,
-     userName: this.userName,
+     FirstName :this.firstName,
+     MiddleName:this.middleName,
+     UserName: this.userName,
      organisationname:this.organisationname,
-     lastName: this.lastName,
+     LastName: this.lastName,
      phone: this.phone,
      email :this.email,
-     password :this.password,
-     confirmpassword :this.confirmpassword,
-     iamnot : this.iamnot,
-     remember_me :this.remember_me
+     UserPassword :this.password,
+     userRegModel:
+      {
+        UserName: this.userName,
+        UserPassword :this.password,
+        UserCaseID:0,
+        User_Role_ID:this.data,
+        CaseTypes:"Civil,Criminal",
+        Agency:0,
+        Modified_by:0,
+        First_Name:this.firstName,
+        Last_Name:this.lastName,
+        Designation:"",
+        BadgeNo:0
+      }
+    }
+    // posting data to authservice
+     this.authService.RegisterData(user).subscribe(data =>{
+     })
  
-     }
- console.log(JSON.stringify(user))
- alert(JSON.stringify(user))
+    //  console.log(user)
+    //  console.log("11111")
+     alert(JSON.stringify(user))
    }
 }

@@ -193,7 +193,7 @@
                 *ngIf="ref4.dirty && ref4.errors?.pattern"
                 class="text-danger"
               >
-                Must be 8978765484
+                Only numerics allowed
               </label>
               <label
                 *ngIf="ref4.dirty && ref4.errors?.minlength"
@@ -231,7 +231,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="form-group">
               <label>Password</label>
               <input
@@ -264,7 +264,7 @@
               >
             </div>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-6">
             <div class="form-group">
               <label>Confirm Password</label>
               <input
@@ -287,23 +287,15 @@
               >
             </div>
           </div>
-
-          <!-- <div class="col-lg-8" style="    padding: 1px;">  -->
-
-          <!-- </div> -->
         </div>
 
         <div class="form-group">
-          <!-- <p>&nbsp;</p> -->
-          <!-- <label> -->
           <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"> </ngx-recaptcha2>
-          <!-- </label> -->
         </div>
         <div class="checkbox mb-3">
           <label>
             <input
               type="checkbox"
-              value="1"
               [(ngModel)]="remember_me"
               name="remember_me"
             />
@@ -324,20 +316,6 @@
             <a class="textdecor" [routerLink]="['/login']">Sign in</a>
           </label>
         </p>
-        <!-- <div class="form-group">
-        <div class="row">
-            <div class="col-sm-2"></div>
-            <div class="col-sm-4">
-                <div *ngIf="myForm.form.valid;then formValid else formError"></div>
-                <ng-template #formValid><button class="btn btn-info add-new" type="submit">Register</button></ng-template>
-                <ng-template #formError><button class="btn rounded-btn color" type="button"
-                        (click)="submitInvalidForm()">Register</button></ng-template>
-                &nbsp;
-                <button type="button" class="btn rounded-btn eqSubmit color"
-                    [routerLink]="['/login']" href="javascript:void(0)">Sign in</button>
-            </div>
-        </div>
-    </div> -->
       </form>
     </div>
   </div>

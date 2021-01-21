@@ -8,8 +8,11 @@ export class AuthService {
 apiUrl= environment.apiUrl
   constructor(private http:HttpClient) { }
 
-postLoginData(data:any){
-  // return this.http.post(this.apiUrl + )
-  console.log(data)
+RegisterData(data:any){
+  // console.log(data)
+  // console.log("22222222")
+  return this.http.post(`${this.apiUrl}/api/User/RegUser`,data).pipe(data => {
+    return data
+  })
 }
 }

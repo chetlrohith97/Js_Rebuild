@@ -226,3 +226,18 @@ body {
 a.textdecor {
   text-decoration: underline;
 }
+a.textdecor {
+  color: #2d8cff;
+}
+
+/* .btn-secondary:disabled {
+  color: #fff;
+  background-color: #6c757d;
+  border-color: #6c757d;
+}
+
+.btn-secondary:hover {
+  color: #fff;
+  background-color: #da621e !important;
+  border-color: #da621e !important;
+} */
