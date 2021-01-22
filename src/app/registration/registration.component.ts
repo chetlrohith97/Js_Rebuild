@@ -37,7 +37,13 @@ data!:number
 
   ngOnInit(): void {
   }
-
+    onlyNumbers(event:any):boolean{
+      const charCode = (event.where)?event.where :event.keyCode;
+      if(charCode > 31 && (charCode <48 || charCode >57)){
+        return false
+      }
+      return true
+    }
   registerData(v:object){
     if(this.userType === this.individual){
       this.organisationname = ''

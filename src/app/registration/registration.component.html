@@ -174,27 +174,28 @@
             <div class="form-group">
               <label>Phone / Mobile</label>
               <input
-                type="tel"
+                type="text"
                 class="form-control"
                 required
                 #ref4="ngModel"
                 minlength="10"
-                pattern="^[0][1-9]\d{9}$|^[1-9]\d{9}$"
+                maxlength="12"
                 [(ngModel)]="phone"
                 name="phone"
                 placeholder="Mobile"
+                (keypress)="onlyNumbers($event)"
               />
               <label
                 *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.required"
                 class="text-danger"
                 >Field is mandatory</label
               >
-              <label
+              <!-- <label
                 *ngIf="ref4.dirty && ref4.errors?.pattern"
                 class="text-danger"
               >
                 Only numerics allowed
-              </label>
+              </label> -->
               <label
                 *ngIf="ref4.dirty && ref4.errors?.minlength"
                 class="text-danger"
