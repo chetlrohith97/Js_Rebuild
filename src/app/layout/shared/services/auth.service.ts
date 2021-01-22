@@ -9,8 +9,8 @@ apiUrl= environment.apiUrl
   constructor(private http:HttpClient) { }
 
 RegisterData(data:any){
-  // console.log(data)
-  // console.log("22222222")
+  console.log(data)
+  console.log("22222222")
   return this.http.post(`${this.apiUrl}/api/User/RegUser`,data).pipe(data => {
     return data
   })

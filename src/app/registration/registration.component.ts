@@ -26,10 +26,9 @@ email!:string;
 password!:string;
 confirmpassword!:string;
 iamnot!:string;
-remember_me ="remember_me";
-siteKey!: string
-User_Role_ID :boolean= true
-data!:any
+remember_me :string ="remember_me";
+siteKey!: string;
+data!:number
   constructor(private authService : AuthService,
     private rotuer:Router) {
       // Able to get error because of this sitekey in the console//
@@ -40,7 +39,6 @@ data!:any
   }
 
   registerData(v:object){
-    
     if(this.userType === this.individual){
       this.organisationname = ''
     }
@@ -49,10 +47,10 @@ data!:any
       this.lastName = '',
       this.middleName = ''
     }
-    if(this.User_Role_ID === true){
+    if(this.remember_me == "remember_me"){
      this.data = 23 
     }
-    else{
+    else {
       this.data = 1
     }
     const user={
@@ -85,8 +83,11 @@ data!:any
      this.authService.RegisterData(user).subscribe(data =>{
      })
  
-    //  console.log(user)
-    //  console.log("11111")
-     alert(JSON.stringify(user))
+     console.log(user)
+     console.log("11111")
+     alert("Registered successfully")
+     setTimeout(() => {
+     this.rotuer.navigate(['/login'])
+     }, 3000);
    }
 }
