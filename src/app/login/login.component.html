@@ -17,7 +17,6 @@
             class="form-control mb-3"
             placeholder="User name"
             required
-            autofocus
           />
           <label
             *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
@@ -33,7 +32,7 @@
             #ref2="ngModel"
             required
             minlength="4"
-            pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,16}$"
+            pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z]).{4,32}$"
             class="form-control"
             [(ngModel)]="password"
             name="password"

@@ -67,8 +67,8 @@ data!:number
      UserName: this.userName,
      organisationname:this.organisationname,
      LastName: this.lastName,
-     phone: this.phone,
-     email :this.email,
+     PrimaryContactNumber: this.phone,
+     PrimaryEmailID :this.email,
      UserPassword :this.password,
      userRegModel:
       {
