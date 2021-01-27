@@ -2,19 +2,19 @@
 
 html {
   padding-top: 4.5rem;
-  background-color: #fafaf9;
+  background-color: #fff;
   padding: 0px;
   margin: 0px;
 }
 body {
   padding-top: 4.5rem;
-  background-color: #fafaf9;
+  background-color: #fff;
   padding: 0px;
   margin: 0px;
 }
 .form-signin {
   width: 100%;
-  padding: 0px 0px 0px 15px;
+  padding: 10px 0px 0px 15px;
   margin: 0px auto;
   text-align: left;
 }
@@ -129,9 +129,9 @@ body {
   -moz-box-shadow: 3px 7px 8px 6px #000; */
   /* box-shadow: 3px 7px 8px 6px #000; */
   padding: 20px;
-  background: #fff;
+  /* background: #fff; */
   border-radius: 10px;
-  margin-top: 10px;
+  /* margin-top: 10px; */
 }
 .arrows {
   font-size: 28px;
@@ -223,8 +223,9 @@ body {
   -o-transform: skew(8deg) rotate(3deg);
   transform: skew(8deg) rotate(3deg);
 }
-a.textdecor {
-  text-decoration: underline;
+a.textdecor:hover {
+  text-decoration: none;
+  /* text-decoration: underline; */
 }
 a.textdecor {
   color: #2d8cff;
@@ -234,10 +235,65 @@ a.textdecor {
   color: #fff;
   background-color: #6c757d;
   border-color: #6c757d;
-}
+} */
 
-.btn-secondary:hover {
+/* .btn-secondary:hover {
   color: #fff;
   background-color: #da621e !important;
   border-color: #da621e !important;
 } */
+.newcj {
+  background-image: url("../assets/img/NewCJ.png");
+  background-repeat: no-repeat;
+  background-size: 76%;
+  background-position: right;
+  /* width: 100%;
+  padding-top: 10%;
+  min-height: 95vh; */
+}
+.newcj1 {
+  background: url("../assets/img/register-left-img.jpg") no-repeat left top;
+  background-size: fixed;
+
+  /* width: 100%;
+  padding-top: 10%;
+  min-height: 95vh; */
+}
+.form-control::-webkit-input-placeholder {
+  color: #d7c185 !important;
+} /* WebKit, Blink, Edge */
+.form-control:-moz-placeholder {
+  color: #d7c185 !important;
+} /* Mozilla Firefox 4 to 18 */
+.form-control::-moz-placeholder {
+  color: #d7c185 !important;
+} /* Mozilla Firefox 19+ */
+.form-control:-ms-input-placeholder {
+  color: #d7c185 !important;
+} /* Internet Explorer 10-11 */
+.form-control::-ms-input-placeholder {
+  color: #d7c185 !important;
+} /* Microsoft Edge */
+.style {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: center;
+}
+.Transparent {
+  opacity: 0.2;
+}
+.styling {
+  text-align: center;
+  font-weight: bold;
+}
+.styling img {
+  width: 100px;
+  height: 100px;
+}
+.center {
+  text-align: center;
+}
+::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: pink;
+}

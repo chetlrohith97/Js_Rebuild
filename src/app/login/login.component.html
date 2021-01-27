@@ -1,13 +1,22 @@
-<section class="col-md-12 bg-form">
-  <div class="container">
-    <div class="col-lg-6 form-box">
+<section class="containter">
+  <div style="display: flex">
+    <div class="col-sm-7 col-md-6 col-lg-6 newcj"></div>
+    <div class="col-lg-5 form-box">
+      <div class="styling">
+        <a [routerLink]="['/login']">
+          <img src="../../assets/img/logo.png" alt="logo"
+        /></a>
+        <h4>Welcome to Lagos State Judiciary</h4>
+        <h5 class="text-danger">Login</h5>
+        <p>Login to your e-Filing account</p>
+      </div>
       <form
         #myform="ngForm"
         (ngSubmit)="myform.form.valid && loginUser(myform.value)"
         class="form-signin"
       >
         <div class="form-group">
-          <label for="inputEmail">User Name</label>
+          <!-- <label for="inputEmail">User Name</label> -->
           <input
             type="text"
             id="inputEmail"
@@ -15,7 +24,7 @@
             [(ngModel)]="userName"
             name="userName"
             class="form-control mb-3"
-            placeholder="User name"
+            placeholder="Username"
             required
           />
           <label
@@ -26,7 +35,7 @@
         </div>
 
         <div class="form-group">
-          <label>Password</label>
+          <!-- <label>Password</label> -->
           <input
             type="password"
             #ref2="ngModel"
@@ -36,7 +45,7 @@
             class="form-control"
             [(ngModel)]="password"
             name="password"
-            placeholder="*****"
+            placeholder="Password"
           />
           <label
             *ngIf="ref2.touched && ref2.errors?.required"
@@ -50,7 +59,7 @@
             1 Upper case,Numerals,Lower case</label
           >
           <label
-            *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.minlength"
+            *ngIf="ref2.touched && ref2.errors?.minlength"
             class="text-danger"
           >
             Minimum 4 characters required</label
@@ -61,7 +70,6 @@
           <label>
             <input
               type="checkbox"
-              required
               #ref3="ngModel"
               [(ngModel)]="remember_me"
               name="remember_me"
@@ -69,32 +77,51 @@
             />
             Remember me
           </label>
-          <label
-            *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
-            class="text-danger"
-            >*Field is mandatory</label
-          >
+          <!-- <label
+              *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
+              class="text-danger"
+              >*Field is mandatory</label
+            > -->
         </div>
 
         <button
-          class="btn btn-secondary"
-          [disabled]="myform.invalid"
+          class="btn btn-secondary form-control"
           type="submit"
+          style="font-size: 20px"
         >
-          Log in
+          Login
         </button>
-        <p class="mt-4 mb-0 text-muted">
-          <label>
-            <a class="textdecor" href="#">Forgot Password?</a>
-          </label>
-        </p>
-        <p class="mt-1 mb-1 text-muted">
-          <label>
-            <a class="textdecor" [routerLink]="['/registration']"
-              >New to JIS ? Sign Up Free</a
-            >
-          </label>
-        </p>
+        <div class="center">
+          <p class="mt-4 mb-0 text-muted">
+            <label style="text-align: center">
+              <a class="textdecor" href="#">FORGOT PASSWORD</a>
+            </label>
+          </p>
+          <p class="mt-1 mb-1 text-muted">
+            <label>
+              <a class="textdecor" [routerLink]="['/registration']"
+                >CREATE E-FILING ACCOUNT</a
+              >
+            </label>
+          </p>
+          <div>
+            <a class="textdecor" href="#" [routerLink]="['/login']"
+              ><i class="bi bi-house-door-fill"></i> Home
+            </a>
+            <a class="textdecor" href="#"
+              ><i class="bi bi-telephone-fill"></i> Contact Us
+            </a>
+            <a class="textdecor" href="#"
+              ><i class="bi bi-info-square-fill"></i> FAQ
+            </a>
+            <p class="pt-2">
+              © 2021 |
+              <a class="textdecor" href="http://firsthightowerinfotech.com/"
+                >· First Hightower Infotech</a
+              >
+            </p>
+          </div>
+        </div>
       </form>
     </div>
   </div>

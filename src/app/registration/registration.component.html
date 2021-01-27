@@ -1,6 +1,7 @@
-<section class="col-md-12 bg-form">
-  <div class="container">
-    <div class="col-lg-6 form-box">
+<section class="containter">
+  <div style="display: flex">
+    <div class="col-sm-7 col-md-6 col-lg-6 newcj1"></div>
+    <div class="col-lg-5 form-box">
       <form
         #myForm="ngForm"
         (ngSubmit)="myForm.form.valid && registerData(myForm.value)"
@@ -45,32 +46,32 @@
           <div class="col-lg-4">
             <label>User Types</label>
             <!-- <p>User Types</p> -->
-            <div class="form-check form-check-inline" style="padding-top: 8px">
-              <input
-                class="form-check-input"
-                [(ngModel)]="userType"
-                name="userType"
-                type="radio"
-                value="individual"
-              />
-              <label class="form-check-label" for="inlineRadio1">
-                Individual</label
-              >
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <p>&nbsp;</p>
-            <div class="form-check form-check-inline">
-              <input
-                class="form-check-input"
-                [(ngModel)]="userType"
-                name="userType"
-                type="radio"
-                value="organisation"
-              />
-              <label class="form-check-label" for="inlineRadio1">
-                Organisation</label
-              >
+            <div style="display: flex">
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  [(ngModel)]="userType"
+                  name="userType"
+                  type="radio"
+                  value="individual"
+                />
+                <label class="form-check-label" for="inlineRadio1">
+                  Individual</label
+                >
+              </div>
+
+              <div class="form-check form-check-inline">
+                <input
+                  class="form-check-input"
+                  [(ngModel)]="userType"
+                  name="userType"
+                  type="radio"
+                  value="organisation"
+                />
+                <label class="form-check-label" for="inlineRadio1">
+                  Organisation</label
+                >
+              </div>
             </div>
           </div>
         </div>
@@ -86,7 +87,7 @@
                 #ref1="ngModel"
                 [(ngModel)]="firstName"
                 name="firstName"
-                placeholder="First name"
+                placeholder="Firstname"
               />
               <label
                 *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
@@ -106,7 +107,7 @@
                 class="form-control"
                 [(ngModel)]="middleName"
                 name="middleName"
-                placeholder="Middle name"
+                placeholder="Middlename"
               />
               <label
                 *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required"
@@ -125,7 +126,7 @@
                 class="form-control"
                 [(ngModel)]="lastName"
                 name="lastName"
-                placeholder="Last name"
+                placeholder="Lastname"
               />
               <label
                 *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
@@ -144,7 +145,7 @@
                 class="form-control"
                 [(ngModel)]="organisationname"
                 name="organisationname"
-                placeholder="Organisation name"
+                placeholder="Organisationname"
               />
             </div>
           </div>
@@ -161,7 +162,7 @@
                 #ref8="ngModel"
                 [(ngModel)]="userName"
                 name="userName"
-                placeholder="User name"
+                placeholder="Username"
               />
               <label
                 *ngIf="(ref8.dirty || ref8.touched) && ref8.errors?.required"
@@ -244,7 +245,7 @@
                 class="form-control"
                 [(ngModel)]="password"
                 name="password"
-                placeholder="*****"
+                placeholder="Password"
               />
               <label
                 *ngIf="ref6.touched && ref6.errors?.required"
@@ -276,7 +277,7 @@
                 class="form-control"
                 [(ngModel)]="confirmpassword"
                 name="confirmpassword"
-                placeholder="*****"
+                placeholder="Password"
               />
               <label
                 *ngIf="(ref7.dirty || ref7.touched) && ref7.errors?.required"
