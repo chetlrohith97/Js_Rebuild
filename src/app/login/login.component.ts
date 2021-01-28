@@ -28,10 +28,12 @@ export class LoginComponent implements OnInit {
       this.authService.Loginuser(user).subscribe((result) => {
         this.data = result;
         if (this.data == '') {
-          // console.log(result)
+          console.log(this.data);
           alert('Login Username or Password Incorrect Invalid Credentials');
         } else {
-          // console.log(this.data[0]?.user_ID)
+          this.authService.StoreUserData(result);
+          console.log(this.data);
+          console.log(this.data[0]?.user_ID);
           setTimeout(() => {
             this.router.navigate(['/home']);
           }, 2000);

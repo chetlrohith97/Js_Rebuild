@@ -21,12 +21,13 @@ const routes: Routes = [
       ),
   },
   {
-    path: 'home',
+    path: 'page-not-found',
     loadChildren: () =>
       import('./page-not-found/page-not-found-routing.module').then(
         (m) => m.PageNotFoundRoutingModule
       ),
   },
+  { path: '**', redirectTo: 'page-not-found' },
 ];
 
 @NgModule({
