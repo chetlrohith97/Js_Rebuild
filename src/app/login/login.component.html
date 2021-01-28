@@ -86,9 +86,14 @@
 
         <button
           class="btn btn-secondary form-control"
+          [disabled]="loading"
           type="submit"
           style="font-size: 20px"
         >
+          <span
+            *ngIf="loading"
+            class="spinner-border spinner-border-sm mr-1"
+          ></span>
           Login
         </button>
         <div class="center">

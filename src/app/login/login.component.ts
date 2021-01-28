@@ -12,6 +12,7 @@ export class LoginComponent implements OnInit {
   password!: string;
   remember_me = 'remember_me';
   data!: any;
+  loading = false;
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {}
@@ -22,14 +23,17 @@ export class LoginComponent implements OnInit {
       // remember_me:this.remember_me
     };
     console.log('asdfsadf123');
+    this.loading = true;
     if (user.UserName == '' || user.UserPassword == '') {
       alert('Login Fields Can Not Be Empty Invalid username or password');
+      // this.loading = false;
     } else {
       this.authService.Loginuser(user).subscribe((result) => {
         this.data = result;
         if (this.data == '') {
           console.log(this.data);
           alert('Login Username or Password Incorrect Invalid Credentials');
+          this.loading = false;
         } else {
           this.authService.StoreUserData(result);
           console.log(this.data);

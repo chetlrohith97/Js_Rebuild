@@ -36,6 +36,8 @@ export class RegistrationComponent implements OnInit {
   remember_me: string = 'remember_me';
   siteKey!: string;
   data!: number;
+  loading = false;
+
   constructor(private authService: AuthService, private rotuer: Router) {
     // Able to get error because of this sitekey in the console//
     this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'; // i am not roboot APIkey
@@ -86,14 +88,16 @@ export class RegistrationComponent implements OnInit {
         BadgeNo: 0,
       },
     };
-    // posting data to authservice
-    this.authService.RegisterData(user).subscribe((data) => {});
 
-    console.log(user);
-    console.log('11111');
-    alert('Registered successfully');
-    setTimeout(() => {
-      this.rotuer.navigate(['/login']);
-    }, 2000);
+    this.loading = true;
+    // posting data to authservice
+    this.authService.RegisterData(user).subscribe((data) => {
+      console.log(user);
+      console.log('11111');
+      alert('Registered successfully');
+      setTimeout(() => {
+        this.rotuer.navigate(['/login']);
+      }, 2000);
+    });
   }
 }
