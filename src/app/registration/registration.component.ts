@@ -94,7 +94,9 @@ export class RegistrationComponent implements OnInit {
     this.authService.RegisterData(user).subscribe((data) => {
       console.log(user);
       console.log('11111');
-      alert('Registered successfully');
+      alert(
+        'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
+      );
       setTimeout(() => {
         this.rotuer.navigate(['/login']);
       }, 2000);
