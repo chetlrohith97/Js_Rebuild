@@ -7,12 +7,26 @@ const routes: Routes = [
     path: '',
     component: LayoutComponent,
     children: [
+      // {
+      //   path: 'home',
+      //   loadChildren: () =>
+      //     import('../layout/home/home-routing.module').then(
+      //       (m) => m.HomeRoutingModule
+      //     ),
+      // },
       {
-        path: 'home',
+        path: 'profile',
         loadChildren: () =>
-          import('../layout/home/home-routing.module').then(
-            (m) => m.HomeRoutingModule
+          import('../layout/profile/profile-routing.module').then(
+            (m) => m.ProfileRoutingModule
           ),
+      },
+      {
+        path: 'edit-profile',
+        loadChildren: () =>
+          import(
+            '../layout/profile/edit-profile/edit-profile-routing.module'
+          ).then((m) => m.EditProfileRoutingModule),
       },
     ],
   },

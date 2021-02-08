@@ -8,17 +8,6 @@ import { AuthService } from '@shared/services/index';
   styleUrls: ['./registration.component.css'],
 })
 export class RegistrationComponent implements OnInit {
-  formErrors = {
-    firstName: '',
-    middleName: '',
-    lastName: '',
-    phone: '',
-    email: '',
-    password: '',
-    confirmpassword: '',
-    iamnot: '',
-    remember_me: '',
-  };
   title = 'Mr';
   userType = 'individual';
   individual = 'individual';
@@ -37,10 +26,11 @@ export class RegistrationComponent implements OnInit {
   siteKey!: string;
   data!: number;
   loading = false;
-
+  captcha!: string;
   constructor(private authService: AuthService, private rotuer: Router) {
     // Able to get error because of this sitekey in the console//
-    this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'; // i am not roboot APIkey
+    // this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'; // i am not roboot APIkey
+    this.siteKey = '6LcX_0oaAAAAAPJyL9a7stlALdTG2Y3wAlPulk_l';
   }
 
   ngOnInit(): void {}

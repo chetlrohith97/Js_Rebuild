@@ -6,6 +6,7 @@
         #myForm="ngForm"
         (ngSubmit)="myForm.form.valid && registerData(myForm.value)"
         class="form-signin"
+        novalidate
       >
         <div class="row">
           <div class="col-lg-4">
@@ -90,7 +91,9 @@
                 placeholder="Firstname"
               />
               <label
-                *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
+                *ngIf="
+                  (ref1.dirty || myForm.submitted) && ref1.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -110,7 +113,9 @@
                 placeholder="Middlename"
               />
               <label
-                *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required"
+                *ngIf="
+                  (ref2.dirty || myForm.submitted) && ref2.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -129,7 +134,9 @@
                 placeholder="Lastname"
               />
               <label
-                *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
+                *ngIf="
+                  (ref3.dirty || myForm.submitted) && ref3.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -165,7 +172,9 @@
                 placeholder="Username"
               />
               <label
-                *ngIf="(ref8.dirty || ref8.touched) && ref8.errors?.required"
+                *ngIf="
+                  (ref8.dirty || myForm.submitted) && ref8.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -187,7 +196,9 @@
                 (keypress)="onlyNumbers($event)"
               />
               <label
-                *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.required"
+                *ngIf="
+                  (ref4.dirty || myForm.submitted) && ref4.errors?.required
+                "
                 class="text-danger"
                 >Field is mandatory</label
               >
@@ -220,7 +231,9 @@
                 placeholder="Email"
               />
               <label
-                *ngIf="ref5.touched && ref5.errors?.required"
+                *ngIf="
+                  (ref5.touched || myForm.submitted) && ref5.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -248,7 +261,9 @@
                 placeholder="Password"
               />
               <label
-                *ngIf="ref6.touched && ref6.errors?.required"
+                *ngIf="
+                  (ref6.touched || myForm.submitted) && ref6.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -280,7 +295,9 @@
                 placeholder="Password"
               />
               <label
-                *ngIf="(ref7.dirty || ref7.touched) && ref7.errors?.required"
+                *ngIf="
+                  (ref7.dirty || myForm.submitted) && ref7.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -292,8 +309,23 @@
         </div>
 
         <div class="form-group">
-          <ngx-recaptcha2 #captchaElem [siteKey]="siteKey"> </ngx-recaptcha2>
+          <re-captcha
+            [(ngModel)]="captcha"
+            name="captcha"
+            siteKey="6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5"
+            required
+            #captchaControl="ngModel"
+          ></re-captcha>
+          <label
+            *ngIf="
+              (captchaControl.dirty || myForm.submitted) &&
+              captchaControl.errors?.required
+            "
+            class="text-danger"
+            >*Field is mandatory</label
+          >
         </div>
+
         <div class="checkbox mb-3">
           <label>
             <input
@@ -304,11 +336,7 @@
             Un-check this box if you are not a Legal Counsel
           </label>
         </div>
-        <button
-          class="btn btn-secondary"
-          [disabled]="myForm.invalid"
-          type="submit"
-        >
+        <button class="btn btn-secondary" type="submit">
           <span
             *ngIf="loading"
             class="spinner-border spinner-border-sm mr-1"

@@ -1,0 +1,394 @@
+<section class="containter">
+  <div style="display: flex">
+    <div class="col-sm-7 col-md-6 col-lg-6 newcj1"></div>
+    <div class="col-lg-5 form-box">
+      <h5 class="form-title">Edit Profile</h5>
+      <form
+        #myForm="ngForm"
+        (ngSubmit)="myForm.form.valid && updateProfile(myForm.value)"
+        class="form-signin"
+        novalidate
+      >
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Title</label>
+              <select
+                id="ddltitle"
+                class="form-control"
+                [(ngModel)]="title"
+                name="title"
+              >
+                <option selected value="Mr">Mr</option>
+                <option value="Mrs">Mrs</option>
+                <option value="Miss">Miss</option>
+                <option value="Dr">Dr</option>
+                <option value="Dr(Mrs)">Dr(Mrs)</option>
+                <option value="Chief">Chief</option>
+                <option value="Chief(Mrs)">Chief(Mrs)</option>
+                <option value="Engr">Engr</option>
+                <option value="Engr(Mrs)">Engr(Mrs)</option>
+                <option value="Alhaji">Alhaji</option>
+                <option value="Alhaja">Alhaja</option>
+                <option value="Rev">Rev</option>
+                <option value="Pastor">Pastor</option>
+                <option value="Admiral">Admiral</option>
+                <option value="General">General</option>
+                <option value="Air Comm.">Air Comm.</option>
+                <option value="Captain">Captain</option>
+                <option value="Lt. Col">Lt. Col</option>
+                <option value="Rev(Mrs)">Rev(Mrs)</option>
+                <option value="Bishop">Bishop</option>
+                <option value="Arch Bishop">Arch Bishop</option>
+                <option value="Primate">Primate</option>
+                <option value="Architect">Architect</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>First Name</label>
+              <input
+                type="text"
+                required
+                class="form-control"
+                #ref1="ngModel"
+                [(ngModel)]="firstName"
+                name="firstName"
+                placeholder="Firstname"
+              />
+              <label
+                *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Middle Name</label>
+              <input
+                type="text"
+                required
+                #ref2="ngModel"
+                class="form-control"
+                [(ngModel)]="middleName"
+                name="middleName"
+                placeholder="Middlename"
+              />
+              <label
+                *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Last Name</label>
+              <input
+                type="text"
+                required
+                #ref3="ngModel"
+                class="form-control"
+                [(ngModel)]="lastName"
+                name="lastName"
+                placeholder="Lastname"
+              />
+              <label
+                *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
+            </div>
+          </div>
+        </div>
+        <!-- <div class="row" *ngIf="userType === organisation">
+          <div class="col-lg-8">
+            <div class="form-group">
+              <label>Organisation Name</label>
+              <input
+                type="text"
+                class="form-control"
+                [(ngModel)]="organisationname"
+                name="organisationname"
+                placeholder="Organisationname"
+              />
+            </div>
+          </div>
+        </div> -->
+
+        <div class="row">
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>User Name</label>
+              <input
+                type="text"
+                required
+                class="form-control"
+                #ref8="ngModel"
+                [(ngModel)]="userName"
+                name="userName"
+                placeholder="Username"
+              />
+              <label
+                *ngIf="(ref8.dirty || ref8.touched) && ref8.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
+            </div>
+          </div>
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Phone / Mobile</label>
+              <input
+                type="text"
+                class="form-control"
+                required
+                #ref4="ngModel"
+                minlength="10"
+                maxlength="12"
+                [(ngModel)]="phone"
+                name="phone"
+                placeholder="Mobile"
+                (keypress)="onlyNumbers($event)"
+              />
+              <label
+                *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.required"
+                class="text-danger"
+                >Field is mandatory</label
+              >
+              <!-- <label
+                  *ngIf="ref4.dirty && ref4.errors?.pattern"
+                  class="text-danger"
+                >
+                  Only numerics allowed
+                </label> -->
+              <label
+                *ngIf="ref4.dirty && ref4.errors?.minlength"
+                class="text-danger"
+              >
+                Minimum 10 numbers are allowed
+              </label>
+            </div>
+          </div>
+
+          <div class="col-lg-4">
+            <div class="form-group">
+              <label>Email</label>
+              <input
+                type="text"
+                class="form-control"
+                #ref5="ngModel"
+                required
+                pattern="[A-Za-z0-9].*[@].*[.].*"
+                [(ngModel)]="email"
+                name="email"
+                placeholder="Email"
+              />
+              <label
+                *ngIf="ref5.touched && ref5.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
+              <label
+                *ngIf="(ref5.dirty || ref5.touched) && ref5.errors?.pattern"
+                class="text-danger"
+                >Characters followed by @ and .com</label
+              >
+            </div>
+          </div>
+        </div>
+
+        <section class="containter">
+          <h5 class="form-title">Update Details</h5>
+          <div class="col-md-12 form-bg2">
+            <div class="row">
+              <div class="col-6 form-group">
+                <label></label>
+                <label>Security Question</label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="Securityquestion"
+                  name="Securityquestion"
+                >
+                  <option selected value="Mr">
+                    In What city were you born?
+                  </option>
+                  <option value="Mrs">
+                    What is the name of your first school?
+                  </option>
+                  <option value="Miss">What is your favorite color?</option>
+                  <option value="Miss">What Is your first Mobile No?</option>
+                  <option value="Miss">
+                    What is your mother's maiden name?
+                  </option>
+                  <option value="Miss">What Is your NickName?</option>
+                  <option value="Miss">
+                    What was the make of your first car?
+                  </option>
+                  <option value="Miss">
+                    Which is your favorite web browser?
+                  </option>
+                </select>
+              </div>
+              <div class="col-6 form-group">
+                <label> Security Answer</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  name="Securityanswer"
+                  [(ngModel)]="Securityanswer"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>Address 1</label>
+                <textarea
+                  class="form-control"
+                  type="textarea"
+                  name="address1"
+                  [(ngModel)]="address1"
+                  autosize
+                >
+                This is an example of @techiediaries/ngx-textarea-autosize in Angular 10.
+            </textarea
+                >
+              </div>
+              <div class="col-6 form-group">
+                <label>Address 2</label>
+                <textarea
+                  class="form-control"
+                  type="textarea"
+                  name="address2"
+                  [(ngModel)]="address2"
+                  autosize
+                >
+                </textarea>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>Date Of Birth</label>
+                <input
+                  type="date"
+                  class="form-control"
+                  [(ngModel)]="DOB"
+                  name="DOB"
+                />
+              </div>
+              <div class="col-6 form-group">
+                <label>State</label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="State"
+                  name="State"
+                >
+                  <option selected value="Mr">Abia</option>
+                  <option value="Mrs">Adamawa</option>
+                  <option value="Miss">Akwa Ibom</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>LGA</label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="LGA"
+                  name="LGA"
+                >
+                  <option selected value="Mr">Abia</option>
+                  <option value="Mrs">Adamawa</option>
+                  <option value="Miss">Akwa Ibom</option>
+                </select>
+              </div>
+              <div class="col-6 form-group">
+                <label>City</label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="City"
+                  name="City"
+                >
+                  <option selected value="Mr">Abia</option>
+                  <option value="Mrs">Adamawa</option>
+                  <option value="Miss">Akwa Ibom</option>
+                </select>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>Marital Status </label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="LGA"
+                  name="LGA"
+                >
+                  <option value="">Select</option>
+                  <option value="M">Married</option>
+                  <option value="S">Single</option>
+                  <option value="W">Widow/Widower</option>
+                  <option value="D">Divorced</option>
+                </select>
+              </div>
+              <div class="col-6 form-group">
+                <label> Bank Verification Number(BVN)</label>
+                <input type="text" name="BVN" class="form-control" />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-6 form-group">
+                <label>Gender</label>
+                <select
+                  id="ddltitle"
+                  class="form-control"
+                  [(ngModel)]="gender"
+                  name="gender"
+                >
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+              <div class="col-6 form-group">
+                <label>Payer ID</label>
+                <input
+                  type="text"
+                  name="PayerID"
+                  class="form-control"
+                  placeholder="N-444875"
+                />
+                If you don't have a Payer ID,
+                <a href="#">Click Here</a> to Generate
+              </div>
+            </div>
+          </div>
+          <button class="btn btn-secondary" type="submit">
+            <span
+              *ngIf="loading"
+              class="spinner-border spinner-border-sm mr-1"
+            ></span>
+            Update
+          </button>
+          &nbsp;
+          <button
+            class="btn btn-primary"
+            [routerLink]="['/profile']"
+            type="button"
+          >
+            Cancel
+          </button>
+        </section>
+      </form>
+    </div>
+  </div>
+</section>

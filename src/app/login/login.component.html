@@ -14,6 +14,7 @@
         #myform="ngForm"
         (ngSubmit)="myform.form.valid && loginUser(myform.value)"
         class="form-signin"
+        novalidate
       >
         <div class="form-group">
           <!-- <label for="inputEmail">User Name</label> -->
@@ -28,7 +29,7 @@
             required
           />
           <label
-            *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
+            *ngIf="(ref1.dirty || myform.submitted) && ref1.errors?.required"
             class="text-danger"
             >*Field is mandatory</label
           >
@@ -48,7 +49,7 @@
             placeholder="Password"
           />
           <label
-            *ngIf="ref2.touched && ref2.errors?.required"
+            *ngIf="(ref2.touched || myform.submitted) && ref2.errors?.required"
             class="text-danger"
             >*Field is mandatory</label
           >

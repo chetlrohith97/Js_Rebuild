@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {FormsModule} from '@angular/forms'
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -15,7 +15,8 @@ import { FooterComponent } from './layout/component/footer/footer.component';
 import { LayoutComponent } from './layout/layout.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AuthService, ErrormessagesService } from './layout/shared/services';
-import { NgxCaptchaModule } from 'ngx-captcha';
+// import { NgxCaptchaModule } from 'ngx-captcha';
+import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
   declarations: [
@@ -35,10 +36,11 @@ import { NgxCaptchaModule } from 'ngx-captcha';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    NgxCaptchaModule
-
+    RecaptchaFormsModule,
+    RecaptchaModule,
+    // NgxCaptchaModule
   ],
-  providers: [AuthService,ErrormessagesService],
-  bootstrap: [AppComponent]
+  providers: [AuthService, ErrormessagesService],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

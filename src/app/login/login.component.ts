@@ -39,7 +39,7 @@ export class LoginComponent implements OnInit {
           console.log(this.data);
           console.log(this.data[0]?.user_ID);
           setTimeout(() => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['/profile']);
           }, 2000);
           console.log('logged to console');
         }
