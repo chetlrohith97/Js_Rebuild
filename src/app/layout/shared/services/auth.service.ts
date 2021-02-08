@@ -37,4 +37,13 @@ export class AuthService {
         return data;
       });
   }
+
+  EditProfile(id: string) {
+    console.log(id);
+    return this.http
+      .get(`${this.apiUrl}/api/Edit/GetEditDetails/` + id)
+      .pipe((data) => {
+        return data;
+      });
+  }
 }

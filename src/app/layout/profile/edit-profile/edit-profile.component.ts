@@ -28,11 +28,17 @@ export class EditProfileComponent implements OnInit {
   PayerID!: string;
   profileId!: string;
   loading = false;
+  user_ID?: string;
 
   constructor(private authService: AuthService, private rotuer: Router) {}
   ngOnInit(): void {
     this.editProfile();
     this.profileId = this.userData[0]?.profile_ID;
+    this.user_ID = this.userData[0]?.user_ID;
+    console.log(this.user_ID);
+    this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
+      console.log(data);
+    });
   }
   onlyNumbers(event: any): boolean {
     const charCode = event.where ? event.where : event.keyCode;
