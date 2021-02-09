@@ -1,23 +1,26 @@
 <div class="row pt-1">
   <div class="col-3"></div>
   <div class="col-6 jumbotron">
-    <h1>Welcome to JIS 2.0</h1>
-    <div class="row">
-      <div class="col-6">
+    <h1 style="text-align: center">Welcome to JIS 2.0</h1>
+    <div class="row pt-3 mt-4">
+      <div class="col-4">
         <p class="lead">Role: {{ user_Role_Name }}</p>
         <p>Welcome: {{ User_name }}</p>
       </div>
-      <div class="col-6 form-group">
-        <div class="row">
-          <div class="col-4">
-            <a [routerLink]="['/edit-profile']">Edit profile</a>
-          </div>
-          <div class="col-6">
-            <button class="btn btn-secondary" (click)="logout()">Logout</button>
-          </div>
-        </div>
-      </div>
+      <div class="col-6 form-group"></div>
       <!-- <hr class="my-4" /> -->
+    </div>
+    <div class="row">
+      <!-- <div class="col-4"> -->
+      <!-- <a [routerLink]="['/edit-profile']">Edit profile</a> -->
+      <button class="btn btn-primary" [routerLink]="['/edit-profile']">
+        Edit profile
+      </button>
+      &nbsp;
+      <!-- </div> -->
+      <!-- <div class="col-4"> -->
+      <button class="btn btn-secondary" (click)="logout()">Logout</button>
+      <!-- </div> -->
     </div>
     <div class="col-3"></div>
   </div>
