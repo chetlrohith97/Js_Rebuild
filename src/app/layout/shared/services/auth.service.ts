@@ -39,9 +39,8 @@ export class AuthService {
   }
 
   EditProfile(id: string) {
-    console.log(id);
     return this.http
-      .get(`${this.apiUrl}/api/Edit/GetEditDetails/` + id)
+      .get(`${this.apiUrl}/api/Edit/GetEditDetails?User_ID=` + id)
       .pipe((data) => {
         return data;
       });

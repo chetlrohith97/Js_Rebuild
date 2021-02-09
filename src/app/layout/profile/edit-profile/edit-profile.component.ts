@@ -29,6 +29,7 @@ export class EditProfileComponent implements OnInit {
   profileId!: string;
   loading = false;
   user_ID?: string;
+  Data?: object;
 
   constructor(private authService: AuthService, private rotuer: Router) {}
   ngOnInit(): void {
@@ -36,10 +37,12 @@ export class EditProfileComponent implements OnInit {
     this.profileId = this.userData[0]?.profile_ID;
     this.user_ID = this.userData[0]?.user_ID;
     console.log(this.user_ID);
-    this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
-      console.log(data);
-    });
+    // this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
+    //   console.log(data);
+    // });
+    this.editProfile();
   }
+
   onlyNumbers(event: any): boolean {
     const charCode = event.where ? event.where : event.keyCode;
     if (charCode > 31 && (charCode < 48 || charCode > 57)) {
@@ -49,18 +52,34 @@ export class EditProfileComponent implements OnInit {
   }
 
   editProfile() {
-    this.firstName = 'Rajesh';
-    this.lastName = 'kumar';
-    this.middleName = 'khanna';
-    this.phone = '987575878';
-    this.userName = 'Rajesh12';
-    this.email = 'rajesh@gmail.com';
-    // this.State = 'telangana';
-    // this.LGA = 'madhapur';
-    // this.City = 'hyderabad';
-    // this.DOB = '20-07-1993';
-    // this.address1 = 'near madhapur';
-    // this.address2 = 'landmark benz show room';
+    this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
+      // console.log(Object.values(data)[0]);
+      // console.log(Object.values(data)[0]?.last_Name);
+      this.firstName = Object.values(data)[0]?.first_Name;
+      this.lastName = Object.values(data)[0]?.last_Name;
+      this.middleName = Object.values(data)[0]?.middle_Name;
+      this.phone = Object.values(data)[0]?.primary_Contact_Number;
+      this.userName = Object.values(data)[0]?.userName;
+      this.email = Object.values(data)[0]?.primary_Email_ID;
+      this.State = Object.values(data)[0]?.State;
+      this.LGA = Object.values(data)[0]?.LGA;
+      this.City = Object.values(data)[0]?.City;
+      this.DOB = Object.values(data)[0]?.date_Of_Birth;
+      this.address1 = Object.values(data)[0]?.address_1;
+      this.address2 = Object.values(data)[0]?.address_2;
+      // this.firstName = 'Rajesh';
+      // this.lastName = 'kumar';
+      // this.middleName = 'khanna';
+      // this.phone = '987575878';
+      // this.userName = 'Rajesh12';
+      // this.email = 'rajesh@gmail.com';
+      // this.State = 'telangana';
+      // this.LGA = 'madhapur';
+      // this.City = 'hyderabad';
+      // this.DOB = '20-07-1993';
+      // this.address1 = 'near madhapur';
+      // this.address2 = 'landmark benz show room';
+    });
   }
   updateProfile(v: object) {
     const UserData = {
