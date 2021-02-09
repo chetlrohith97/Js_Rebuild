@@ -53,13 +53,13 @@ export class EditProfileComponent implements OnInit {
 
   editProfile() {
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
-      // console.log(Object.values(data)[0]);
+      console.log(Object.values(data)[0]);
       // console.log(Object.values(data)[0]?.last_Name);
       this.firstName = Object.values(data)[0]?.first_Name;
       this.lastName = Object.values(data)[0]?.last_Name;
       this.middleName = Object.values(data)[0]?.middle_Name;
       this.phone = Object.values(data)[0]?.primary_Contact_Number;
-      this.userName = Object.values(data)[0]?.userName;
+      // this.userName = Object.values(data)[0]?.userName;
       this.email = Object.values(data)[0]?.primary_Email_ID;
       this.State = Object.values(data)[0]?.State;
       this.LGA = Object.values(data)[0]?.LGA;
