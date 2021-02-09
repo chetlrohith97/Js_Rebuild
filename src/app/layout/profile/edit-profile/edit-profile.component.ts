@@ -33,13 +33,9 @@ export class EditProfileComponent implements OnInit {
 
   constructor(private authService: AuthService, private rotuer: Router) {}
   ngOnInit(): void {
-    this.editProfile();
-    this.profileId = this.userData[0]?.profile_ID;
+    this.editProfile(); //calling editprofile data on the load
     this.user_ID = this.userData[0]?.user_ID;
     console.log(this.user_ID);
-    // this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
-    //   console.log(data);
-    // });
     this.editProfile();
   }
 

@@ -1,2 +1,2 @@
 export * from './auth.service';
-export * from './errormessages.service'
+export * from './errormessages.service';

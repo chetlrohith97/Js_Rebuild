@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
@@ -17,6 +18,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AuthService, ErrormessagesService } from './layout/shared/services';
 // import { NgxCaptchaModule } from 'ngx-captcha';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,14 @@ import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
     HttpClientModule,
     RecaptchaFormsModule,
     RecaptchaModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 1000,
+      progressBar: true,
+      progressAnimation: 'increasing',
+      preventDuplicates: true,
+      positionClass: 'toast-top-center',
+    }),
     // NgxCaptchaModule
   ],
   providers: [AuthService, ErrormessagesService],
