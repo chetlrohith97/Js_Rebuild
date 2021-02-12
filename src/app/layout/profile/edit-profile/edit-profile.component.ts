@@ -67,29 +67,16 @@ export class EditProfileComponent implements OnInit {
       this.phone = Object.values(data)[0]?.primary_Contact_Number;
       // this.userName = Object.values(data)[0]?.userName;
       this.email = Object.values(data)[0]?.primary_Email_ID;
-      this.State = Object.values(data)[0]?.State;
-      this.LGA = Object.values(data)[0]?.LGA;
-      this.City = Object.values(data)[0]?.City;
+      this.State = Object.values(data)[0]?.state;
+      this.LGA = Object.values(data)[0]?.lga;
+      this.City = Object.values(data)[0]?.city;
       this.date_Of_Birth = Object.values(data)[0]?.date_Of_Birth;
       this.address1 = Object.values(data)[0]?.address_1;
       this.address2 = Object.values(data)[0]?.address_2;
       this.Securityquestion = Object.values(data)[0]?.securityQuestionID;
       this.Securityanswer = Object.values(data)[0]?.securityAnswer;
-      console.log(Object.values(data)[0]?.City);
-      console.log(Object.values(data)[0]?.LGA);
-      console.log(Object.values(data)[0]?.State);
-      // this.firstName = 'Rajesh';
-      // this.lastName = 'kumar';
-      // this.middleName = 'khanna';
-      // this.phone = '987575878';
-      // this.userName = 'Rajesh12';
-      // this.email = 'rajesh@gmail.com';
-      // this.State = 'telangana';
-      // this.LGA = 'madhapur';
-      // this.City = 'hyderabad';
-      // this.DOB = '20-07-1993';
-      // this.address1 = 'near madhapur';
-      // this.address2 = 'landmark benz show room';
+      this.gender = Object.values(data)[0]?.sex;
+      this.MaritalStatus = Object.values(data)[0]?.maritalStatus;
     });
   }
   updateProfile(v: object) {
