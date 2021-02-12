@@ -23,7 +23,7 @@ export class AuthService {
     console.log('login' + '11111');
     let headers = new HttpHeaders();
     return this.http
-      .post(`${this.apiUrl}/api/user/LoginUser`, data, { headers: headers })
+      .post(`${this.apiUrl}/api/User/LoginUser`, data, { headers: headers })
       .pipe((data) => {
         console.log(data);
         return data;
@@ -44,10 +44,17 @@ export class AuthService {
     let headers = new HttpHeaders();
     return this.http
       .get(`${this.apiUrl}/api/Edit/GetEditDetails?User_ID=` + id, {
-        headers: headers,
+        headers: headers
       })
       .pipe((data) => {
         return data;
       });
+  }
+
+  UpdateProfile(id: string,data:object){
+    console.log(data)
+    let headers = new HttpHeaders();
+    return this.http.put(`${this.apiUrl}/api/Edit/UpdateProfile/`,data,{headers: headers}).pipe((data)=>
+    {return data})
   }
 }

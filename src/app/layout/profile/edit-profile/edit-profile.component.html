@@ -61,7 +61,9 @@
                 placeholder="Firstname"
               />
               <label
-                *ngIf="(ref1.dirty || ref1.touched) && ref1.errors?.required"
+                *ngIf="
+                  (ref1.dirty || myForm.submitted) && ref1.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -81,7 +83,9 @@
                 placeholder="Middlename"
               />
               <label
-                *ngIf="(ref2.dirty || ref2.touched) && ref2.errors?.required"
+                *ngIf="
+                  (ref2.dirty || myForm.submitted) && ref2.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -100,48 +104,17 @@
                 placeholder="Lastname"
               />
               <label
-                *ngIf="(ref3.dirty || ref3.touched) && ref3.errors?.required"
+                *ngIf="
+                  (ref3.dirty || myForm.submitted) && ref3.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
             </div>
           </div>
         </div>
-        <!-- <div class="row" *ngIf="userType === organisation">
-          <div class="col-lg-8">
-            <div class="form-group">
-              <label>Organisation Name</label>
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="organisationname"
-                name="organisationname"
-                placeholder="Organisationname"
-              />
-            </div>
-          </div>
-        </div> -->
 
         <div class="row">
-          <!-- <div class="col-lg-4"> -->
-          <!-- <div class="form-group">
-              <label>User Name</label>
-              <input
-                type="text"
-                required
-                class="form-control"
-                #ref8="ngModel"
-                [(ngModel)]="userName"
-                name="userName"
-                placeholder="Username"
-              />
-              <label
-                *ngIf="(ref8.dirty || ref8.touched) && ref8.errors?.required"
-                class="text-danger"
-                >*Field is mandatory</label
-              >
-            </div> -->
-          <!-- </div> -->
           <div class="col-lg-6">
             <div class="form-group">
               <label>Phone / Mobile</label>
@@ -158,16 +131,12 @@
                 (keypress)="onlyNumbers($event)"
               />
               <label
-                *ngIf="(ref4.dirty || ref4.touched) && ref4.errors?.required"
+                *ngIf="
+                  (ref4.dirty || myForm.submitted) && ref4.errors?.required
+                "
                 class="text-danger"
                 >Field is mandatory</label
               >
-              <!-- <label
-                  *ngIf="ref4.dirty && ref4.errors?.pattern"
-                  class="text-danger"
-                >
-                  Only numerics allowed
-                </label> -->
               <label
                 *ngIf="ref4.dirty && ref4.errors?.minlength"
                 class="text-danger"
@@ -191,7 +160,9 @@
                 placeholder="Email"
               />
               <label
-                *ngIf="ref5.touched && ref5.errors?.required"
+                *ngIf="
+                  (ref5.touched || myForm.submitted) && ref5.errors?.required
+                "
                 class="text-danger"
                 >*Field is mandatory</label
               >
@@ -209,42 +180,58 @@
           <div class="col-md-12 form-bg2">
             <div class="row">
               <div class="col-6 form-group">
-                <label></label>
                 <label>Security Question</label>
                 <select
                   id="ddltitle"
+                  required
+                  #ref6="ngModel"
                   class="form-control"
                   [(ngModel)]="Securityquestion"
                   name="Securityquestion"
                 >
-                  <option selected value="Mr">
-                    In What city were you born?
-                  </option>
-                  <option value="Mrs">
+                <option value="1">What Is your NickName?</option>
+                <option value="2">What Is your first Mobile No?</option>
+                <option  value="3">
+                                    In What city were you born?
+                                  </option>
+                 <option value="4">
                     What is the name of your first school?
                   </option>
-                  <option value="Miss">What is your favorite color?</option>
-                  <option value="Miss">What Is your first Mobile No?</option>
-                  <option value="Miss">
+                   <option value="5">
                     What is your mother's maiden name?
                   </option>
-                  <option value="Miss">What Is your NickName?</option>
-                  <option value="Miss">
+                   <option value="6">
                     What was the make of your first car?
                   </option>
-                  <option value="Miss">
+                    <option value="7">
                     Which is your favorite web browser?
                   </option>
+                  <option value="8">What is your favorite color?</option>
                 </select>
+                <label
+                *ngIf="
+                  (ref6.dirty || myForm.submitted) && ref6.errors?.required"
+                class="text-danger"
+                >*Field is mandatory</label
+              >
               </div>
               <div class="col-6 form-group">
                 <label> Security Answer</label>
                 <input
                   type="text"
+                  required
+                  #ref7="ngModel"
                   class="form-control"
                   name="Securityanswer"
                   [(ngModel)]="Securityanswer"
                 />
+                <label
+                  *ngIf="
+                    (ref7.dirty || myForm.submitted) && ref7.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
             </div>
             <div class="row">
@@ -253,12 +240,20 @@
                 <textarea
                   class="form-control"
                   type="textarea"
+                  #ref8="ngModel"
+                  required
                   name="address1"
                   [(ngModel)]="address1"
                   autosize
                 >
-                This is an example of @techiediaries/ngx-textarea-autosize in Angular 10.
             </textarea
+                >
+                <label
+                  *ngIf="
+                    (ref8.dirty || myForm.submitted) && ref8.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
                 >
               </div>
               <div class="col-6 form-group">
@@ -278,23 +273,41 @@
                 <label>Date Of Birth</label>
                 <input
                   type="date"
+                  #ref9="ngModel"
+                  required
                   class="form-control"
-                  [(ngModel)]="DOB"
-                  name="DOB"
+                  [(ngModel)]="date_Of_Birth"
+                  name="date_Of_Birth"
                 />
+                <label
+                  *ngIf="
+                    (ref9.dirty || myForm.submitted) && ref9.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
               <div class="col-6 form-group">
                 <label>State</label>
                 <select
                   id="ddltitle"
+                  #ref10="ngModel"
+                  required
                   class="form-control"
                   [(ngModel)]="State"
                   name="State"
                 >
-                  <option selected value="Mr">Abia</option>
-                  <option value="Mrs">Adamawa</option>
-                  <option value="Miss">Akwa Ibom</option>
+                  <option  value="1">Abia</option>
+                  <option value="2">Adamawa</option>
+                  <option value="3">Akwa Ibom</option>
                 </select>
+                <label
+                  *ngIf="
+                    (ref10.dirty || myForm.submitted) && ref10.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
             </div>
             <div class="row">
@@ -302,27 +315,45 @@
                 <label>LGA</label>
                 <select
                   id="ddltitle"
+                  #ref11="ngModel"
+                  required
                   class="form-control"
                   [(ngModel)]="LGA"
                   name="LGA"
                 >
-                  <option selected value="Mr">Abia</option>
-                  <option value="Mrs">Adamawa</option>
-                  <option value="Miss">Akwa Ibom</option>
+                  <option selected value="1">Abia</option>
+                  <option value="2">Adamawa</option>
+                  <option value="3">Akwa Ibom</option>
                 </select>
+                <label
+                  *ngIf="
+                    (ref11.dirty || myForm.submitted) && ref11.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
               <div class="col-6 form-group">
                 <label>City</label>
                 <select
                   id="ddltitle"
+                  #ref12="ngModel"
+                  required
                   class="form-control"
                   [(ngModel)]="City"
                   name="City"
                 >
-                  <option selected value="Mr">Abia</option>
-                  <option value="Mrs">Adamawa</option>
-                  <option value="Miss">Akwa Ibom</option>
+                  <option selected value="1">Abia</option>
+                  <option value="2">Adamawa</option>
+                  <option value="3">Akwa Ibom</option>
                 </select>
+                <label
+                  *ngIf="
+                    (ref12.dirty || myForm.submitted) && ref12.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
             </div>
             <div class="row">
@@ -330,20 +361,33 @@
                 <label>Marital Status </label>
                 <select
                   id="ddltitle"
+                  #ref13="ngModel"
+                  required
                   class="form-control"
-                  [(ngModel)]="LGA"
-                  name="LGA"
+                  [(ngModel)]="MaritalStatus"
+                  name="MaritalStatus"
                 >
-                  <option value="">Select</option>
                   <option value="M">Married</option>
                   <option value="S">Single</option>
                   <option value="W">Widow/Widower</option>
                   <option value="D">Divorced</option>
                 </select>
+                <label
+                  *ngIf="
+                    (ref13.dirty || myForm.submitted) && ref13.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
               <div class="col-6 form-group">
                 <label> Bank Verification Number(BVN)</label>
-                <input type="text" name="BVN" class="form-control" />
+                <input
+                  type="text"
+                  name="BVN"
+                  [(ngModel)]="BVN"
+                  class="form-control"
+                />
               </div>
             </div>
             <div class="row">
@@ -351,6 +395,8 @@
                 <label>Gender</label>
                 <select
                   id="ddltitle"
+                  required
+                  #ref15="ngModel"
                   class="form-control"
                   [(ngModel)]="gender"
                   name="gender"
@@ -358,12 +404,20 @@
                   <option value="male">Male</option>
                   <option value="female">Female</option>
                 </select>
+                <label
+                  *ngIf="
+                    (ref15.dirty || myForm.submitted) && ref15.errors?.required
+                  "
+                  class="text-danger"
+                  >*Field is mandatory</label
+                >
               </div>
               <div class="col-6 form-group">
                 <label>Payer ID</label>
                 <input
                   type="text"
                   name="PayerID"
+                  [(ngModel)]="PayerID"
                   class="form-control"
                   placeholder="N-444875"
                 />

@@ -20,7 +20,7 @@ export class EditProfileComponent implements OnInit {
   Securityanswer!: string;
   address1!: string;
   address2!: string;
-  DOB!: string;
+  date_Of_Birth!: string;
   State!: string;
   LGA!: string;
   City!: string;
@@ -30,12 +30,18 @@ export class EditProfileComponent implements OnInit {
   loading = false;
   user_ID?: string;
   Data?: object;
+  Profile_ID!:string;
+  BVN?:string
+  MaritalStatus?:string;
+
 
   constructor(private authService: AuthService, private rotuer: Router) {}
   ngOnInit(): void {
-    this.editProfile(); //calling editprofile data on the load
     this.user_ID = this.userData[0]?.user_ID;
+    this.Profile_ID = this.userData[0]?.profile_ID;
     console.log(this.user_ID);
+    console.log(this.Profile_ID);
+    console.log(this.userData[0]?.profile_ID);
     this.editProfile();
   }
 
@@ -49,7 +55,11 @@ export class EditProfileComponent implements OnInit {
 
   editProfile() {
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
+       this.Profile_ID = Object.values(data)[0]?.profile_ID
       console.log(Object.values(data)[0]);
+
+      // console.log(Object.values(data)[0]?.profile_ID);
+
       // console.log(Object.values(data)[0]?.last_Name);
       this.firstName = Object.values(data)[0]?.first_Name;
       this.lastName = Object.values(data)[0]?.last_Name;
@@ -60,9 +70,14 @@ export class EditProfileComponent implements OnInit {
       this.State = Object.values(data)[0]?.State;
       this.LGA = Object.values(data)[0]?.LGA;
       this.City = Object.values(data)[0]?.City;
-      this.DOB = Object.values(data)[0]?.date_Of_Birth;
+      this.date_Of_Birth = Object.values(data)[0]?.date_Of_Birth;
       this.address1 = Object.values(data)[0]?.address_1;
       this.address2 = Object.values(data)[0]?.address_2;
+      this.Securityquestion = Object.values(data)[0]?.securityQuestionID;
+      this.Securityanswer = Object.values(data)[0]?.securityAnswer;
+      console.log(Object.values(data)[0]?.City);
+      console.log(Object.values(data)[0]?.LGA);
+      console.log(Object.values(data)[0]?.State);
       // this.firstName = 'Rajesh';
       // this.lastName = 'kumar';
       // this.middleName = 'khanna';
@@ -78,76 +93,68 @@ export class EditProfileComponent implements OnInit {
     });
   }
   updateProfile(v: object) {
-    const UserData = {
-      title: this.title,
-      firstName: this.firstName,
-      middleName: this.middleName,
-      lastName: this.lastName,
-      phone: this.phone,
-      userName: this.userName,
-      email: this.email,
-      Securityquestion: this.Securityquestion,
-      Securityanswer: this.Securityanswer,
-      address1: this.address1,
-      address2: this.address2,
-      DOB: this.DOB,
+    const ProfileData = {
+      suffix: this.title,
+      first_Name: this.firstName,
+      middle_Name: this.middleName,
+      last_Name: this.lastName,
+      primary_Contact_Number: this.phone,
+      Profile_ID: this.Profile_ID,
+      primary_Email_ID: this.email,
+      SecurityQuestionID: this.Securityquestion, // need to update field
+      SecurityAnswer: this.Securityanswer, // need to update field
+      address_1: this.address1,
+      address_2: this.address2,
+      date_Of_Birth: this.date_Of_Birth,
       State: this.State,
       LGA: this.LGA,
       City: this.City,
-      gender: this.gender,
+      Sex: this.gender,
       PayerID: this.PayerID,
+      MaritalStatus:this.MaritalStatus
     };
-    console.log(UserData);
-  }
-  registerData(v: object) {
-    // if (this.userType === this.individual) {
-    //   this.organisationname = '';
-    // }
-    // if (this.userType === this.organisation) {
-    //   (this.firstName = ''), (this.lastName = ''), (this.middleName = '');
-    // }
-    // if (this.remember_me == 'remember_me') {
-    //   this.data = 23;
-    // } else {
-    //   this.data = 1;
-    // }
-    const user = {
-      Suffix: this.title,
-      // userType: this.userType,
-      FirstName: this.firstName,
-      MiddleName: this.middleName,
-      UserName: this.userName,
-      // organisationname: this.organisationname,
-      LastName: this.lastName,
-      PrimaryContactNumber: this.phone,
-      PrimaryEmailID: this.email,
-      // UserPassword: this.password,
-      userRegModel: {
-        UserName: this.userName,
-        // UserPassword: this.password,
-        UserCaseID: 0,
-        // User_Role_ID: this.data,
-        CaseTypes: 'Civil,Criminal',
-        Agency: 0,
-        Modified_by: 0,
-        First_Name: this.firstName,
-        Last_Name: this.lastName,
-        Designation: '',
-        BadgeNo: 0,
-      },
-    };
+    this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
+    {
+      console.log(ProfileData)
+    console.log("success");
+    console.log(data)
+    console.log(this.Profile_ID);
+    })
+    console.log("clicked");
 
-    this.loading = true;
-    // posting data to authservice
-    this.authService.RegisterData(user).subscribe((data) => {
-      console.log(user);
-      console.log('11111');
-      alert(
-        'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
-      );
-      setTimeout(() => {
-        this.rotuer.navigate(['/login']);
-      }, 2000);
-    });
   }
+  // registerData(v: object) {
+  //   const user = {
+  //     Suffix: this.title,
+  //     FirstName: this.firstName,
+  //     MiddleName: this.middleName,
+  //     UserName: this.userName,
+  //     LastName: this.lastName,
+  //     PrimaryContactNumber: this.phone,
+  //     PrimaryEmailID: this.email,
+  //     userRegModel: {
+  //       UserName: this.userName,
+  //       UserCaseID: 0,
+  //       CaseTypes: 'Civil,Criminal',
+  //       Agency: 0,
+  //       Modified_by: 0,
+  //       First_Name: this.firstName,
+  //       Last_Name: this.lastName,
+  //       Designation: '',
+  //       BadgeNo: 0,
+  //     },
+  //   };
+
+  //   this.loading = true;
+  //   this.authService.RegisterData(user).subscribe((data) => {
+  //     console.log(user);
+  //     console.log('11111');
+  //     alert(
+  //       'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
+  //     );
+  //     setTimeout(() => {
+  //       this.rotuer.navigate(['/login']);
+  //     }, 2000);
+  //   });
+  // }
 }
