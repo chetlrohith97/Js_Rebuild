@@ -224,7 +224,7 @@ getLga(event :any){
     // let Hashvalue = CreateMD5(Hash);
     // return Hashvalue.ToUpper();
   }
-  
+   
   getOrganizationId(){
     this.Address = this.address1+ ","+this.City + "," + this.LGA + ',' + this.State;
     let clientName='LSJI';
