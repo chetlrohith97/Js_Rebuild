@@ -296,7 +296,7 @@
                   class="form-control"
                   [(ngModel)]="State"
                   name="State"
-                  (change)=getState($event.target.value)
+                  (change)=getState($any($event.target).value)
                 >
                 <option  value='0'>
                   Select
@@ -326,7 +326,7 @@
                   class="form-control"
                   [(ngModel)]="LGA"
                   name="LGA"
-                  (change)='getLga($event.target.value)'
+                  (change)='getLga($any($event.target).value)'
                 > 
                 <option  value='0'>
                   Select
