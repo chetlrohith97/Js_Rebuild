@@ -18,7 +18,7 @@ export class ProfileComponent implements OnInit {
     private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void { 
     this.user_Role_Name = this.userData[0]?.user_Role_Name;
     this.User_name = this.userData[0]?.userName;
     console.log(this.userData);

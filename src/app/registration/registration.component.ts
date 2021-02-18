@@ -53,7 +53,7 @@ export class RegistrationComponent implements OnInit {
     if (this.remember_me == 'remember_me') {
       this.data = 23;
     } else {
-      this.data = 1;
+      this.data = 1; 
     }
     const user = {
       Suffix: this.title,

@@ -90,7 +90,7 @@ CreateIndividualId(data:any){
   let headers = new HttpHeaders()
   return this.http.post(' https://qpay.ng/PaymentGateway/CreateIndividualPayer',data,{headers:headers}).pipe((data)=>{
     console.log(data)  
-  return data
+  return data 
   })
 }
 

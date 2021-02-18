@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   apiUrl:"http://localhost:5000",
-  ClientCode      :    "LSJI",
+  ClientCode      :    "LSJI", 
 SecretKey       :      "895D78F2-D3D8-4458-AC6B-DD556CF5529D",
 IndividualId    :   'https://qpay.ng/PaymentGateway/CreateIndividualPayer',
 CorporateId     :    "https://qpay.ng/PaymentGateway/CreateCorporatePayer",
