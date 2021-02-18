@@ -22,7 +22,7 @@ export class ProfileComponent implements OnInit {
     this.user_Role_Name = this.userData[0]?.user_Role_Name;
     this.User_name = this.userData[0]?.userName;
     console.log(this.userData);
-    console.log(JSON.parse(localStorage.getItem('user_data') || '[]'));
+    console.log(this.userData[0]?.userName);
   }
   logout() {
     localStorage.removeItem(this.userData);

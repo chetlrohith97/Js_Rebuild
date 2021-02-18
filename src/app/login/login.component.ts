@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
       UserPassword: this.password,
       // remember_me:this.remember_me
     };
-    console.log('asdfsadf123');
+    // console.log('asdfsadf123');
     this.loading = true;
     if (user.UserName == '' || user.UserPassword == '') {
       this.toastr.error(
@@ -37,15 +37,15 @@ export class LoginComponent implements OnInit {
       this.authService.Loginuser(user).subscribe((result) => {
         this.data = result;
         if (this.data == '') {
-          console.log(this.data);
+          // console.log(this.data);
           this.toastr.error(
             'Login Username or Password Incorrect Invalid Credentials'
           );
           this.loading = false;
         } else {
           this.authService.StoreUserData(result);
-          console.log(this.data);
-          console.log(this.data[0]?.user_ID);
+          // console.log(this.data);
+          // console.log(this.data[0]?.user_ID);
           setTimeout(() => {
             this.router.navigate(['/profile']);
           }, 2000);

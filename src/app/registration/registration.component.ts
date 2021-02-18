@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '@shared/services/index';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +10,7 @@ import { AuthService } from '@shared/services/index';
 })
 export class RegistrationComponent implements OnInit {
   title = 'Mr';
-  userType = 'individual';
+  userType : string= 'individual';
   individual = 'individual';
   organisation = 'organisation';
   organisationname!: string;
@@ -27,7 +28,8 @@ export class RegistrationComponent implements OnInit {
   data!: number;
   loading = false;
   captcha!: string;
-  constructor(private authService: AuthService, private rotuer: Router) {
+  constructor(private authService: AuthService, private rotuer: Router,
+    private toastr: ToastrService) {
     // Able to get error because of this sitekey in the console//
     // this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'; // i am not roboot APIkey
     this.siteKey = '6LcX_0oaAAAAAPJyL9a7stlALdTG2Y3wAlPulk_l';
@@ -55,11 +57,11 @@ export class RegistrationComponent implements OnInit {
     }
     const user = {
       Suffix: this.title,
-      userType: this.userType,
+      UserType: this.userType,
       FirstName: this.firstName,
       MiddleName: this.middleName,
       UserName: this.userName,
-      organisationname: this.organisationname,
+      Organization_Name: this.organisationname,
       LastName: this.lastName,
       PrimaryContactNumber: this.phone,
       PrimaryEmailID: this.email,
@@ -84,9 +86,10 @@ export class RegistrationComponent implements OnInit {
     this.authService.RegisterData(user).subscribe((data) => {
       console.log(user);
       console.log('11111');
-      alert(
-        'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
-      );
+this.toastr.success('Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN')
+      // alert(
+      //   'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
+      // );
       setTimeout(() => {
         this.rotuer.navigate(['/login']);
       }, 2000);

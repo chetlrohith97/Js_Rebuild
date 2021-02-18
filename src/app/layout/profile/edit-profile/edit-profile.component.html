@@ -291,15 +291,21 @@
                 <label>State</label>
                 <select
                   id="ddltitle"
-                  #ref10="ngModel"
+                  #ref10="ngModel" 
                   required
                   class="form-control"
                   [(ngModel)]="State"
                   name="State"
+                  (change)=getState($event.target.value)
                 >
-                  <option  value="1">Abia</option>
-                  <option value="2">Adamawa</option>
-                  <option value="3">Akwa Ibom</option>
+                <option  value='0'>
+                  Select
+                </option>
+                <option *ngFor='let statefields of StateObject' value={{statefields.state_ID}}>
+                  {{statefields.state_Name}}
+                  {{statefields.state_ID}}
+                </option>
+                 
                 </select>
                 <label
                   *ngIf="
@@ -320,10 +326,15 @@
                   class="form-control"
                   [(ngModel)]="LGA"
                   name="LGA"
-                >
-                  <option selected value="1">Abia</option>
-                  <option value="2">Adamawa</option>
-                  <option value="3">Akwa Ibom</option>
+                  (change)='getLga($event.target.value)'
+                > 
+                <option  value='0'>
+                  Select
+                </option>
+                  <option *ngFor='let LgaFields of LgaObject' value={{LgaFields.localGovtAreaId}}>
+                    {{LgaFields.localGovtAreaName}}
+                    {{LgaFields.localGovtAreaId}}
+                  </option>
                 </select>
                 <label
                   *ngIf="
@@ -343,9 +354,13 @@
                   [(ngModel)]="City"
                   name="City"
                 >
-                  <option selected value="1">Abia</option>
-                  <option value="2">Adamawa</option>
-                  <option value="3">Akwa Ibom</option>
+                <option  value='0'>
+                  Select
+                </option>
+                  <option *ngFor='let Cityfield of CityObject' value={{Cityfield.city_ID}}>
+                    {{Cityfield.city_Name}}
+                    {{Cityfield.city_ID}}
+                  </option>
                 </select>
                 <label
                   *ngIf="
@@ -422,7 +437,7 @@
                   placeholder="N-444875"
                 />
                 If you don't have a Payer ID,
-                <a href="#">Click Here</a> to Generate
+                <a  href="javascript: void(0);" style="color: #007bff" (click)=generatePayerId()>Click Here</a> to Generate
               </div>
             </div>
           </div>

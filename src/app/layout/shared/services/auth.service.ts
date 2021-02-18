@@ -57,4 +57,49 @@ export class AuthService {
     return this.http.put(`${this.apiUrl}/api/Edit/UpdateProfile/`,data,{headers: headers}).pipe((data)=>
     {return data})
   }
+
+GetStatefields(){
+  // console.log("state fields")
+  let headers = new HttpHeaders();
+  return this.http.get(`${this.apiUrl}/api/Edit/GetStateDetails`,{headers: headers}).pipe((data)=>
+  {
+    return data
+  })
+}
+
+GetLgaFields(id:any){
+  // console.log("lga fields")
+  let headers = new HttpHeaders();
+  return this.http.get(`${this.apiUrl}/api/Edit/GetLGADetails?StateId=`+id,{headers: headers}).pipe((data)=>
+  {
+    return data
+  })
+}
+
+GetCityFields(id:any){
+  // console.log("lga fields")
+  let headers = new HttpHeaders();
+  return this.http.get(`${this.apiUrl}/api/Edit/GetCityDetails?LGAId=`+id,{headers: headers}).pipe((data)=>
+  {
+    return data
+  })
+}
+
+CreateIndividualId(data:any){
+  console.log(data)
+  let headers = new HttpHeaders()
+  return this.http.post(' https://qpay.ng/PaymentGateway/CreateIndividualPayer',data,{headers:headers}).pipe((data)=>{
+    console.log(data)  
+  return data
+  })
+}
+
+CreteOrgnaizId(data:any){
+  console.log(data)
+  let headers = new HttpHeaders()
+  return this.http.post(' https://qpay.ng/PaymentGateway/CreateCorporatePayer',data,{headers: headers}).pipe((data)=>{
+  console.log(data)  
+  return data
+  })
+}
 }
