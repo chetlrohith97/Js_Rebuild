@@ -4,6 +4,10 @@ import { AuthService } from '@shared/services/index';
 import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import {Md5} from 'ts-md5/dist/md5';
+import { environment } from '@env';
+declare var jquery:any;
+declare var $ :any;
+// import * as $ from 'jquery'
 // import {environment} from '@env/index';
 
 @Component({
@@ -38,15 +42,22 @@ export class EditProfileComponent implements OnInit {
   Profile_ID!:string;
   BVN?:string
   MaritalStatus?:string;
-  StateObject: any
-  statefields: Object | undefined
+  States: any
+  state: Object | undefined
   id:undefined
-  LgaObject :any
-  LgaFields : any
-  CityObject :any
-  Cityfield :any
+  Lgas :any
+  Lga : any
+  Citys :any
+  // City :any
   Address:any
   UserType:any
+  stateName!:string
+  LgaName!:string
+  CityName!:string
+LolStateName?:any
+LolLgaName?:any
+LolCityName?:any
+LolHashKey ?:any
   constructor(private authService: AuthService, private rotuer: Router,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -56,15 +67,23 @@ export class EditProfileComponent implements OnInit {
     this.Profile_ID = this.userData[0]?.profile_ID;
     this.editProfile();
     //  state drop start
+    // var stateName;
     this.authService.GetStatefields().subscribe((data)=>
     {
-      this.StateObject =  data;
+      this.States =  data;
       // console.log(data)
-    })
-    //  state drop end
-
-    // this.generatePayerId()
-    // this.getIndividualId()
+      for(let i=0; i<=this.States.length;i++){ //for getting an State_Name
+        if(this.State == this.States[i]?.state_ID){
+          this.stateName =this.States[i].state_Name
+          // this.stateName= stateName
+          // console.log(stateName)
+          console.log("success")
+        }
+   }    
+   console.log(this.stateName) 
+   localStorage.setItem('stateName', this.stateName);
+   
+    }) 
     }
 
   onlyNumbers(event: any): boolean {
@@ -76,21 +95,42 @@ export class EditProfileComponent implements OnInit {
   }
 
 getState(event :any){
-  this.statefields = event
-  // console.log(event)
-  this.authService.GetLgaFields(this.statefields).subscribe((data)=>{
-    this.LgaObject = data
+  
+  this.state = event
+  console.log(event)
+  this.authService.GetLgaFields(this.state).subscribe((data)=>{
+    this.Lgas = data
     // console.log(this.LgaObject)
     this.getLga(this.LGA);
+
+    for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
+      if(this.LGA == this.Lgas[i]?.localGovtAreaId){
+        this.LgaName =this.Lgas[i].localGovtAreaName
+        // console.log(this.LgaName)
+        // console.log("success")
+      }
+    }
+    console.log(this.LgaName) 
+   localStorage.setItem('LgaName', this.LgaName);
  })
 
 }
 getLga(event :any){
-  this.LgaFields = event
+  this.Lga = event
   // console.log(event)
-  this.authService.GetCityFields(this.LgaFields).subscribe((data)=>{
-    this.CityObject = data
+  this.authService.GetCityFields(this.Lga).subscribe((data)=>{
+    this.Citys = data
     // console.log(this.CityObject)
+
+    for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
+      if(this.City == this.Citys[i]?.city_ID){
+        this.CityName =this.Citys[i].city_Name
+        console.log(this.CityName)
+        console.log("success")
+      }
+    }
+    console.log(this.CityName) 
+    localStorage.setItem('CityName', this.CityName);
   })
 
 }
@@ -100,13 +140,18 @@ getLga(event :any){
 
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
       this.UserType = Object.values(data)[0]?.userType
-      // console.log(this.UserType)
-      // var currentDate = new Date(Object.values(data)[0]?.date_Of_Birth);
-      // var date = currentDate.getDate();
-      // var month = currentDate.getMonth(); //Be careful! January is 0 not 1
-      // var year = currentDate.getFullYear();
-      // var dateString = (month + 1) + "/" + date + "/" + year;
-      // console.log(dateString);
+      console.log( Object.values(data)[0])
+      var currentDate = new Date(Object.values(data)[0]?.date_Of_Birth);
+      var date = currentDate.getDate();
+      var month = currentDate.getMonth(); //Be careful! January is 0 not 1
+      var year = currentDate.getFullYear();
+      var dateString = (month + 1) + "/" + date + "/" + year;
+      this.date_Of_Birth=new Date(dateString);
+    let latest_date =this.datepipe.transform(dateString, 'MM/dd/yyyy');
+      console.log(latest_date)
+      console.log(dateString);
+      console.log(date + month +year);
+
        this.Profile_ID = Object.values(data)[0]?.profile_ID
       // console.log(Object.values(data)[0]);
       this.firstName = Object.values(data)[0]?.first_Name;
@@ -127,7 +172,7 @@ getLga(event :any){
       this.MaritalStatus = Object.values(data)[0]?.marital_Status;
       this.BVN = Object.values(data)[0]?.bank_Verification_Number;
       this.PayerID = Object.values(data)[0]?.payerID
-      // console.log(this.date_Of_Birth)
+      console.log(this.date_Of_Birth)
       // console.log(this.City)
       // console.log(this.State)
       this.getState(this.State);
@@ -183,44 +228,38 @@ getLga(event :any){
   }
 
   getIndividualId(){
-    this.Address = this.address1+ ","+this.City + "," + this.LGA + ',' + this.State
+    this.LolStateName = localStorage.getItem('stateName')
+    this.LolLgaName = localStorage.getItem('LgaName')
+    this.LolCityName = localStorage.getItem('CityName')
+    this.LolHashKey = localStorage.getItem('Hashvalue')
+    console.log(this.LolStateName + this.LolLgaName + this.LolCityName +this.LolHashKey)
+    this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
+    console.log(this.Address)
     this.date_Of_Birth=new Date(this.date_Of_Birth);
-    let latest_date =this.datepipe.transform(this.date_Of_Birth, 'yyyy-MM-ddTHH:mm:ss');
-    let clientName='LSJI';
-    let hashKey ='895D78F2-D3D8-4458-AC6B-DD556CF5529D';
+    let latest_date = this.datepipe.transform(this.date_Of_Birth, 'yyyy-MM-ddTHH:mm:ss');
+    let clientCode = environment.ClientCode;
     const UserData ={
-      // title :this.title,
-      // lastName:this.lastName,
-      // firstName: this.firstName,
-      // otherName:this.middleName,
-      // email:this.email,
-      // address:this.Address,
-      // phone: this.phone,
-      // birthDate:latest_date,
-      // bvnNumber:this.BVN,
-      // sex:this.gender,
-      // maritalStatus:this.MaritalStatus,
-      // clientName :clientName,
-      title :'Mr',
-      lastName:"Cartwright",
-      firstName: "John",
-      otherName:"Donald",
-      email:"jay@surestep.co.uk",
-      address:"1 Church Road,Gbagada,Bariga,Lagos",
-      phone: "07545847475",
-      birthDate: "1981-10-09",
-      bvnNumber: "12345678911",
-      sex:"M",
-      maritalStatus: "M",
-      clientName : "LSJI",
-      hash: this.GetHash( hashKey, clientName, this.lastName, this.firstName, this.email, this.phone, this.Address),
+      title :this.title,
+      lastName:this.lastName,
+      firstName: this.firstName,
+      otherName:this.middleName,
+      email:this.email,
+      address:this.Address,
+      phone: this.phone,
+      birthDate:latest_date,
+      bvnNumber:this.BVN,
+      sex:this.gender,
+      maritalStatus:this.MaritalStatus,
+      clientName :clientCode,
+      hash:this.LolHashKey
       }
-      // this.authService.CreateIndividualId(UserData).subscribe((response)=>{
-      //   // if(response
-      //   console.log(response)
-      // })
-      // let hash = this.GetHash( hashKey, UserData.clientName, UserData.lastName, UserData.firstName, UserData.email, UserData.phone, UserData.address);//commented on 27jan2020
-      // console.log(this.GetHash(hashKey, clientName, UserData.lastName, UserData.firstName, UserData.email, UserData.phone, UserData.address))
+        console.log(UserData)
+  // localStorage.removeItem('stateName')
+  //  localStorage.removeItem('LgaName')
+  //  localStorage.removeItem('CityName')
+  //  localStorage.removeItem('Hashvalue')
+    
+    
   }
   GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
     let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
@@ -231,16 +270,31 @@ getLga(event :any){
     if (typeof Hashvalued === 'string') {
     const  Hashvalue = Hashvalued.toUpperCase();
     console.log(Hashvalue);
-
+    localStorage.setItem('Hashvalue', Hashvalue);
   }
     // let Hashvalue = CreateMD5(Hash);
     // return Hashvalue.ToUpper();
   }
-    
+  // ngAfterViewInit() {
+  // this.generatePayerId()
+   
+  // }
   getOrganizationId(){
-    this.Address = this.address1+ ","+this.City + "," + this.LGA + ',' + this.State;
-    let clientName='LSJI';
-    let hashKey ='895D78F2-D3D8-4458-AC6B-DD556CF5529D';
+    
+    this.LolStateName = localStorage.getItem('stateName')
+    this.LolLgaName = localStorage.getItem('LgaName')
+    this.LolCityName = localStorage.getItem('CityName')
+    this.LolHashKey = localStorage.getItem('Hashvalue')
+    console.log(localStorage.getItem('stateName')) 
+   console.log(localStorage.getItem('LgaName')) 
+   console.log(localStorage.getItem('CityName')) 
+   console.log(localStorage.getItem('Hashvalue')) 
+   
+
+    
+    this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
+    console.log(this.Address)
+    let clientName=environment.ClientCode;
     // console.log( this.Address)
     const OrganizData ={
       name:this.firstName,
@@ -248,9 +302,14 @@ getLga(event :any){
       address: this.Address,
       phone:this.phone,
       clientName :clientName,
-      hash: this.GetHash( hashKey, clientName, this.lastName, this.firstName, this.email, this.phone, this.Address),
+      hash: this.LolHashKey
     }
-    // console.log(OrganizData)
-
+    console.log(OrganizData)
+    // localStorage.removeItem('stateName')
+    // localStorage.removeItem('LgaName')
+    // localStorage.removeItem('CityName')
+    // localStorage.removeItem('Hashvalue')
   }
+
+  
 }
