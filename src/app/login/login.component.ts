@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   remember_me = 'remember_me';
   data!: any;
   loading = false;
+  fieldTextType?: boolean;
   constructor(
     private router: Router,
     private authService: AuthService,
@@ -21,6 +22,10 @@ export class LoginComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {}
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
+  }
   loginUser(v: any) {
     const user = {
       UserName: this.userName,
