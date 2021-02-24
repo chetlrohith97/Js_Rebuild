@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { environment } from '@env';
 import { AuthService } from '@shared/services/index';
 import { ToastrService } from 'ngx-toastr';
 
@@ -32,7 +33,7 @@ export class RegistrationComponent implements OnInit {
     private toastr: ToastrService) {
     // Able to get error because of this sitekey in the console//
     // this.siteKey = '6LfMXTEaAAAAAMjiXtkgDZF--Dho9LjYyn_Cplw5'; // i am not roboot APIkey
-    this.siteKey = '6LcX_0oaAAAAAPJyL9a7stlALdTG2Y3wAlPulk_l';
+    this.siteKey = environment.siteKey_recptcha
   }
 
   ngOnInit(): void {}
