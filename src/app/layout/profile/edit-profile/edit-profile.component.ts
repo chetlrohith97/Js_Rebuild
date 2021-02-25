@@ -71,6 +71,8 @@ SecCitys:any
 organisationname:any
 individual = 'individual';
 organisation = 'organisation';
+type:any
+options:any
   constructor(private authService: AuthService, private rotuer: Router,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -293,7 +295,7 @@ getsec_LGA(event:any){
   logout() {
     localStorage.removeItem(this.userData);
     this.authService.logout();
-    this.router.navigate(['/login']);
+    this.router.navigate(['/home']);
     this.toastr.success('Your Are Logged out');
   }
   // GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){

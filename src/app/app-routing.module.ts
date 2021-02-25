@@ -4,6 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'prefix' },
   {
+    path: 'home',
+    loadChildren: () =>
+      import('../app/layout/home/home.module').then(
+        (m) => m.HomeModule
+      ),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./layout/layout.module').then((m) => m.LayoutModule),
@@ -20,13 +27,7 @@ const routes: Routes = [
         (m) => m.RegistrationModule
       ),
   },
-  {
-    path: 'home',
-    loadChildren: () =>
-      import('../app/layout/home/home.module').then(
-        (m) => m.HomeModule
-      ),
-  },
+ 
   {
     path: 'page-not-found',
     loadChildren: () =>

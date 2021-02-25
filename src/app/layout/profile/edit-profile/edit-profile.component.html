@@ -1,5 +1,5 @@
 <div class="row m-0">
-  <div class="col-md-3 col-xs-6 col-sm-5 fix-left-area p-0 shadow">
+  <div class="col-md-3 col-xs-6 col-sm-5 fix-left-area  p-0 shadow">
     <div class="row m-0">
       <div class="col-md-3 col-xs-12 col-sm-12 p-0">
         <img src="assets/brand/lagos_state_Judiciary.png" class="img-fluid" />
@@ -8,7 +8,7 @@
         <div class="pt-2 pb-1 text-uppercase float-right">
           <div class="dropdown">
             <button
-              class="btn text-black form-control text-left dropdown-toggle"
+              class="btn text-black  text-left dropdown-toggle"
               type="button"
               id="dropdownMenu2"
               data-bs-toggle="dropdown"
@@ -23,7 +23,7 @@
             >
             <ul class="dropdown-menu fade" aria-labelledby="dropdownMenu2">
               <li class="p-0 ep">
-                <a href="#" class="text-capitalize">Edit Profile</a>
+                <a [routerLink]="['/edit-profile']" class="text-capitalize">Edit Profile</a>
               </li>
               <li class="p-0 ep">
                 <a href="#" class="text-capitalize">User Signature</a>
@@ -35,7 +35,7 @@
                 <a href="" class="text-capitalize">My Schedules</a>
               </li>
               <li class="p-0 ep">
-                <a (click)="logout()" style="border-bottom:0px" class="text-capitalize">Logout</a>
+                <a (click)="logout()"  href="javascript: void(0);" style="border-bottom:0px" class="text-capitalize">Logout</a>
               </li>
             </ul>
           </div>
@@ -263,7 +263,7 @@
       </div>
     </div>
   </div>
-  <div class="col-md-9 col-xs-6 col-sm-7 fix-right-area">
+  <div class="col-md-9 col-xs-6 col-sm-7 edit-form-bg fix-right-area">
     <div class="col-lg-12 card mt-2 mb-2 p-2 shadow">
       <h4 class="mb-0">Edit Profile</h4>
       <hr />
@@ -274,7 +274,7 @@
         placeholder before final copy is available.
       </div>
     </div>
-    <div class="row m-0 edit-form-bg pt-2 pb-2 mt-3">
+    <div class="row m-0  pt-2 pb-2 mt-3">
       <div class="col-md-10 offset-md-1">
         <ul class="nav nav-tabs cus-width" id="myTab" role="tablist">
           <li class="nav-item nav-item-tabs d-flex" role="presentation">
@@ -325,7 +325,7 @@
         </ul>
       </div>
       <div class="col-lg-12 pt-2 pb-3">
-        <div class="tab-content" id="myTabContent">
+        <div class="tab-content pt-4" id="myTabContent">
           <!-- First Tab -->
 
           <div
@@ -377,7 +377,7 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-lg-8">
+                <div class="col-lg-4">
                   <p>User Types</p>
                   <div class="form-check form-check-inline" *ngIf="UserType === individual">
                     <input
@@ -489,8 +489,8 @@
                   </div>
                 </div>
               </div>
-              <div class="row" *ngIf="UserType === organisation">
-                <div class="col-lg-8">
+              <div class="row" >
+                <div class="col-lg-4" *ngIf="UserType === organisation">
                   <div class="form-group">
                     <label>Organisation Name</label><span class="text-danger pl-2">*</span>
                     <input
@@ -514,8 +514,8 @@
                     ></span>
                   </div>
                 </div>
-              </div>
-              <div class="row">
+              <!-- </div>
+              <div class="row"> -->
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>Phone / Mobile</label><span class="text-danger pl-2">*</span>
@@ -621,7 +621,7 @@
 
             <!-- Primary Address Label-->
 
-            <div class="row">
+            <div class="row pt-2">
               <div class="col-lg-2 col-md-3 col-sm-4">
                 <div><b>Primary Address</b></div>
               </div>
@@ -800,7 +800,13 @@
                   <p>
                     <small>Is State, LGA and City are same as above?</small>
                   </p>
-
+                  <!-- <h1>show hide div on click of radio button in angular - itsolutionstuff.com</h1> -->
+   
+                  <input name="type" [(ngModel)]="type" type="radio" [value]="1" [checked]="options"/> Admin
+                  <input name="type" [(ngModel)]="type" type="radio" [value]="0" [checked]="!options"/> User
+                    
+                  <h2 *ngIf="type == 1">Admin</h2>
+                  <h2 *ngIf="type == 0">User</h2>
                   <input
                     [(ngModel)]="isAddress_Same"
                     name="isAddress_Same"
