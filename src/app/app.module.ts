@@ -46,7 +46,7 @@ import { ToastrModule } from 'ngx-toastr';
       progressBar: true,
       progressAnimation: 'increasing',
       preventDuplicates: true,
-      positionClass: 'toast-top-center',
+      positionClass: 'toast-top-full-width',
     }),
     // NgxCaptchaModule
   ],

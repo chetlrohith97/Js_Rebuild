@@ -389,7 +389,7 @@
                       disabled
                     />
                     <label class="form-check-label" for="inlineRadio1">
-                      Invidual</label
+                      Individual</label
                     >
                   </div>
                 </div>
@@ -411,7 +411,7 @@
                 </div>
               </div>
 
-              <div class="row pt-2">
+              <div class="row pt-2" *ngIf="UserType === individual">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>First Name</label>
@@ -486,6 +486,20 @@
                     <span class="edit-icon-position"
                       ><i class="bi bi-pencil-fill"></i
                     ></span>
+                  </div>
+                </div>
+              </div>
+              <div class="row" *ngIf="UserType === organisation">
+                <div class="col-lg-8">
+                  <div class="form-group">
+                    <label>Organisation Name</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      [(ngModel)]="organisationname"
+                      name="organisationname"
+                      placeholder="Organisationname"
+                    />
                   </div>
                 </div>
               </div>

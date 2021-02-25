@@ -68,6 +68,9 @@ isAddress_Same :boolean=false
 sec_States:any
 SecLgas:any 
 SecCitys:any 
+organisationname:any
+individual = 'individual';
+organisation = 'organisation';
   constructor(private authService: AuthService, private rotuer: Router,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -100,9 +103,12 @@ SecCitys:any
   //  setTimeout(() => {
   //    alert("hi")
     // console.log(this.stateName) 
-    // localStorage.setItem('stateName', this.stateName);
+    localStorage.setItem('stateName', this.stateName);
   //  }, 2000);
-   
+  //  setTimeout(() => {
+    this.getHashIndividual()
+    this.getHashOrganization()
+  //  }, 2000);
     }) 
     }
 
@@ -133,7 +139,7 @@ getState(event :any){
       }
     }
   //  setTimeout(() => {
-  //   console.log(this.LgaName) 
+    console.log(this.LgaName) 
     localStorage.setItem('LgaName', this.LgaName);
   //  }, 2000);
  })
@@ -229,6 +235,7 @@ getsec_LGA(event:any){
       this.sec_City= Object.values(data)[0]?.sec_City;
       this.isAddress_Same= Object.values(data)[0]?.isAddress_Same;
       this.national_ID= Object.values(data)[0]?.national_ID;
+      this.organisationname = Object.values(data)[0]?.organization_Name;
       // console.log(this.date_Of_Birth)
       // console.log(this.City)
       // console.log(this.State)
@@ -269,6 +276,7 @@ getsec_LGA(event:any){
       Sec_LGA:this.sec_LGA,
       Sec_City:this.sec_City,
       IsAddress_Same:this.isAddress_Same,
+      organization_Name:this.organisationname
 
     };
     this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
@@ -288,21 +296,21 @@ getsec_LGA(event:any){
     this.router.navigate(['/login']);
     this.toastr.success('Your Are Logged out');
   }
-  GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
-    // let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
-    let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
-    // console.log(Hash)
-    const Hvaluing = new Md5();
-    const Hashvalued = Hvaluing.appendStr(Hash).end()
-    // console.log(Hashvalued);
-    if (typeof Hashvalued === 'string') {
-    const  Hashvalue = Hashvalued.toUpperCase();
-    // console.log(Hashvalue);
-    localStorage.setItem('Hashvalue', Hashvalue);
-  }
-    // let Hashvalue = CreateMD5(Hash);
-    // return Hashvalue.ToUpper();
-  }
+  // GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
+  //   // let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
+  //   let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
+  //   // console.log(Hash)
+  //   const Hvaluing = new Md5();
+  //   const Hashvalued = Hvaluing.appendStr(Hash).end()
+  //   // console.log(Hashvalued);
+  //   if (typeof Hashvalued === 'string') {
+  //   const  Hashvalue = Hashvalued.toUpperCase();
+  //   // console.log(Hashvalue);
+  //   localStorage.setItem('Hashvalue', Hashvalue);
+  // }
+  //   // let Hashvalue = CreateMD5(Hash);
+  //   // return Hashvalue.ToUpper();
+  // }
 //   ngAfterViewInit(){
 //     setTimeout(() => {
 //       this.LolStateName = localStorage.getItem('stateName')
@@ -311,6 +319,60 @@ getsec_LGA(event:any){
 //     this.LolHashKey = localStorage.getItem('Hashvalue')
 //     }, 1000);
 //  }
+
+getHashIndividual(){
+  this.LolStateName = localStorage.getItem('stateName')
+    this.LolLgaName = localStorage.getItem('LgaName')
+    this.LolCityName = localStorage.getItem('CityName')
+  let hashkey = environment.SecretKey
+    let clientCode = environment.ClientCode;
+    this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
+  let Hash = hashkey + clientCode + this.lastName + this.firstName + this.email + this.phone + this.Address;
+  console.log(Hash)
+  const Hvaluing = new Md5();
+  const Hashvalued = Hvaluing.appendStr(Hash).end()
+  // console.log(Hashvalued);
+  if (typeof Hashvalued === 'string') {
+  // const  Hashvalue = Hashvalued.toUpperCase();
+  this.LolHashKey = Hashvalued.toUpperCase();
+  console.log(this.LolHashKey);
+  // localStorage.setItem('Hashvalue', Hashvalue);
+// }
+  // let Hashvalue = CreateMD5(Hash);
+  // return Hashvalue.ToUpper();
+}
+console.log(this.LolHashKey);
+
+}
+
+getHashOrganization(){
+  this.LolStateName = localStorage.getItem('stateName')
+    this.LolLgaName = localStorage.getItem('LgaName')
+    this.LolCityName = localStorage.getItem('CityName')
+  let hashkey = environment.SecretKey
+    let clientName = environment.ClientCode;
+    // this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
+    this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
+  // let Hash = hashkey + clientName + this.lastName + this.firstName + this.email + this.phone + this.Address;
+  let Hash = hashkey + clientName + '' + this.firstName + this.email + this.phone + this.Address
+
+  console.log(Hash)
+  console.log(this.Address)
+  const Hvaluing = new Md5();
+  const Hashvalued = Hvaluing.appendStr(Hash).end()
+  // console.log(Hashvalued);
+  if (typeof Hashvalued === 'string') {
+  // const  Hashvalue = Hashvalued.toUpperCase();
+  this.LolHashKey = Hashvalued.toUpperCase();
+  console.log(this.LolHashKey);
+  // localStorage.setItem('Hashvalue', Hashvalue);
+// }
+  // let Hashvalue = CreateMD5(Hash);
+  // return Hashvalue.ToUpper();
+}
+console.log(this.LolHashKey);
+
+}
   generatePayerId(){
   
     if(this.UserType === "organisation"){
@@ -335,7 +397,7 @@ getsec_LGA(event:any){
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
-    this.LolHashKey = localStorage.getItem('Hashvalue')
+    // this.LolHashKey = localStorage.getItem('Hashvalue')
     // console.log(localStorage.getItem('stateName')) 
     // console.log(localStorage.getItem('LgaName')) 
     // console.log(localStorage.getItem('CityName')) 
@@ -348,7 +410,7 @@ getsec_LGA(event:any){
     let latest_date = this.datepipe.transform(DOB, 'yyyy-MM-ddTHH:mm:ss');
     let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
-    let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
+    // let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
     // console.log(hashing)
     const UserData ={
       title :this.title,
@@ -363,15 +425,34 @@ getsec_LGA(event:any){
       sex:this.gender,
       maritalStatus:this.MaritalStatus,
       clientName :clientCode,
-      hash:this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
+      hash:this.LolHashKey
       }
-        // console.log(UserData)
+        console.log(UserData)
+  
+
   // localStorage.removeItem('stateName')
   //  localStorage.removeItem('LgaName')
   //  localStorage.removeItem('CityName')
   //  localStorage.removeItem('Hashvalue')
 //  this.authService.CreteOrgnaizId
     // this.GetHash(UserData.hash,  UserData.clientName,  UserData.lastName,  UserData.firstName,  UserData.email,  UserData.phone,  UserData.address)
+    // GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
+      // let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
+    //   let Hash = hashkey + clientCode + UserData.lastName + this.firstName + this.email + this.phone + this.Address;
+    //   // console.log(Hash)
+    //   const Hvaluing = new Md5();
+    //   const Hashvalued = Hvaluing.appendStr(Hash).end()
+    //   // console.log(Hashvalued);
+    //   if (typeof Hashvalued === 'string') {
+    //   const  Hashvalue = Hashvalued.toUpperCase();
+    //   console.log(Hashvalue);
+    //   localStorage.setItem('Hashvalue', Hashvalue);
+    // // }
+    //   // let Hashvalue = CreateMD5(Hash);
+    //   // return Hashvalue.ToUpper();
+    // }
+    // console.log(Hashvalue);
+
   }
  
   getOrganizationId(){
@@ -379,7 +460,7 @@ getsec_LGA(event:any){
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
-    this.LolHashKey = localStorage.getItem('Hashvalue')
+    // this.LolHashKey = localStorage.getItem('Hashvalue')
   //   console.log(localStorage.getItem('stateName')) 
   //  console.log(localStorage.getItem('LgaName')) 
   //  console.log(localStorage.getItem('CityName')) 
@@ -387,13 +468,13 @@ getsec_LGA(event:any){
    
 // console.log(this.stateName)
    let hashkey = environment.SecretKey
-   let clientCode = environment.ClientCode;
+  //  let clientCode = environment.ClientCode;
     this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
     console.log(this.Address)
     let clientName=environment.ClientCode;
     // console.log( this.Address)
-    let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
-    console.log(hashing)
+    // let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
+    // console.log(hashing)
     const OrganizData ={
       name:this.firstName,
       email:this.email,
@@ -403,12 +484,23 @@ getsec_LGA(event:any){
       hash: this.LolHashKey
     }
     console.log(OrganizData)
+  //   let Hash = hashkey + OrganizData.clientName + '' + OrganizData.name + OrganizData.email + OrganizData.phone + OrganizData.address
+  //   // console.log(Hash)
+  //   const Hvaluing = new Md5();
+  //   const Hashvalued = Hvaluing.appendStr(Hash).end()
+  //   // console.log(Hashvalued);
+  //   if (typeof Hashvalued === 'string') {
+  //   const  Hashvalue = Hashvalued.toUpperCase();
+  //   console.log(Hashvalue);
+  //   localStorage.setItem('Hashvalue', Hashvalue);
+  // // }
     // localStorage.removeItem('stateName')
     // localStorage.removeItem('LgaName')
     // localStorage.removeItem('CityName')
     // localStorage.removeItem('Hashvalue')
     // this.GetHash(OrganizData.hash,  OrganizData.clientName,  '',  OrganizData.name,  OrganizData.email,  OrganizData.phone,  OrganizData.address)
-  }
+  // }
 
   
+}
 }
