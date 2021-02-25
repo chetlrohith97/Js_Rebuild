@@ -87,7 +87,10 @@ export class RegistrationComponent implements OnInit {
     this.authService.RegisterData(user).subscribe((data) => {
       console.log(user);
       console.log('11111');
-this.toastr.success('Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN')
+this.toastr.success('Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN','',{
+  timeOut: 3000,
+})
+
       // alert(
       //   'Thanks for registering with JIS. Please login with the username and password you have just created.YOU ARE ADVISED TO ASSOCIATE WITH A LAW FIRM BY CLICKING LAW FIRM TAB AFTER LOGIN'
       // );

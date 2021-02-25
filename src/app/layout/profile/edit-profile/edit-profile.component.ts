@@ -41,7 +41,7 @@ export class EditProfileComponent implements OnInit {
   Data?: object;
   Profile_ID!:string;
   BVN?:string
-  MaritalStatus?:string;
+  MaritalStatus=0;
   States: any
   state: Object | undefined
   id:undefined
@@ -476,7 +476,7 @@ console.log(this.LolHashKey);
     // let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
     // console.log(hashing)
     const OrganizData ={
-      name:this.firstName,
+      name:this.organisationname,
       email:this.email,
       address: this.Address,
       phone:this.phone,
@@ -484,6 +484,10 @@ console.log(this.LolHashKey);
       hash: this.LolHashKey
     }
     console.log(OrganizData)
+
+    this.authService.CreteOrgnaizId(OrganizData).subscribe((result)=>{
+      console.log(result)
+    })
   //   let Hash = hashkey + OrganizData.clientName + '' + OrganizData.name + OrganizData.email + OrganizData.phone + OrganizData.address
   //   // console.log(Hash)
   //   const Hvaluing = new Md5();
