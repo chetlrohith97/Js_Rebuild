@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'prefix' },
+  { path: '', redirectTo: 'home', pathMatch: 'prefix' },
   {
     path: '',
     loadChildren: () =>
@@ -18,6 +18,13 @@ const routes: Routes = [
     loadChildren: () =>
       import('./registration/registration.module').then(
         (m) => m.RegistrationModule
+      ),
+  },
+  {
+    path: 'home',
+    loadChildren: () =>
+      import('../app/layout/home/home.module').then(
+        (m) => m.HomeModule
       ),
   },
   {
