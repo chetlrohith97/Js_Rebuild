@@ -22,20 +22,20 @@
               ></small
             >
             <ul class="dropdown-menu fade" aria-labelledby="dropdownMenu2">
-              <li class="p-2 pb-0">
+              <li class="p-0 ep">
                 <a href="#" class="text-capitalize">Edit Profile</a>
               </li>
-              <li class="p-2 pb-0">
+              <li class="p-0 ep">
                 <a href="#" class="text-capitalize">User Signature</a>
               </li>
-              <li class="p-2 pb-0">
+              <li class="p-0 ep">
                 <a href="#" class="text-capitalize">Reset Password</a>
               </li>
-              <li class="p-2 pb-0">
+              <li class="p-0 ep">
                 <a href="" class="text-capitalize">My Schedules</a>
               </li>
-              <li class="p-2 pb-0">
-                <a (click)="logout()" class="text-capitalize">Logout</a>
+              <li class="p-0 ep">
+                <a (click)="logout()" style="border-bottom:0px" class="text-capitalize">Logout</a>
               </li>
             </ul>
           </div>
@@ -344,7 +344,7 @@
               <div class="row">
                 <div class="col-lg-4">
                   <div>
-                    <label>Title</label>
+                    <label>Title</label><span class="text-danger pl-2">*</span>
                     <select
                       id="ddltitle"
                       class="form-control"
@@ -958,113 +958,8 @@
               class="form-signin"
               novalidate
             >
+            <div *ngIf="UserType === organisation">
               <div class="row pt-2">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label>Gender</label><span class="text-danger pl-2">*</span>
-
-                    <select
-                      id="ddltitle"
-                      required
-                      #ref15="ngModel"
-                      class="form-control"
-                      [(ngModel)]="gender"
-                      name="gender"
-                    >
-                      <option value="M">Male</option>
-                      <option value="F">Female</option>
-                    </select>
-                    <label
-                      *ngIf="
-                        (ref15.dirty || myForm2.submitted) &&
-                        ref15.errors?.required
-                      "
-                      class="text-danger"
-                      >*Field is mandatory</label
-                    >
-                  </div>
-                </div>
-
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label>DOB</label><span class="text-danger pl-2">*</span>
-                    <input
-                      type="date"
-                      #ref9="ngModel"
-                      required
-                      class="form-control"
-                      [(ngModel)]="date_Of_Birth"
-                      name="date_Of_Birth"
-                    />
-                    {{date_Of_Birth}}
-                    <label
-                      *ngIf="
-                        (ref9.dirty || myForm2.submitted) &&
-                        ref9.errors?.required
-                      "
-                      class="text-danger"
-                      >*Field is mandatory</label
-                    >
-                    <!-- </div> -->
-                  </div>
-                </div>
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label>Marital Srtatus</label
-                    ><span class="text-danger pl-2">*</span>
-
-                    <select
-                      id="ddltitle"
-                      #ref13="ngModel"
-                      required
-                      class="form-control"
-                      [(ngModel)]="MaritalStatus"
-                      name="MaritalStatus"
-                    >
-                    <option value="0">Select</option>
-                      <option value="M">Married</option>
-                      <option value="S">Single</option>
-                      <option value="W">Widow/Widower</option>
-                      <option value="D">Divorced</option>
-                    </select>
-                    <label
-                      *ngIf="
-                        (ref13.dirty || myForm2.submitted) &&
-                        ref13.errors?.required
-                      "
-                      class="text-danger"
-                      >*Field is mandatory</label
-                    >
-                  </div>
-                </div>
-              </div>
-              <div class="row pt-2">
-                <div class="col-lg-4">
-                  <div class="form-group">
-                    <label>BankVerificationNumber</label
-                    ><span class="text-danger pl-2">*</span>
-                    <input
-                      type="text"
-                      name="BVN"
-                      required
-                      #refBVN='ngModel'
-                      [(ngModel)]="BVN"
-                      class="form-control"
-                    />
-                    <label
-                    *ngIf="
-                      (refBVN.dirty || myForm2.submitted) &&
-                      refBVN.errors?.required
-                    "
-                    class="text-danger"
-                    >*Field is mandatory</label
-                  >
-                    <span class="edit-icon-position"
-                    ><i class="bi bi-pencil-fill"></i
-                  ></span>
-                  </div>
-                </div>
-
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>National ID</label>
@@ -1117,7 +1012,168 @@
                   </div>
                   <!-- <p style="font-size: small;">If you don't have a Payer PayerID? <br> <a href="Click Here To Generate" style="text-decoration: underline">Click Here To Generate</a></p> -->
                 </div>
-              </div>
+              </div></div>
+              <div *ngIf="UserType === individual">
+                <div class="row pt-2">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>Gender</label><span class="text-danger pl-2">*</span>
+  
+                      <select
+                        id="ddltitle"
+                        required
+                        #ref15="ngModel"
+                        class="form-control"
+                        [(ngModel)]="gender"
+                        name="gender"
+                      >
+                        <option value="M">Male</option>
+                        <option value="F">Female</option>
+                      </select>
+                      <label
+                        *ngIf="
+                          (ref15.dirty || myForm2.submitted) &&
+                          ref15.errors?.required
+                        "
+                        class="text-danger"
+                        >*Field is mandatory</label
+                      >
+                    </div>
+                  </div>
+  
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>DOB</label><span class="text-danger pl-2">*</span>
+                      <input
+                        type="date"
+                        #ref9="ngModel"
+                        required
+                        class="form-control"
+                        [(ngModel)]="date_Of_Birth"
+                        name="date_Of_Birth"
+                      />
+                      {{date_Of_Birth}}
+                      <label
+                        *ngIf="
+                          (ref9.dirty || myForm2.submitted) &&
+                          ref9.errors?.required
+                        "
+                        class="text-danger"
+                        >*Field is mandatory</label
+                      >
+                      <!-- </div> -->
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>Marital Srtatus</label
+                      ><span class="text-danger pl-2">*</span>
+  
+                      <select
+                        id="ddltitle"
+                        #ref13="ngModel"
+                        required
+                        class="form-control"
+                        [(ngModel)]="MaritalStatus"
+                        name="MaritalStatus"
+                      >
+                      <option value="0">Select</option>
+                        <option value="M">Married</option>
+                        <option value="S">Single</option>
+                        <option value="W">Widow/Widower</option>
+                        <option value="D">Divorced</option>
+                      </select>
+                      <label
+                        *ngIf="
+                          (ref13.dirty || myForm2.submitted) &&
+                          ref13.errors?.required
+                        "
+                        class="text-danger"
+                        >*Field is mandatory</label
+                      >
+                    </div>
+                  </div>
+                </div>
+                <div class="row pt-2">
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>BankVerificationNumber</label
+                      ><span class="text-danger pl-2">*</span>
+                      <input
+                        type="text"
+                        name="BVN"
+                        required
+                        #refBVN='ngModel'
+                        [(ngModel)]="BVN"
+                        class="form-control"
+                      />
+                      <label
+                      *ngIf="
+                        (refBVN.dirty || myForm2.submitted) &&
+                        refBVN.errors?.required
+                      "
+                      class="text-danger"
+                      >*Field is mandatory</label
+                    >
+                      <span class="edit-icon-position"
+                      ><i class="bi bi-pencil-fill"></i
+                    ></span>
+                    </div>
+                  </div>
+  
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>National ID</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        [(ngModel)]="national_ID"
+                        name="national_ID"
+                        placeholder="Enter Nationalid"
+                      />
+                      <span class="edit-icon-position"
+                      ><i class="bi bi-pencil-fill"></i
+                    ></span>
+                    </div>
+                  </div>
+                  <div class="col-lg-4">
+                    <div class="form-group">
+                      <label>Payer ID</label
+                      ><span class="text-danger pl-2">*</span>
+                      <input
+                        type="text"
+                        required
+                        #refPAID='ngModel'
+                        name="PayerID"
+                        [(ngModel)]="PayerID"
+                        class="form-control"
+                        placeholder="N-444875"
+                      />
+                      <label
+                      *ngIf="
+                        (refPAID.dirty || myForm2.submitted) &&
+                        refPAID.errors?.required
+                      "
+                      class="text-danger"
+                      >*Field is mandatory</label
+                    >
+                    <span class="edit-icon-position"
+                    ><i class="bi bi-pencil-fill"></i
+                  ></span>
+                      <!-- If you don't have a Payer ID, -->
+                      <!-- <a  href="javascript: void(0);" style="color: #007bff" (click)=generatePayerId()>Click Here</a> to Generate -->
+                      <p style="font-size: small">
+                        If you don't have a Payer PayerID? <br />
+                        <a
+                        href="javascript: void(0);" (click)=getOrganizationId()
+                          style="text-decoration: underline; color: #007bff"
+                          >Click Here To Generate</a
+                        >
+                      </p>
+                    </div>
+                    <!-- <p style="font-size: small;">If you don't have a Payer PayerID? <br> <a href="Click Here To Generate" style="text-decoration: underline">Click Here To Generate</a></p> -->
+                  </div>
+                </div></div>
               <div class="row">
                 <div class="col-lg-2 col-md-3 col-sm-4 pl-0">
                   <div>
@@ -1137,9 +1193,8 @@
                     <label>Security Question</label
                     ><span class="text-danger pl-2">*</span>
                     <select
-                      id="ddltitle"
                       required
-                      #reSEC="ngModel"
+                      #refAN1S="ngModel"
                       class="form-control"
                       [(ngModel)]="Securityquestion"
                       name="Securityquestion"
@@ -1163,12 +1218,9 @@
                     </select>
                     <label
                       *ngIf="
-                        (reSEC.dirty || myForm2.submitted) &&
-                        reSEC.errors?.required
-                      "
-                      class="text-danger"
-                      >*Field is mandatory</label
-                    >
+                        (refAN1S.dirty || myForm2.submitted) &&
+                        refAN1S.errors?.required" class="text-danger">*Field is mandatory
+                        </label>
                   </div>
                 </div>
                 <div class="col-lg-4">
@@ -1178,15 +1230,15 @@
                     <input
                       type="text"
                       required
-                      #ref7="ngModel"
+                      #refANS="ngModel"
                       class="form-control"
                       name="Securityanswer"
                       [(ngModel)]="Securityanswer"
                     />
                     <label
                       *ngIf="
-                        (ref7.dirty || myForm2.submitted) &&
-                        ref7.errors?.required
+                        (refANS.dirty || myForm2.submitted) &&
+                        refANS.errors?.required
                       "
                       class="text-danger"
                       >*Field is mandatory</label
