@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   data!: number;
   loading = false;
   captcha!: string;
+  fieldTextType?: boolean;
   constructor(private authService: AuthService, private rotuer: Router,
     private toastr: ToastrService) {
     // Able to get error because of this sitekey in the console//
@@ -43,6 +44,10 @@ export class RegistrationComponent implements OnInit {
       return false;
     }
     return true;
+  }
+
+  toggleFieldTextType() {
+    this.fieldTextType = !this.fieldTextType;
   }
   registerData(v: object) {
     if (this.userType === this.individual) {

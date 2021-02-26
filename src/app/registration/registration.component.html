@@ -250,7 +250,7 @@
             <div class="form-group">
               <label>Password</label>
               <input
-                type="password"
+              [type]="fieldTextType ? 'text' : 'password'"
                 #ref6="ngModel"
                 required
                 minlength="4"
@@ -259,7 +259,10 @@
                 [(ngModel)]="password"
                 name="password"
                 placeholder="Password"
-              />
+              />  
+               
+           
+              
               <label
                 *ngIf="
                   (ref6.touched || myForm.submitted) && ref6.errors?.required
@@ -280,7 +283,13 @@
                 Minimum 4 characters required</label
               >
             </div>
+            
           </div>
+          <span class="mt-4 pt-2 mr-1">
+            <i class="bi" [ngClass]="{ 'bi-eye-slash': !fieldTextType, 'bi-eye': fieldTextType }"
+      (click)="toggleFieldTextType()"
+    ></i>
+          </span>
           <div class="col-lg-6">
             <div class="form-group">
               <label>Confirm Password</label>
