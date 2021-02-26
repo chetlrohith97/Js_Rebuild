@@ -71,8 +71,7 @@ SecCitys:any
 organisationname:any
 individual = 'individual';
 organisation = 'organisation';
-type:any
-options:any
+
   constructor(private authService: AuthService, private rotuer: Router,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -110,6 +109,9 @@ options:any
   //  setTimeout(() => {
     this.getHashIndividual()
     this.getHashOrganization()
+    // this.LolLgaName = localStorage.getItem('LgaName')
+    // this.LolCityName = localStorage.getItem('CityName')
+    console.log( this.LolLgaName)
   //  }, 2000);
     }) 
     }
@@ -164,6 +166,9 @@ getLga(event :any){
     // setTimeout(() => {
       console.log(this.CityName) 
     localStorage.setItem('CityName', this.CityName);
+    // $(window).on('load',  () => { alert("Window Loaded"); 
+    // localStorage.setItem('CityName', this.CityName)
+    // console.log(localStorage.setItem('CityName', this.CityName))});
     // }, 2000);
   })
 
@@ -248,7 +253,7 @@ getsec_LGA(event:any){
     // console.log(this.address1+ ","+this.City + "," + this.LGA + ',' + this.State)
   // setTimeout(() => {
   //   alert("Hit")
-    this.generatePayerId()  
+    // this.generatePayerId()  
   // }, 2000);//calling method to utilize response values of above reponse object
     });
   }
@@ -376,44 +381,26 @@ console.log(this.LolHashKey);
 
 }
   generatePayerId(){
-  
+  console.log(this.UserType)
     if(this.UserType === "organisation"){
-  //  setTimeout(() => {
     this.getOrganizationId()
-  //  }, 2000);
-      // this.GetHash(a,a,f,a,a,faf,fd)
-    // console.log("success")    
+    console.log("organisation")    
     }
     else{
-      // setTimeout(() => {
       this.getIndividualId()
-      // }, 2000);
-      // this.GetHash(a,a,f,a,a,faf,fd)
-
+      console.log("individual")  
     }
   }
 
   getIndividualId(){
-  // setTimeout(() => {
-  //   alert("111")
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
-    // this.LolHashKey = localStorage.getItem('Hashvalue')
-    // console.log(localStorage.getItem('stateName')) 
-    // console.log(localStorage.getItem('LgaName')) 
-    // console.log(localStorage.getItem('CityName')) 
-    // console.log(localStorage.getItem('Hashvalue')) 
-    // console.log(this.LolStateName + this.LolLgaName + this.LolCityName +this.LolHashKey)
     this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
-    // console.log(this.Address)
-  // }, 2000);
     let DOB=new Date(this.date_Of_Birth);
     let latest_date = this.datepipe.transform(DOB, 'yyyy-MM-ddTHH:mm:ss');
     let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
-    // let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
-    // console.log(hashing)
     const UserData ={
       title :this.title,
       lastName:this.lastName,
@@ -431,52 +418,19 @@ console.log(this.LolHashKey);
       }
         console.log(UserData)
   
-
-  // localStorage.removeItem('stateName')
-  //  localStorage.removeItem('LgaName')
-  //  localStorage.removeItem('CityName')
-  //  localStorage.removeItem('Hashvalue')
-//  this.authService.CreteOrgnaizId
-    // this.GetHash(UserData.hash,  UserData.clientName,  UserData.lastName,  UserData.firstName,  UserData.email,  UserData.phone,  UserData.address)
-    // GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
-      // let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
-    //   let Hash = hashkey + clientCode + UserData.lastName + this.firstName + this.email + this.phone + this.Address;
-    //   // console.log(Hash)
-    //   const Hvaluing = new Md5();
-    //   const Hashvalued = Hvaluing.appendStr(Hash).end()
-    //   // console.log(Hashvalued);
-    //   if (typeof Hashvalued === 'string') {
-    //   const  Hashvalue = Hashvalued.toUpperCase();
-    //   console.log(Hashvalue);
-    //   localStorage.setItem('Hashvalue', Hashvalue);
-    // // }
-    //   // let Hashvalue = CreateMD5(Hash);
-    //   // return Hashvalue.ToUpper();
-    // }
-    // console.log(Hashvalue);
-
+        this.authService.CreteOrgnaizId(UserData).subscribe((result)=>{
+          console.log(result)
+        })
   }
  
   getOrganizationId(){
-    
+    console.log( this.organisationname)
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
-    // this.LolHashKey = localStorage.getItem('Hashvalue')
-  //   console.log(localStorage.getItem('stateName')) 
-  //  console.log(localStorage.getItem('LgaName')) 
-  //  console.log(localStorage.getItem('CityName')) 
-  //  console.log(localStorage.getItem('Hashvalue')) 
-   
-// console.log(this.stateName)
-   let hashkey = environment.SecretKey
-  //  let clientCode = environment.ClientCode;
     this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
     console.log(this.Address)
     let clientName=environment.ClientCode;
-    // console.log( this.Address)
-    // let hashing = this.GetHash(hashkey, clientCode,this.lastName,this.firstName,this.email,this.phone,this.Address)
-    // console.log(hashing)
     const OrganizData ={
       name:this.organisationname,
       email:this.email,
@@ -490,23 +444,6 @@ console.log(this.LolHashKey);
     this.authService.CreteOrgnaizId(OrganizData).subscribe((result)=>{
       console.log(result)
     })
-  //   let Hash = hashkey + OrganizData.clientName + '' + OrganizData.name + OrganizData.email + OrganizData.phone + OrganizData.address
-  //   // console.log(Hash)
-  //   const Hvaluing = new Md5();
-  //   const Hashvalued = Hvaluing.appendStr(Hash).end()
-  //   // console.log(Hashvalued);
-  //   if (typeof Hashvalued === 'string') {
-  //   const  Hashvalue = Hashvalued.toUpperCase();
-  //   console.log(Hashvalue);
-  //   localStorage.setItem('Hashvalue', Hashvalue);
-  // // }
-    // localStorage.removeItem('stateName')
-    // localStorage.removeItem('LgaName')
-    // localStorage.removeItem('CityName')
-    // localStorage.removeItem('Hashvalue')
-    // this.GetHash(OrganizData.hash,  OrganizData.clientName,  '',  OrganizData.name,  OrganizData.email,  OrganizData.phone,  OrganizData.address)
-  // }
-
   
 }
 }

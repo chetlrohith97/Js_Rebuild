@@ -386,7 +386,6 @@
                       [(ngModel)]="UserType"
                       name="UserType"
                       value="individual"
-                      disabled
                     />
                     <label class="form-check-label" for="inlineRadio1">
                       Individual</label
@@ -400,7 +399,6 @@
                       class="form-check-input"
                       type="radio"
                       [(ngModel)]="UserType" 
-                      disabled
                       name="UserType"
                       value="organisation"
                     />
@@ -796,23 +794,15 @@
                   </div>
                 </div>
 
-                <div class="col-lg-4">
+                <div class="col-lg-4" *ngIf='isAddress_Same === false'>
                   <p>
                     <small>Is State, LGA and City are same as above?</small>
                   </p>
-                  <!-- <h1>show hide div on click of radio button in angular - itsolutionstuff.com</h1> -->
-   
-                  <input name="type" [(ngModel)]="type" type="radio" [value]="1" [checked]="options"/> Admin
-                  <input name="type" [(ngModel)]="type" type="radio" [value]="0" [checked]="!options"/> User
-                    
-                  <h2 *ngIf="type == 1">Admin</h2>
-                  <h2 *ngIf="type == 0">User</h2>
                   <input
                     [(ngModel)]="isAddress_Same"
                     name="isAddress_Same"
                     type="radio"
                     [value]="false"
-                    onclick="show1();"
                   />
                   Yes
                   <input
@@ -820,18 +810,16 @@
                     name="isAddress_Same"
                     type="radio"
                     [value]="true"
-                    onclick="show2();"
                   />
                   No
                 </div>
               </div>
-              <div id="div1" class="hide">
+              <div id="div1"  *ngIf='isAddress_Same ===true'>
                 <div class="row pt-2">
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label>State</label
                       ><span class="text-danger pl-2">*</span>
-                      <!-- <input type="text" class="form-control"  placeholder="Select State"> -->
                       <select
                         id="ddltitle"
                         #refStat="ngModel"
@@ -847,7 +835,6 @@
                           value="{{ state.state_ID }}"
                         >
                           {{ state.state_Name }}
-                          <!-- {{state.state_ID}} -->
                         </option>
                       </select>
                       <label
@@ -864,8 +851,6 @@
                   <div class="col-lg-4">
                     <div class="form-group">
                       <label>LGA</label><span class="text-danger pl-2">*</span>
-                      <!-- <input type="text" class="form-control"  placeholder="Select LGA"> -->
-
                       <select
                         id="ddltitle"
                         #refLga="ngModel"
@@ -881,7 +866,6 @@
                           value="{{ Lga.localGovtAreaId }}"
                         >
                           {{ Lga.localGovtAreaName }}
-                          <!-- {{Lga.localGovtAreaId}} -->
                         </option>
                       </select>
                       <label
@@ -911,7 +895,6 @@
                           value="{{ City.city_ID }}"
                         >
                           {{ City.city_Name }}
-                          <!-- {{Cityfield.city_ID}} -->
                         </option>
                       </select>
                       <label
@@ -926,7 +909,6 @@
                   </div>
                 </div>
               </div>
-              <div id="div"></div>
               <div class="row btn-position w-100">
                 <span class="col-lg-6">
                   <button class="btn btn-primary" type="submit">
@@ -1010,7 +992,7 @@
                     <p style="font-size: small">
                       If you don't have a Payer PayerID? <br />
                       <a
-                      href="javascript: void(0);" (click)=getOrganizationId()
+                      href="javascript: void(0);" (click)=generatePayerId()
                         style="text-decoration: underline; color: #007bff"
                         >Click Here To Generate</a
                       >
@@ -1072,7 +1054,7 @@
                   </div>
                   <div class="col-lg-4">
                     <div class="form-group">
-                      <label>Marital Srtatus</label
+                      <label>Marital Status</label
                       ><span class="text-danger pl-2">*</span>
   
                       <select

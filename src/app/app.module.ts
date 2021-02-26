@@ -19,6 +19,7 @@ import { AuthService, ErrormessagesService } from './layout/shared/services';
 // import { NgxCaptchaModule } from 'ngx-captcha';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { ToastrModule } from 'ngx-toastr';
+import { HomeAdminComponent } from './Administrator/Website-CMS/home-admin/home-admin.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ToastrModule } from 'ngx-toastr';
     NavbarComponent,
     FooterComponent,
     LayoutComponent,
+    HomeAdminComponent,
   ],
   imports: [
     BrowserModule,
