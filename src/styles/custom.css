@@ -87,8 +87,18 @@ body {
 }
 .btn-primary:hover {
   color: #fff;
-  background-color: #0676fe;
+  background-color: #0676fe!important;
   border-color: #0676fe;
+}
+.btn-draft {
+  color: #fff;
+  background-color: #76615a !important;
+  border-color: #76615a;
+}
+.btn-draft:hover {
+  color: #fff;
+  background-color: #4e1d02!important;
+  border-color: #4e1d02;
 }
 .btn-primary:not(:disabled):not(.disabled).active {
   color: #fff;
@@ -978,4 +988,43 @@ h2,h3,h4,h5{
   96%{
     margin-left:45px;
   }
+} 
+/***edit home page ***/
+.edit-tf{
+  background:none;
+  border:none;
+  padding:none;
+  margin:0;
+}
+
+.bigger-sec-heading{
+	font-family: 'Bebas Neue', cursive;
+	font-weight: 400;
+	color: #5d4c46;
+	font-size: 4.5rem;
+	line-height: 4rem;
+}
+.edit-ta{
+  background:none;
+  border:none;
+  padding:none;
+  margin:0;
+  min-height: 140px;
+}
+.edit-ta-s{
+  background:none;
+  border:none;
+  padding:none;
+  margin:0;
+  min-height: 80px;
+}
+.h4-font{
+  font-size: 1.6rem;
+}
+.upload-btn{
+  left: 170px;
+  color: #c79ebc;
+  background: #c69dbb;
+  /* display: none; */
+  width: 90px;
 }
