@@ -1039,8 +1039,9 @@
                         class="form-control"
                         [(ngModel)]="date_Of_Birth"
                         name="date_Of_Birth"
+                        (click)=date()
                       />
-                      {{date_Of_Birth}}
+                      <!-- {{date_Of_Birth}} -->
                       <label
                         *ngIf="
                           (ref9.dirty || myForm2.submitted) &&

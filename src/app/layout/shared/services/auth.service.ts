@@ -88,16 +88,20 @@ GetCityFields(id:any){
 CreateIndividualId(data:any){
   console.log(data)
   let headers = new HttpHeaders()
+  headers.append('Access-Control-Allow-Origin' , '*');
   return this.http.post(' https://qpay.ng/PaymentGateway/CreateIndividualPayer',data,{headers:headers}).pipe((data)=>{
     console.log(data)  
-  return data 
+  return data             
+
   })
 }
 
 CreteOrgnaizId(data:any){
   console.log(data)
   let headers = new HttpHeaders()
-  return this.http.post(' https://qpay.ng/PaymentGateway/CreateCorporatePayer',data,{headers: headers}).pipe((data)=>{
+  // debugger
+  headers.append('Access-Control-Allow-Origin' , '*');
+  return this.http.post(`/api`,data,{headers: headers}).pipe((data)=>{
   console.log(data)  
   return data
   })

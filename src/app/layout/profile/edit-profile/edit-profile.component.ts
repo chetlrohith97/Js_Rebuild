@@ -87,7 +87,7 @@ organisation = 'organisation';
     {
       this.States =  data;
       this.sec_States =data
-      console.log(this.sec_States)
+      // console.log(this.sec_States)
       // let stationNewName = Stations.STATIONS.find((s) => s.stationName === myStation);
 
       // this.stateName = data.find( ({ state_ID }) => state_ID === this.State ).state_Name;
@@ -103,16 +103,25 @@ organisation = 'organisation';
    }    
   //  setTimeout(() => {
   //    alert("hi")
+  
     // console.log(this.stateName) 
+    if(this.stateName === undefined){
+    console.log('Nothing')
+    }
+    else if (this.stateName){
     localStorage.setItem('stateName', this.stateName);
+    console.log("their")
+    }
   //  }, 2000);
   //  setTimeout(() => {
-    this.getHashIndividual()
-    this.getHashOrganization()
+  //   //  alert("hi")
+  //   this.getHashIndividual()
+  //   this.getHashOrganization()
+  //  }, 2000);
+
     // this.LolLgaName = localStorage.getItem('LgaName')
     // this.LolCityName = localStorage.getItem('CityName')
     console.log( this.LolLgaName)
-  //  }, 2000);
     }) 
     }
 
@@ -129,10 +138,10 @@ organisation = 'organisation';
 getState(event :any){
   
   this.state = event
-  // console.log(event)
+  console.log(event)
   this.authService.GetLgaFields(this.state).subscribe((data)=>{
     this.Lgas = data
-    // console.log(this.LgaObject)
+    console.log(this.Lgas)
     this.getLga(this.LGA);
 
     for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
@@ -143,18 +152,25 @@ getState(event :any){
       }
     }
   //  setTimeout(() => {
-    console.log(this.LgaName) 
-    localStorage.setItem('LgaName', this.LgaName);
+    if(this.LgaName === undefined){
+      console.log('Nothing')
+      }
+      else if (this.LgaName){
+      localStorage.setItem('LgaName', this.LgaName);
+      console.log("their")
+      }
+    // console.log(this.LgaName) 
+    // localStorage.setItem('LgaName', this.LgaName);
   //  }, 2000);
  })
 
 }
 getLga(event :any){
   this.Lga = event
-  // console.log(event)
+  console.log(event)
   this.authService.GetCityFields(this.Lga).subscribe((data)=>{
     this.Citys = data
-    // console.log(this.CityObject)
+    // console.log(this.Citys)
 
     for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
       if(this.City == this.Citys[i]?.city_ID){
@@ -163,9 +179,16 @@ getLga(event :any){
         console.log("success")
       }
     }
-    // setTimeout(() => {
-      console.log(this.CityName) 
-    localStorage.setItem('CityName', this.CityName);
+    if(this.CityName === undefined){
+      console.log('Nothing')
+      }
+      else if (this.CityName){
+        console.log(this.CityName)
+      localStorage.setItem('CityName', this.CityName);
+      console.log("their")
+      }
+    //   console.log(this.CityName) 
+    // localStorage.setItem('CityName', this.CityName);
     // $(window).on('load',  () => { alert("Window Loaded"); 
     // localStorage.setItem('CityName', this.CityName)
     // console.log(localStorage.setItem('CityName', this.CityName))});
@@ -203,17 +226,10 @@ getsec_LGA(event:any){
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
       this.UserType = Object.values(data)[0]?.userType
       console.log(this.UserType)
-      console.log( Object.values(data)[0])
-      var currentDate = new Date(Object.values(data)[0]?.date_Of_Birth);
-      var date = currentDate.getDate();
-      var month = currentDate.getMonth(); //Be careful! January is 0 not 1
-      var year = currentDate.getFullYear();
-      var dateString = (month + 1) + "/" + date + "/" + year;
-      // let date_Of_Birth=new Date(dateString);
-     var latest_date =this.datepipe.transform(dateString, 'MM/dd/yyyy');
-      console.log(latest_date)
-      console.log(this.date_Of_Birth);
-      console.log(dateString);
+      // console.log( Object.values(data)[0])
+     var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
+     console.log(MMddyyyy); //output - 14-02-2019
+      // console.log(Object.values(data)[0]?.date_Of_Birth);
       this.User_Name = Object.values(data)[0]?.user_Name
        this.Profile_ID = Object.values(data)[0]?.profile_ID
       // console.log(Object.values(data)[0]);
@@ -227,7 +243,7 @@ getsec_LGA(event:any){
       this.LGA = Object.values(data)[0]?.lga;
       this.City = Object.values(data)[0]?.city;
       // this.date_Of_Birth = Object.values(data)[0]?.date_Of_Birth
-      this.date_Of_Birth = latest_date
+      this.date_Of_Birth = MMddyyyy
 
       this.address1 = Object.values(data)[0]?.address_1;
       this.address2 = Object.values(data)[0]?.address_2;
@@ -248,13 +264,7 @@ getsec_LGA(event:any){
       // console.log(this.State)
       this.getState(this.State);
       this.getSec_state(this.sec_State)
-      console.log( this.date_Of_Birth)
-      // this.getSec_state(this.getSec_state)
-    // console.log(this.address1+ ","+this.City + "," + this.LGA + ',' + this.State)
-  // setTimeout(() => {
-  //   alert("Hit")
-    // this.generatePayerId()  
-  // }, 2000);//calling method to utilize response values of above reponse object
+    
     });
   }
   updateProfile(v: object) {
@@ -338,7 +348,7 @@ getHashIndividual(){
   console.log(Hash)
   const Hvaluing = new Md5();
   const Hashvalued = Hvaluing.appendStr(Hash).end()
-  // console.log(Hashvalued);
+  console.log(Hashvalued);
   if (typeof Hashvalued === 'string') {
   // const  Hashvalue = Hashvalued.toUpperCase();
   this.LolHashKey = Hashvalued.toUpperCase();
@@ -359,15 +369,16 @@ getHashOrganization(){
   let hashkey = environment.SecretKey
     let clientName = environment.ClientCode;
     // this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
-    this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
+    this.Address = this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName;
   // let Hash = hashkey + clientName + this.lastName + this.firstName + this.email + this.phone + this.Address;
-  let Hash = hashkey + clientName + '' + this.firstName + this.email + this.phone + this.Address
-
+  // let Hash = hashkey + clientName + '' + this.firstName + this.email + this.phone + this.Address
+  let Hash = hashkey + clientName + '' + this.organisationname + this.email + this.phone + this.Address
+console.log(this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName)
   console.log(Hash)
   console.log(this.Address)
   const Hvaluing = new Md5();
   const Hashvalued = Hvaluing.appendStr(Hash).end()
-  // console.log(Hashvalued);
+  console.log(Hashvalued);
   if (typeof Hashvalued === 'string') {
   // const  Hashvalue = Hashvalued.toUpperCase();
   this.LolHashKey = Hashvalued.toUpperCase();
@@ -378,7 +389,6 @@ getHashOrganization(){
   // return Hashvalue.ToUpper();
 }
 console.log(this.LolHashKey);
-
 }
   generatePayerId(){
   console.log(this.UserType)
@@ -393,6 +403,8 @@ console.log(this.LolHashKey);
   }
 
   getIndividualId(){
+    console.log(this.title)
+this.getHashIndividual()
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
@@ -416,9 +428,8 @@ console.log(this.LolHashKey);
       clientName :clientCode,
       hash:this.LolHashKey
       }
-        console.log(UserData)
-  
-        this.authService.CreteOrgnaizId(UserData).subscribe((result)=>{
+        // console.log(UserData)
+        this.authService.CreateIndividualId(UserData).subscribe((result)=>{
           console.log(result)
         })
   }
@@ -428,7 +439,8 @@ console.log(this.LolHashKey);
     this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
-    this.Address = this.address1+ ","+ this.LolCityName + "," + this.LolLgaName + ',' + this.LolStateName;
+this.getHashOrganization()
+    this.Address = this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName;
     console.log(this.Address)
     let clientName=environment.ClientCode;
     const OrganizData ={
@@ -441,9 +453,30 @@ console.log(this.LolHashKey);
     }
     console.log(OrganizData)
 
-    this.authService.CreteOrgnaizId(OrganizData).subscribe((result)=>{
-      console.log(result)
+    this.authService.CreteOrgnaizId(OrganizData).subscribe((result:any)=>{
+    // console.log(Object.values(result))
+    console.log(result)
+      console.log(result.email)
+    console.log(result.response)
+    console.log(result.response.message)
+    console.log(result.response.status)
+    if(result.payerId === null){
+      this.toastr.warning(result.response.message,result.response.status,{
+        timeOut: 5000,
+      })
+    }
+    else{
+      this.toastr.success('PayerId Generated Successfully','',{
+        timeOut: 5000,
+      })
+      this.PayerID = result.payerId
+    }
+       
     })
   
+}
+
+date(){
+  console.log(this.date_Of_Birth)
 }
 }

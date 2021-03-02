@@ -9,7 +9,7 @@ export const environment = {
 SecretKey       :      "799D78F2-C3D8-41152-566C-ED233CF5618A",
 IndividualId    :   'https://qpay.ng/PaymentGateway/CreateIndividualPayer',
 CorporateId     :    "https://qpay.ng/PaymentGateway/CreateCorporatePayer",
-siteKey_recptcha         :   '6LcX_0oaAAAAAPJyL9a7stlALdTG2Y3wAlPulk_l'
+siteKey_recptcha         :   '6LcX_0oaAAAAAPJyL9a7stlALdTG2Y3wAlPulk_l' //related to registration page
 };
 
 

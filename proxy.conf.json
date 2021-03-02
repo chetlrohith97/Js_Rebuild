@@ -1,0 +1,10 @@
+{
+    "/api": {
+      "target": "https://qpay.ng/PaymentGateway/CreateCorporatePayer",
+      "secure": true,
+      "changeOrigin": true,
+      "pathRewrite": {
+        "^/api": ""
+      }
+    }
+  }

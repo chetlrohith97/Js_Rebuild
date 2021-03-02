@@ -34,11 +34,11 @@ export class LoginComponent implements OnInit {
     };
     // console.log('asdfsadf123');
     this.loading = true;
-    if (user.UserName == '' || user.UserPassword == '') {
-      this.toastr.error(
-        'Login Fields Can Not Be Empty Invalid username or password'
-      );
-    } else {
+    // if (user.UserName == '' || user.UserPassword == '') {
+    //   this.toastr.error(
+    //     'Login Fields Can Not Be Empty Invalid username or password'
+    //   );
+    // } else {
       this.authService.Loginuser(user).subscribe((result) => {
         this.data = result;
         if (this.data == '') {
@@ -49,14 +49,22 @@ export class LoginComponent implements OnInit {
           this.loading = false;
         } else {
           this.authService.StoreUserData(result);
-          // console.log(this.data);
-          // console.log(this.data[0]?.user_ID);
-          setTimeout(() => {
-            this.router.navigate(['/profile']);
-          }, 2000);
-          console.log('logged to console');
+          console.log(this.data);
+          console.log(this.data[0]?.user_Role_ID);
+          if(this.data[0]?.user_Role_ID ===2){
+            console.log("role_id")
+            setTimeout(() => {
+              this.router.navigate(['/home-admin']);
+            }, 2000);
+          }
+       else{
+        setTimeout(() => {
+          this.router.navigate(['/profile']);
+        }, 2000);
+        console.log('logged to console');
+       }
         }
       });
-    }
+    // }
   }
 }
