@@ -72,7 +72,7 @@ organisationname:any
 individual = 'individual';
 organisation = 'organisation';
 
-  constructor(private authService: AuthService, private rotuer: Router,
+  constructor(private authService: AuthService,
     public datepipe: DatePipe,
     private toastr:ToastrService,
     private router: Router

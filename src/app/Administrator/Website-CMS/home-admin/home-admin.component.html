@@ -10,13 +10,48 @@
    <div class="collapse navbar-collapse" id="navbarsExample09">
     <ul class="navbar-nav mr-auto">
      <li class="nav-item active" style="margin-left:100px">
-       <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+       <a class="nav-link"><i class="bi bi-arrow-left-circle"></i> Dashboard <span class="sr-only">(current)</span></a>
      </li>
      </ul>
      <form class="form-inline my-2 my-md-0">
        <button class="btn btn-primary mr-2" type="button">Save</button>
        <!-- <button class="btn btn-primary mr-2" type="button">Preview</button> -->
      <button class="btn btn-secondary my-2 my-sm-0" type="submit">Publish</button>
+     <!-- <div class="pt-2 pb-1 text-uppercase float-right"> -->
+      <div class="dropdown">
+        <button
+          class="btn text-black  text-left dropdown-toggle"
+          type="button"
+          id="dropdownMenu2"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <span class="text-uppercase">Admin</span>
+        </button>
+        <small
+          ><span class="rollname text-uppercase text-left"
+            >Administrater</span
+          ></small
+        >
+        <ul class="dropdown-menu fade" aria-labelledby="dropdownMenu2">
+          <li class="p-0 ep">
+            <a [routerLink]="['/edit-profile']" class="text-capitalize">Edit Profile</a>
+          </li>
+          <li class="p-0 ep">
+            <a href="#" class="text-capitalize">User Signature</a>
+          </li>
+          <li class="p-0 ep">
+            <a href="#" class="text-capitalize">Reset Password</a>
+          </li>
+          <li class="p-0 ep">
+            <a href="" class="text-capitalize">My Schedules</a>
+          </li>
+          <li class="p-0 ep">
+            <a (click)="logout()"  href="javascript: void(0);" style="border-bottom:0px" class="text-capitalize">Logout</a>
+          </li>
+        </ul>
+      </div>
+    <!-- </div> -->
      </form>
    </div>
        
