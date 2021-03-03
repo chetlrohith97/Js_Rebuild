@@ -98,7 +98,13 @@ CreateIndividualId(data:any){
 
 CreteOrgnaizId(data:any){
   console.log(data)
+  // debugger
   let headers = new HttpHeaders()
+    // { 
+//  'Content-Type': 'application/json', 
+  // 'Access-Control-Allow-Origin': '*',
+  // 'Access-Control-Allow-Credentials': 'true'
+// })
   // debugger
   headers.append('Access-Control-Allow-Origin' , '*');
   return this.http.post(`/api`,data,{headers: headers}).pipe((data)=>{
