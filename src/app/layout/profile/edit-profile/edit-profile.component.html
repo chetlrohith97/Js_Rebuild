@@ -600,6 +600,10 @@
                     onclick="show2tab()"
                     class="btn btn-secondary"
                   >
+                  <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
                     Save and Continue
                   </button></span
                 >
@@ -925,6 +929,10 @@
                     onclick="showtab()"
                     class="btn btn-secondary"
                   >
+                  <span
+                  *ngIf="loading"
+                  class="spinner-border spinner-border-sm mr-1"
+                ></span>
                     Save and Continue
                   </button></span
                 >
@@ -965,7 +973,10 @@
                 </div>
                 <div class="col-lg-4">
                   <div class="form-group">
-                    <label>Payer ID</label
+                    <label>Payer ID<span
+                      *ngIf="loadSpin"
+                      class="spinner-border spinner-border-sm mr-1"
+                    ></span></label
                     ><span class="text-danger pl-2">*</span>
                     <input
                       type="text"
@@ -1039,7 +1050,6 @@
                         class="form-control"
                         [(ngModel)]="date_Of_Birth"
                         name="date_Of_Birth"
-                        (click)=date()
                       />
                       <!-- {{date_Of_Birth}} -->
                       <label
@@ -1251,6 +1261,10 @@
                 >
                 <span class="col-lg-6 text-right"
                   ><button type="submit" class="btn btn-secondary">
+                    <span
+                      *ngIf="loading"
+                      class="spinner-border spinner-border-sm mr-1"
+                    ></span>
                     Done
                   </button></span
                 >

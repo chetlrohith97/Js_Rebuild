@@ -37,6 +37,7 @@ export class EditProfileComponent implements OnInit {
   PayerID!: string;
   profileId!: string;
   loading = false;
+  loadSpin= false;
   user_ID?: string;
   Data?: object;
   Profile_ID!:string;
@@ -83,35 +84,35 @@ organisation = 'organisation';
     this.editProfile();
     //  state drop start
     // var stateName;
-    this.authService.GetStatefields().subscribe((data)=>
+    this.authService.GetStatefields().subscribe((data:any)=>
     {
       this.States =  data;
       this.sec_States =data
-      // console.log(this.sec_States)
+      console.log(this.sec_States)
       // let stationNewName = Stations.STATIONS.find((s) => s.stationName === myStation);
 
-      // this.stateName = data.find( ({ state_ID }) => state_ID === this.State ).state_Name;
+      this.stateName = data.find( ({ state_ID }:any) => state_ID === this.State )?.state_Name;
       
-// console.log( this. )
-      for(let i=0; i<=this.States.length;i++){ //for getting an State_Name
-        if(this.State == this.States[i]?.state_ID){
-          this.stateName =this.States[i].state_Name
-          // this.stateName= stateName
-          console.log(this.stateName)
-          console.log("success")
-        }
-   }    
-  //  setTimeout(() => {
-  //    alert("hi")
+     console.log( this.stateName)
+  //     for(let i=0; i<=this.States.length;i++){ //for getting an State_Name
+  //       if(this.State == this.States[i]?.state_ID){
+  //         this.stateName =this.States[i].state_Name
+  //         // this.stateName= stateName
+  //         console.log(this.stateName)
+  //         console.log("success")
+  //       }
+  //  }    
+  // //  setTimeout(() => {
+  // //    alert("hi")
   
-    // console.log(this.stateName) 
-    if(this.stateName === undefined){
-    console.log('Nothing')
-    }
-    else if (this.stateName){
-    localStorage.setItem('stateName', this.stateName);
-    console.log("their")
-    }
+  //   // console.log(this.stateName) 
+  //   if(this.stateName === undefined){
+  //   console.log('Nothing')
+  //   }
+  //   else if (this.stateName === this.stateName ){
+  //   localStorage.setItem('stateName', this.stateName);
+  //   console.log("their")
+  //   }
   //  }, 2000);
   //  setTimeout(() => {
   //   //  alert("hi")
@@ -121,7 +122,8 @@ organisation = 'organisation';
 
     // this.LolLgaName = localStorage.getItem('LgaName')
     // this.LolCityName = localStorage.getItem('CityName')
-    console.log( this.LolLgaName)
+    console.log( this.stateName)
+    
     }) 
     }
 
@@ -139,26 +141,31 @@ getState(event :any){
   
   this.state = event
   console.log(event)
-  this.authService.GetLgaFields(this.state).subscribe((data)=>{
+  this.authService.GetLgaFields(this.state).subscribe((data:any)=>{
     this.Lgas = data
     console.log(this.Lgas)
     this.getLga(this.LGA);
+    console.log(data)
 
-    for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
-      if(this.LGA == this.Lgas[i]?.localGovtAreaId){
-        this.LgaName =this.Lgas[i].localGovtAreaName
-        console.log(this.LgaName)
-        console.log("success")
-      }
-    }
-  //  setTimeout(() => {
-    if(this.LgaName === undefined){
-      console.log('Nothing')
-      }
-      else if (this.LgaName){
-      localStorage.setItem('LgaName', this.LgaName);
-      console.log("their")
-      }
+
+    this.LgaName = data.find( ({ localGovtAreaId }:any) => localGovtAreaId === this.LGA )?.localGovtAreaName;
+      
+    console.log( this.LgaName)
+  //   for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
+  //     if(this.LGA == this.Lgas[i]?.localGovtAreaId){
+  //       this.LgaName =this.Lgas[i].localGovtAreaName
+  //       console.log(this.LgaName)
+  //       console.log("success")
+  //     }
+  //   }
+  // //  setTimeout(() => {
+  //   if(this.LgaName === undefined){
+  //     console.log('Nothing')
+  //     }
+  //     else if (this.LgaName){
+  //     localStorage.setItem('LgaName', this.LgaName);
+  //     console.log("their")
+  //     }
     // console.log(this.LgaName) 
     // localStorage.setItem('LgaName', this.LgaName);
   //  }, 2000);
@@ -168,25 +175,29 @@ getState(event :any){
 getLga(event :any){
   this.Lga = event
   console.log(event)
-  this.authService.GetCityFields(this.Lga).subscribe((data)=>{
+  this.authService.GetCityFields(this.Lga).subscribe((data:any)=>{
     this.Citys = data
-    // console.log(this.Citys)
+    console.log(this.Citys)
 
-    for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
-      if(this.City == this.Citys[i]?.city_ID){
-        this.CityName =this.Citys[i].city_Name
-        console.log(this.CityName)
-        console.log("success")
-      }
-    }
-    if(this.CityName === undefined){
-      console.log('Nothing')
-      }
-      else if (this.CityName){
-        console.log(this.CityName)
-      localStorage.setItem('CityName', this.CityName);
-      console.log("their")
-      }
+
+    this.CityName = data.find( ({ city_ID }:any) => city_ID === this.City )?.city_Name;
+      
+    console.log( this.LgaName)
+    // for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
+    //   if(this.City == this.Citys[i]?.city_ID){
+    //     this.CityName =this.Citys[i].city_Name
+    //     console.log(this.CityName)
+    //     console.log("success")
+    //   }
+    // }
+    // if(this.CityName === undefined){
+    //   console.log('Nothing')
+    //   }
+    //   else if (this.CityName){
+    //     console.log(this.CityName)
+    //   localStorage.setItem('CityName', this.CityName);
+    //   console.log("their")
+    //   }
     //   console.log(this.CityName) 
     // localStorage.setItem('CityName', this.CityName);
     // $(window).on('load',  () => { alert("Window Loaded"); 
@@ -264,6 +275,7 @@ getsec_LGA(event:any){
       // console.log(this.State)
       this.getState(this.State);
       this.getSec_state(this.sec_State)
+      
     
     });
   }
@@ -338,12 +350,12 @@ getsec_LGA(event:any){
 //  }
 
 getHashIndividual(){
-  this.LolStateName = localStorage.getItem('stateName')
-    this.LolLgaName = localStorage.getItem('LgaName')
-    this.LolCityName = localStorage.getItem('CityName')
+  // this.LolStateName = localStorage.getItem('stateName')
+  //   this.LolLgaName = localStorage.getItem('LgaName')
+  //   this.LolCityName = localStorage.getItem('CityName')
   let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
-    this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
+    this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
   let Hash = hashkey + clientCode + this.lastName + this.firstName + this.email + this.phone + this.Address;
   console.log(Hash)
   const Hvaluing = new Md5();
@@ -363,17 +375,18 @@ console.log(this.LolHashKey);
 }
 
 getHashOrganization(){
+  console.log(this.CityName)
   this.LolStateName = localStorage.getItem('stateName')
     this.LolLgaName = localStorage.getItem('LgaName')
     this.LolCityName = localStorage.getItem('CityName')
   let hashkey = environment.SecretKey
     let clientName = environment.ClientCode;
     // this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
-    this.Address = this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName;
+    this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
   // let Hash = hashkey + clientName + this.lastName + this.firstName + this.email + this.phone + this.Address;
   // let Hash = hashkey + clientName + '' + this.firstName + this.email + this.phone + this.Address
   let Hash = hashkey + clientName + '' + this.organisationname + this.email + this.phone + this.Address
-console.log(this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName)
+console.log(this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName)
   console.log(Hash)
   console.log(this.Address)
   const Hvaluing = new Md5();
@@ -405,10 +418,10 @@ console.log(this.LolHashKey);
   getIndividualId(){
     console.log(this.title)
 this.getHashIndividual()
-    this.LolStateName = localStorage.getItem('stateName')
-    this.LolLgaName = localStorage.getItem('LgaName')
-    this.LolCityName = localStorage.getItem('CityName')
-    this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
+    // this.LolStateName = localStorage.getItem('stateName')
+    // this.LolLgaName = localStorage.getItem('LgaName')
+    // this.LolCityName = localStorage.getItem('CityName')
+    this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
     let DOB=new Date(this.date_Of_Birth);
     let latest_date = this.datepipe.transform(DOB, 'yyyy-MM-ddTHH:mm:ss');
     let hashkey = environment.SecretKey
@@ -436,11 +449,12 @@ this.getHashIndividual()
  
   getOrganizationId(){
     console.log( this.organisationname)
-    this.LolStateName = localStorage.getItem('stateName')
-    this.LolLgaName = localStorage.getItem('LgaName')
-    this.LolCityName = localStorage.getItem('CityName')
-this.getHashOrganization()
-    this.Address = this.address1+ " ,"+ this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName;
+    // this.LolStateName = localStorage.getItem('stateName')
+    // this.LolLgaName = localStorage.getItem('LgaName')
+    // this.LolCityName = localStorage.getItem('CityName')
+    console.log(this.CityName)
+    this.getHashOrganization()
+    this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
     console.log(this.Address)
     let clientName=environment.ClientCode;
     const OrganizData ={
@@ -451,32 +465,31 @@ this.getHashOrganization()
       clientName :clientName,
       hash: this.LolHashKey
     }
-    console.log(OrganizData)
-
+    // console.log(OrganizData)
+    // debugger
     this.authService.CreteOrgnaizId(OrganizData).subscribe((result:any)=>{
     // console.log(Object.values(result))
     console.log(result)
-      console.log(result.email)
-    console.log(result.response)
-    console.log(result.response.message)
-    console.log(result.response.status)
+    this.loadSpin = true;
+    //   console.log(result.email)
+    // console.log(result.response)
+    // console.log(result.response.message)
+    // console.log(result.response.status)
     if(result.payerId === null){
+      // debugger
       this.toastr.warning(result.response.message,result.response.status,{
         timeOut: 5000,
       })
     }
     else{
+      // this.loading = true;
       this.toastr.success('PayerId Generated Successfully','',{
         timeOut: 5000,
       })
       this.PayerID = result.payerId
     }
-       
     })
-  
 }
 
-date(){
-  console.log(this.date_Of_Birth)
-}
+
 }
