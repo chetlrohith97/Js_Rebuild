@@ -8,7 +8,7 @@
       }
     },
     "/url": {
-      "target": "https://qpay.ng/PaymentGateway/CreateCorporatePayer",
+      "target": "https://qpay.ng/PaymentGateway/CreateIndividualPayer",
       "secure": true,
       "changeOrigin": true,
       "pathRewrite": {
