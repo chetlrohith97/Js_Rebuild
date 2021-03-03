@@ -89,7 +89,7 @@ CreateIndividualId(data:any){
   console.log(data)
   let headers = new HttpHeaders()
   headers.append('Access-Control-Allow-Origin' , '*');
-  return this.http.post(' https://qpay.ng/PaymentGateway/CreateIndividualPayer',data,{headers:headers}).pipe((data)=>{
+  return this.http.post(`/url`,data,{headers:headers}).pipe((data)=>{
     console.log(data)  
   return data             
 
