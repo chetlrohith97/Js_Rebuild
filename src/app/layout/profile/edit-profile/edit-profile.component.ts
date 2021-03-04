@@ -82,6 +82,7 @@ organisation = 'organisation';
     this.user_ID = this.userData[0]?.user_ID;
     this.Profile_ID = this.userData[0]?.profile_ID;
     this.editProfile();
+    console.log(this.user_ID)
     //  state drop start
     // var stateName;
     this.authService.GetStatefields().subscribe((data:any)=>
@@ -148,9 +149,11 @@ getState(event :any){
     console.log(data)
 
 
+  if(this.state){
     this.LgaName = data.find( ({ localGovtAreaId }:any) => localGovtAreaId === this.LGA )?.localGovtAreaName;
       
     console.log( this.LgaName)
+  }
   //   for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
   //     if(this.LGA == this.Lgas[i]?.localGovtAreaId){
   //       this.LgaName =this.Lgas[i].localGovtAreaName
@@ -174,15 +177,18 @@ getState(event :any){
 }
 getLga(event :any){
   this.Lga = event
+  console.log(this.state)
   console.log(event)
   this.authService.GetCityFields(this.Lga).subscribe((data:any)=>{
     this.Citys = data
     console.log(this.Citys)
 
 
+   if(this.Lga){
     this.CityName = data.find( ({ city_ID }:any) => city_ID === this.City )?.city_Name;
       
-    console.log( this.LgaName)
+    console.log( this.CityName)
+   }
     // for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
     //   if(this.City == this.Citys[i]?.city_ID){
     //     this.CityName =this.Citys[i].city_Name
@@ -236,7 +242,7 @@ getsec_LGA(event:any){
 
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
       this.UserType = Object.values(data)[0]?.userType
-      console.log(this.UserType)
+      console.log(data)
       // console.log( Object.values(data)[0])
      var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
      console.log(MMddyyyy); //output - 14-02-2019
@@ -279,7 +285,24 @@ getsec_LGA(event:any){
     
     });
   }
-  updateProfile(v: object) {
+  showtab(){
+    console.log("INNN");
+
+    if(true){
+      $("#contact-tab").trigger("click");
+    }else{
+
+    }
+ 
+  }
+  updateProfile(v: object, myForm1:any,nextTab:any) {
+    console.log("test" +nextTab)
+    if(!myForm1.form.valid){
+         console.log("Error in my code")
+    }
+    else if(myForm1.form.valid){
+      console.log("success")
+   
     const ProfileData = {
       suffix: this.title,
       first_Name: this.firstName,
@@ -308,17 +331,39 @@ getsec_LGA(event:any){
       organization_Name:this.organisationname
 
     };
-    this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
-    {
-      console.log(ProfileData)
-    console.log("success");
-    // console.log(data)
-    // console.log(this.Profile_ID);
-    this.toastr.success("Edit profile update successfully")
-    })
-    // console.log("clicked");
+   
+  //  if(this.PayerID == null){
+  //    console.log("null payerid")
+  //  }
+  //  else{
+  //    this.authService.VerifyPayerID(this.PayerID).subscribe((result)=>{
+  //      console.log(result)
+  //     // console.log(result.response.status )
+  //     // console.log(result.response.message )
 
+  //     //  if(result.response.status === 'Success'){
+  //       return false
+        this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
+        {
+          console.log(ProfileData)
+        console.log("success");
+        console.log(data)
+        // console.log(this.Profile_ID);
+        this.toastr.success("Edit profile update successfully");
+        $("#"+nextTab).trigger("click");
+        })
+      //  }
+      //  else{
+      //    this.toastr.warning(result.response.message,'Message',{
+      //      timeOut:3000
+      //    })
+      //  }
+    //  })
+   }
+    // console.log("clicked");
   }
+
+  
   logout() {
     localStorage.removeItem(this.userData);
     this.authService.logout();
@@ -376,9 +421,9 @@ console.log(this.LolHashKey);
 
 getHashOrganization(){
   console.log(this.CityName)
-  this.LolStateName = localStorage.getItem('stateName')
-    this.LolLgaName = localStorage.getItem('LgaName')
-    this.LolCityName = localStorage.getItem('CityName')
+  // this.LolStateName = localStorage.getItem('stateName')
+  //   this.LolLgaName = localStorage.getItem('LgaName')
+  //   this.LolCityName = localStorage.getItem('CityName')
   let hashkey = environment.SecretKey
     let clientName = environment.ClientCode;
     // this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
@@ -470,13 +515,13 @@ this.getHashIndividual()
     this.authService.CreteOrgnaizId(OrganizData).subscribe((result:any)=>{
     // console.log(Object.values(result))
     console.log(result)
-    this.loadSpin = true;
     //   console.log(result.email)
     // console.log(result.response)
     // console.log(result.response.message)
     // console.log(result.response.status)
     if(result.payerId === null){
       // debugger
+    this.loadSpin = true;
       this.toastr.warning(result.response.message,result.response.status,{
         timeOut: 5000,
       })
@@ -488,6 +533,7 @@ this.getHashIndividual()
       })
       this.PayerID = result.payerId
     }
+    this.loadSpin = false;
     })
 }
 

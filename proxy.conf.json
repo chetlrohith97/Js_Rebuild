@@ -2,17 +2,28 @@
     "/api": {
       "target": "https://lagos.qpay.ng/PaymentGateway/CreateCorporatePayer",
       "secure": true,
-      "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""
-      }
-    },
-    "/url": {
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+        },
+    "/Indvi": {
       "target": "https://qpay.ng/PaymentGateway/CreateIndividualPayer",
       "secure": true,
+      "pathRewrite": {
+        "^/Indvi": ""
+      },
       "changeOrigin": true,
+      "logLevel": "debug"
+    },
+    "/url": {
+      "target": "https://lagos.qpay.ng/PaymentGateway/VerifyPayerID",
+      "secure": true,
       "pathRewrite": {
         "^/url": ""
-      }
-    }
+      },
+      "changeOrigin": true,
+      "logLevel": "debug"
+    }    
   }

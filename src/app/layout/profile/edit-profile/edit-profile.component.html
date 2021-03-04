@@ -337,7 +337,7 @@
             <!-- <form class="mh-300"> -->
             <form
               #myForm="ngForm"
-              (ngSubmit)="myForm.form.valid && updateProfile(myForm.value)"
+              (ngSubmit)="myForm.form.valid && updateProfile(myForm.value,myForm,'profile-tab')"
               class="form-signin"
               novalidate
             >
@@ -597,7 +597,7 @@
                 <span class="col-lg-6 text-right"
                   ><button
                     type="submit"
-                    onclick="show2tab()"
+                    (submit)="updateProfile(myForm1.value, myForm1,'profile-tab')"
                     class="btn btn-secondary"
                   >
                   <span
@@ -635,7 +635,7 @@
             <!-- Address Hipen ------ -->
             <form
               #myForm1="ngForm"
-              (ngSubmit)="myForm1.form.valid && updateProfile(myForm1.value)"
+              (ngSubmit)="myForm1.form.valid && updateProfile(myForm1.value, myForm1,'contact-tab')"
               class="form-signin mh-300"
               novalidate
             >
@@ -693,8 +693,8 @@
                     </select>
                     <label
                       *ngIf="
-                        (ref10.dirty || myForm1.submitted) &&
-                        ref10.errors?.required
+                        (ref10.touched || myForm1.submitted) &&
+                        ref10.errors?.required || State == 0
                       "
                       class="text-danger"
                       >*Field is mandatory</label
@@ -728,7 +728,7 @@
                     <label
                       *ngIf="
                         (ref11.dirty || myForm1.submitted) &&
-                        ref11.errors?.required
+                        ref11.errors?.required || LGA == 0
                       "
                       class="text-danger"
                       >*Field is mandatory</label
@@ -754,11 +754,13 @@
                         {{ City.city_Name }}
                         <!-- {{City.city_ID}} -->
                       </option>
+                      <!-- <option *ngIf='City === []'>No matching data</option> -->
                     </select>
+                    <!-- {{City}} -->
                     <label
                       *ngIf="
-                        (ref12.dirty || myForm1.submitted) &&
-                        ref12.errors?.required
+                        (ref12.dirty  || myForm1.submitted) &&
+                        ref12.errors?.required || City == 0
                       "
                       class="text-danger"
                       >*Field is mandatory</label
@@ -926,7 +928,7 @@
                 <span class="col-lg-6 text-right"
                   ><button
                     type="submit"
-                    onclick="showtab()"
+                     (submit)="updateProfile(myForm1.value, myForm1,'contact-tab')"
                     class="btn btn-secondary"
                   >
                   <span
@@ -950,7 +952,7 @@
           >
             <form
               #myForm2="ngForm"
-              (ngSubmit)="myForm2.form.valid && updateProfile(myForm2.value)"
+              (ngSubmit)="myForm2.form.valid && updateProfile(myForm2.value,myForm2,'contact-tab')"
               class="form-signin"
               novalidate
             >

@@ -89,7 +89,7 @@ CreateIndividualId(data:any){
   console.log(data)
   let headers = new HttpHeaders()
   headers.append('Access-Control-Allow-Origin' , '*');
-  return this.http.post(`/url`,data,{headers:headers}).pipe((data)=>{
+  return this.http.post(`/Indvi`,data,{headers:headers}).pipe((data)=>{
     console.log(data)  
   return data             
 
@@ -112,4 +112,22 @@ CreteOrgnaizId(data:any){
   return data
   })
 }
+
+VerifyPayerID(id:any){
+  console.log(id)
+  // debugger
+  let headers = new HttpHeaders(
+    { 
+ 'Content-Type': 'application/json', 
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Credentials': 'true'
+})
+  headers.append('Access-Control-Allow-Origin' , '*');
+  return this.http.post(`/url/`+ id,{headers: headers}).pipe((data)=>{
+  console.log(data)  
+  return data
+  })
+}
+
+
 }
