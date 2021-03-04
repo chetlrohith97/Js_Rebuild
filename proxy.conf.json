@@ -8,11 +8,11 @@
       "changeOrigin": true,
       "logLevel": "debug"
         },
-    "/Indvi": {
+    "/Ind": {
       "target": "https://qpay.ng/PaymentGateway/CreateIndividualPayer",
       "secure": true,
       "pathRewrite": {
-        "^/Indvi": ""
+        "^/Ind": ""
       },
       "changeOrigin": true,
       "logLevel": "debug"
