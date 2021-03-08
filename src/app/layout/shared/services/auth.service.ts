@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '@env';
+import { identifierModuleUrl } from '@angular/compiler';
 @Injectable({
   providedIn: 'root',
 })
@@ -129,5 +130,12 @@ VerifyPayerID(id:any){
   })
 }
 
+GetAddressDetails(User_id:any){
+  let headers = new HttpHeaders()
+    return  this.http.get(`${this.apiUrl}/api/Edit/GetAddressDetails?User_ID=`+User_id,{headers:headers}).pipe((data)=>{
+    console.log(data)  
+    return data
+    })
+}
 
 }

@@ -92,9 +92,9 @@ organisation = 'organisation';
       console.log(this.sec_States)
       // let stationNewName = Stations.STATIONS.find((s) => s.stationName === myStation);
 
-      this.stateName = data.find( ({ state_ID }:any) => state_ID === this.State )?.state_Name;
+    //   this.stateName = data.find( ({ state_ID }:any) => state_ID === this.State )?.state_Name;
       
-     console.log( this.stateName)
+    //  console.log( this.stateName)
   //     for(let i=0; i<=this.States.length;i++){ //for getting an State_Name
   //       if(this.State == this.States[i]?.state_ID){
   //         this.stateName =this.States[i].state_Name
@@ -124,8 +124,18 @@ organisation = 'organisation';
     // this.LolLgaName = localStorage.getItem('LgaName')
     // this.LolCityName = localStorage.getItem('CityName')
     console.log( this.stateName)
-    
-    }) 
+    })
+  this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
+    console.log(address)
+    this.stateName = address[0].state
+    this.LgaName = address[0].lga
+    this.CityName = address[0].city
+    console.log(this.stateName)
+    console.log(this.LgaName)
+    console.log(this.CityName)
+
+  })
+
     }
 
   
@@ -149,11 +159,11 @@ getState(event :any){
     console.log(data)
 
 
-  if(this.state){
-    this.LgaName = data.find( ({ localGovtAreaId }:any) => localGovtAreaId === this.LGA )?.localGovtAreaName;
+  // if(this.state){
+  //   this.LgaName = data.find( ({ localGovtAreaId }:any) => localGovtAreaId === this.LGA )?.localGovtAreaName;
       
-    console.log( this.LgaName)
-  }
+  //   console.log( this.LgaName)
+  // }
   //   for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
   //     if(this.LGA == this.Lgas[i]?.localGovtAreaId){
   //       this.LgaName =this.Lgas[i].localGovtAreaName
@@ -184,11 +194,11 @@ getLga(event :any){
     console.log(this.Citys)
 
 
-   if(this.Lga){
-    this.CityName = data.find( ({ city_ID }:any) => city_ID === this.City )?.city_Name;
+  //  if(this.Lga){
+  //   this.CityName = data.find( ({ city_ID }:any) => city_ID === this.City )?.city_Name;
       
-    console.log( this.CityName)
-   }
+  //   console.log( this.CityName)
+  //  }
     // for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
     //   if(this.City == this.Citys[i]?.city_ID){
     //     this.CityName =this.Citys[i].city_Name
@@ -403,6 +413,7 @@ getHashIndividual(){
     this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
   let Hash = hashkey + clientCode + this.lastName + this.firstName + this.email + this.phone + this.Address;
   console.log(Hash)
+  console.log(this.Address)
   const Hvaluing = new Md5();
   const Hashvalued = Hvaluing.appendStr(Hash).end()
   console.log(Hashvalued);

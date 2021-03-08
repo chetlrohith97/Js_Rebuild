@@ -55,7 +55,7 @@ body {
   border-top-right-radius: 0;
 }
 ::placeholder {
-  color: #d8d8d8 !important;
+  color: #000 !important;
 }
 .logo {
   position: fixed;
@@ -272,19 +272,19 @@ a.textdecor {
   min-height: 100vh; 
 }
 .form-control::-webkit-input-placeholder {
-  color: #d7c185 !important;
+  color: #000 !important;
 } /* WebKit, Blink, Edge */
 .form-control:-moz-placeholder {
-  color: #d7c185 !important;
+  color: #000 !important;
 } /* Mozilla Firefox 4 to 18 */
 .form-control::-moz-placeholder {
-  color: #d7c185 !important;
+  color: #000 !important;
 } /* Mozilla Firefox 19+ */
 .form-control:-ms-input-placeholder {
-  color: #d7c185 !important;
+  color: #000 !important;
 } /* Internet Explorer 10-11 */
 .form-control::-ms-input-placeholder {
-  color: #d7c185 !important;
+  color: #000 !important;
 } /* Microsoft Edge */
 .style {
   display: flex;
@@ -307,7 +307,7 @@ a.textdecor {
 }
 ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
-  color: pink;
+  color: #000;
 }
 .form-control.ng-invalid.ng-touched {
   border: 1px solid coral;
@@ -1027,4 +1027,7 @@ h2,h3,h4,h5{
   background: #c69dbb;
   /* display: none; */
   width: 90px;
+}
+.tf-width{
+  width: 100%;
 }
