@@ -125,16 +125,7 @@ organisation = 'organisation';
     // this.LolCityName = localStorage.getItem('CityName')
     console.log( this.stateName)
     })
-  this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
-    console.log(address)
-    this.stateName = address[0].state
-    this.LgaName = address[0].lga
-    this.CityName = address[0].city
-    console.log(this.stateName)
-    console.log(this.LgaName)
-    console.log(this.CityName)
-
-  })
+  
 
     }
 
@@ -405,6 +396,16 @@ getsec_LGA(event:any){
 //  }
 
 getHashIndividual(){
+  this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
+    console.log(address)
+    this.stateName = address[0].state
+    this.LgaName = address[0].lga
+    this.CityName = address[0].city
+    console.log(this.stateName)
+    console.log(this.LgaName)
+    console.log(this.CityName)
+
+  })
   // this.LolStateName = localStorage.getItem('stateName')
   //   this.LolLgaName = localStorage.getItem('LgaName')
   //   this.LolCityName = localStorage.getItem('CityName')
@@ -431,6 +432,16 @@ console.log(this.LolHashKey);
 }
 
 getHashOrganization(){
+  this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
+    console.log(address)
+    this.stateName = address[0].state
+    this.LgaName = address[0].lga
+    this.CityName = address[0].city
+    console.log(this.stateName)
+    console.log(this.LgaName)
+    console.log(this.CityName)
+
+  })
   console.log(this.CityName)
   // this.LolStateName = localStorage.getItem('stateName')
   //   this.LolLgaName = localStorage.getItem('LgaName')
@@ -472,6 +483,16 @@ console.log(this.LolHashKey);
   }
 
   getIndividualId(){
+    this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
+      console.log(address)
+      this.stateName = address[0].state
+      this.LgaName = address[0].lga
+      this.CityName = address[0].city
+      console.log(this.stateName)
+      console.log(this.LgaName)
+      console.log(this.CityName)
+  
+    })
     console.log(this.title)
 this.getHashIndividual()
     // this.LolStateName = localStorage.getItem('stateName')
@@ -504,6 +525,16 @@ this.getHashIndividual()
   }
  
   getOrganizationId(){
+    this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
+      console.log(address)
+      this.stateName = address[0].state
+      this.LgaName = address[0].lga
+      this.CityName = address[0].city
+      console.log(this.stateName)
+      console.log(this.LgaName)
+      console.log(this.CityName)
+  
+    })
     console.log( this.organisationname)
     // this.LolStateName = localStorage.getItem('stateName')
     // this.LolLgaName = localStorage.getItem('LgaName')

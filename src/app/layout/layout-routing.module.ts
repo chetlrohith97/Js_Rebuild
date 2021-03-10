@@ -22,6 +22,13 @@ const routes: Routes = [
           ),
       },
       {
+        path: 'change-password',
+        loadChildren: () =>
+          import(
+            '../layout/profile/change-password/change-password-routing.module'
+          ).then((m) => m.ChangePasswordRoutingModule),
+      },
+      {
         path: 'edit-profile',
         loadChildren: () =>
           import(

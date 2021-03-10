@@ -8,6 +8,7 @@ import { identifierModuleUrl } from '@angular/compiler';
 export class AuthService {
   apiUrl = environment.apiUrl;
   userData!: any;
+  changePasswordData!:any;
   constructor(private http: HttpClient) {}
 
   StoreUserData(User_data: any) {
@@ -205,4 +206,36 @@ PutMissiondata(MissionObj:any){
     return data
   })
 }
+StoreTheUserPasswordData(passwordData:any){
+  // debugger
+  localStorage.setItem('ChangePasswordData', JSON.stringify(passwordData));
+  this.changePasswordData = passwordData;
+
+}
+
+
+ChangePassword(userID:any) {
+// debugger
+  let headers = new HttpHeaders();
+  return this.http.get(`${this.apiUrl}/api/ChangePassword/GetPassword?userID=`+ userID, {
+    headers: headers
+  })
+  .pipe((data) => {
+    //debugger
+    return data;
+  });
+}
+
+  UpdatePassword(userData:object){
+  // debugger
+  console.log(userData);
+  // debugger
+  let headers = new HttpHeaders();
+  return this.http.post(`${this.apiUrl}/api/ChangePassword/UpdatePassword`, userData, {
+    headers: headers
+  })
+  .pipe((data)=>
+  {return data})
+  }
+
 }
