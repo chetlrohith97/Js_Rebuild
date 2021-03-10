@@ -1,428 +1,638 @@
-
-	  <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top ">
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top " style="background: #a79cba !important;">
 		 
-        <img src="assets/brand/lagos_state_Judiciary.png" alt="Lagos State Judiciary High Court" class="logo">
-   <a class="navbar-brand" href="#"></a>
-   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
-     <span class="navbar-toggler-icon"></span>
-   </button>
-  
-   <div class="collapse navbar-collapse" id="navbarsExample09">
-    <ul class="navbar-nav mr-auto">
-     <li class="nav-item active" style="margin-left:100px">
-       <a class="nav-link"><i class="bi bi-arrow-left-circle"></i> Dashboard <span class="sr-only">(current)</span></a>
-     </li>
-     </ul>
-     <form class="form-inline my-2 my-md-0">
-       <button class="btn btn-primary mr-2" type="button">Save</button>
-       <!-- <button class="btn btn-primary mr-2" type="button">Preview</button> -->
-     <button class="btn btn-secondary my-2 my-sm-0" type="submit">Publish</button>
-     <!-- <div class="pt-2 pb-1 text-uppercase float-right"> -->
-      <div class="dropdown">
-        <button
-          class="btn text-black  text-left dropdown-toggle"
-          type="button"
-          id="dropdownMenu2"
-          data-bs-toggle="dropdown"
-          aria-expanded="false"
-        >
-          <span class="text-uppercase">Admin</span>
-        </button>
-        <small
-          ><span class="rollname text-uppercase text-left"
-            >Administrater</span
-          ></small
-        >
-        <ul class="dropdown-menu fade" aria-labelledby="dropdownMenu2">
-          <li class="p-0 ep">
-            <a [routerLink]="['/edit-profile']" class="text-capitalize">Edit Profile</a>
-          </li>
-          <li class="p-0 ep">
-            <a href="#" class="text-capitalize">User Signature</a>
-          </li>
-          <li class="p-0 ep">
-            <a href="#" class="text-capitalize">Reset Password</a>
-          </li>
-          <li class="p-0 ep">
-            <a href="" class="text-capitalize">My Schedules</a>
-          </li>
-          <li class="p-0 ep">
-            <a (click)="logout()"  href="javascript: void(0);" style="border-bottom:0px" class="text-capitalize">Logout</a>
-          </li>
-        </ul>
-      </div>
-    <!-- </div> -->
-     </form>
-   </div>
-       
-  </nav>
-   <div class="row ml-0 mr-0 slider1-bg"><div class="container">
-    <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel" style="padding-top: 3rem;">
+  <img src="assets/brand/lagos_state_Judiciary.png" alt="Lagos State Judiciary High Court" class="logo">
+<a class="navbar-brand" href="#"></a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+<span class="navbar-toggler-icon"></span>
+</button>
+
+<div class="collapse navbar-collapse" id="navbarsExample09">
+<ul class="navbar-nav mr-auto">
+<li class="nav-item active" style="margin-left:80px">
+ <a class="nav-link" style="font-size: 32px; color: #fff; cursor: pointer;" title="Back to Dashboard" ><i class="bi bi-speedometer2"></i> <span class="sr-only">(current)</span></a>
+</li>
+</ul>
+<form class="form-inline my-2 my-md-0" (ngSubmit)="updateProfile()">
+ <button class="btn btn-draft mr-2" (click)="logout()"  type="button">Logout</button>
+ <!-- <button class="btn btn-primary mr-2" type="button">Preview</button> -->
+
+<button class="btn btn-primary mr-2" type="button" (click)="StoreProfile()">Save</button>
+<button class="btn btn-secondary my-2 my-sm-0" type="submit">Publish</button>
+
+</form>
+</div>
+ 
+</nav>
+<div class="row ml-0 mr-0 slider1-bg">
+  <div class="container">
+    <div
+      id="carouselExampleCaptions"
+      class="carousel slide"
+      data-ride="carousel"
+      style="padding-top: 3rem"
+    >
       <ol class="carousel-indicators">
-       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
-       <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
-       <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
+        <li
+          data-target="#carouselExampleCaptions"
+          data-slide-to="0"
+          class="active"
+        ></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="1"></li>
+        <li data-target="#carouselExampleCaptions" data-slide-to="2"></li>
       </ol>
       <div class="carousel-inner">
-       <div class="carousel-item active">
-       <div class="col-lg-10 offset-lg-1">	<div class="row pt-5">
-         <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
-          <input type="text" value="Lagos State"  class="bigger-heading text-uppercase edit-tf">
-          <input type="text" value="JUDICIARY"  class="bigger-heading text-uppercase edit-tf">
-           
-             <textarea class="edit-ta w-100" >We are committed to ensuring disputes are resolved fairly, timely, transparently and economically by leveraging enabling technology with inherent seamless integration of the court processes, structures and administration. </textarea>
-         </div>
-       <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-           <div class="col-xs-12 text-center"> <img src="assets/img/hon-justice.png" class="img-fluid"></div>
-          <div class="d-block text-center"><h4><small>Hon. Justice</small> </h4>
-      <input value="Kazeem Olanrewaju Alogba" class="h4-font edit-tf" type="text">
-          <h4><small>Chief Judge of Lagos State</small></h4> </div>
-      
-         
-       </div></div>
-       </div>  
-       </div>
-       
-       <div class="carousel-item ">
-        <div class="col-lg-10 offset-lg-1">	<div class="row pt-5  ml-0 mr-0">
-          <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
-           
-            <input type="text" value="Lagos State" class="bigger-heading text-uppercase edit-tf">
+        <div class="carousel-item active">
+          <div class="col-lg-10 offset-lg-1">
+            <div class="row pt-5">
+              <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
+                <input
+                  type="text"
+                  [(ngModel)]="model.bannerTitle1"
+                  name="bannerTitle1"
+                  class="bigger-heading text-uppercase edit-tf"
+                  placeholder="Enter title"
+                />
+                <input
+                  type="text"
+                  [(ngModel)]="model.bannerTitle2"
+                  name="bannerTitle2"
+                  placeholder="Enter title"
+                  class="bigger-heading text-uppercase edit-tf"
+                />
 
-            <input type="text" value="Judiciary" class="bigger-sec-heading text-uppercase edit-tf">
-              <p class="">We are committed to ensuring disputes are resolved fairly, timely, transparently and economically by leveraging enabling technology with inherent seamless integration of the court processes, structures and administration. </p>
+                <textarea class="edit-ta w-100"
+                [(ngModel)]='model.bannerDesc'
+                name="bannerDesc"
+                placeholder="Enter description"></textarea>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                <div class="col-xs-12 text-center">
+                  <img src="assets/img/hon-justice.png" class="img-fluid" />
+                </div>
+                <div class="d-block text-center">
+                  <h4><small>
+                    <input
+                    placeholder="Enter judge title"
+                    class="h4-font edit-tf"
+                    [(ngModel)]='model.judgeTitle'
+                    name="judgeTitle"
+                    type="text"
+                  />
+                  </small></h4>
+                  <input
+                  placeholder="Enter judge name"
+                  [(ngModel)]='model.judgeName'
+                  name="judgeName"
+                    class="h4-font edit-tf"
+                    type="text"
+                  />
+                  <h4><small>
+                    <input
+                    placeholder="Enter judge description"
+                    [(ngModel)]='model.judgeDesc'
+                    name="judgeDesc"
+                    class="h4-font edit-tf"
+                    type="text"
+                  />
+                  </small></h4>
+                </div>
+              </div>
+            </div>
           </div>
-        <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-            <div class="col-xs-12 text-center"> <img src="assets/img/hon-justice.png" class="img-fluid"></div>
-           <div class="d-block text-center"><h4><small>Hon. Justice</small> <br>
-       Kazeem Olanrewaju Alogba <br>
-           <small>Chief Judge of Lagos State</small> </h4></div>
-       
-          
-        </div></div>
-        </div>  
         </div>
-        <div class="carousel-item ">
-          <div class="col-lg-10 offset-lg-1">	<div class="row pt-5">
-            <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
+
+        <!-- <div class="carousel-item">
+          <div class="col-lg-10 offset-lg-1">
+            <div class="row pt-5 ml-0 mr-0">
+              <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
+                <input
+                  type="text"
+                  value="Lagos State"
+                  class="bigger-heading text-uppercase edit-tf"
+                />
+
+                <input
+                  type="text"
+                  value="Judiciary"
+                  class="bigger-sec-heading text-uppercase edit-tf"
+                />
+                <p class="">
+                  We are committed to ensuring disputes are resolved fairly,
+                  timely, transparently and economically by leveraging enabling
+                  technology with inherent seamless integration of the court
+                  processes, structures and administration.
+                </p>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                <div class="col-xs-12 text-center">
+                  <img src="assets/img/hon-justice.png" class="img-fluid" />
+                </div>
+                <div class="d-block text-center">
+                  <h4>
+                    <small>Hon. Justice</small> <br />
+                    Kazeem Olanrewaju Alogba <br />
+                    <small>Chief Judge of Lagos State</small>
+                  </h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="col-lg-10 offset-lg-1">
+            <div class="row pt-5">
+              <div class="col-lg-7 col-md-7 col-sm-6 col-xs-12 pt-4">
                 <h2 class="bigger-heading text-uppercase">LAGOS STATE</h2>
                 <h3 class="big-heading">JUDICIARY</h3>
-                <p class="">We are committed to ensuring disputes are resolved fairly, timely, transparently and economically by leveraging enabling technology with inherent seamless integration of the court processes, structures and administration. </p>
+                <p class="">
+                  We are committed to ensuring disputes are resolved fairly,
+                  timely, transparently and economically by leveraging enabling
+                  technology with inherent seamless integration of the court
+                  processes, structures and administration.
+                </p>
+              </div>
+              <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
+                <div class="col-xs-12 text-center">
+                  <img src="assets/img/hon-justice.png" class="img-fluid" />
+                </div>
+                <div class="d-block text-center">
+                  <h4>
+                    <small>Hon. Justice</small> <br />
+                    Kazeem Olanrewaju Alogba <br />
+                    <small>Chief Judge of Lagos State</small>
+                  </h4>
+                </div>
+              </div>
             </div>
-          <div class="col-lg-5 col-md-5 col-sm-6 col-xs-12">
-              <div class="col-xs-12 text-center"> <img src="assets/img/hon-justice.png" class="img-fluid"></div>
-             <div class="d-block text-center"><h4><small>Hon. Justice</small> <br>
-         Kazeem Olanrewaju Alogba <br>
-             <small>Chief Judge of Lagos State</small> </h4></div>
-            
-          </div></div>
-          </div>  
           </div>
+        </div> -->
       </div>
-      <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-slide="prev">
-       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-       <span class="sr-only">Previous</span>
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
       </a>
-      <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-slide="next">
-       <span class="carousel-control-next-icon" aria-hidden="true"></span>
-       <span class="sr-only">Next</span>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleCaptions"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
       </a>
-      </div>
-   </div></div>
-  
-  
-  <div class="row  ml-0 mr-0 shadow">
-      <div class="container">
-        <div class="row ml-0 mr-0 mt-4 mb-4">
-        <div class="col-lg-3 col-md=3 col-xs-4">
-          <div class="light-blue-box left-corners">
-              <h3>38</h3>
-              <h5><small>High Court Cases</small></h5>
-          </div>
+    </div>
+  </div>
+</div>
+
+<div class="row ml-0 mr-0 shadow">
+  <div class="container">
+    <div class="row ml-0 mr-0 mt-4 mb-4">
+      <div class="col-lg-3 col-md=3 col-xs-4">
+        <div class="light-blue-box left-corners">
+          <h3>38</h3>
+          <h5><small>High Court Cases</small></h5>
         </div>
-        <div class="col-lg-3 col-md=3 col-xs-4">
-          <div class="light-orange-box left-corners">
+      </div>
+      <div class="col-lg-3 col-md=3 col-xs-4">
+        <div class="light-orange-box left-corners">
           <h3>169</h3>
           <h5><small>Magistrate Court Cases</small></h5>
-      </div></div>
-        <div class="col-lg-3 col-md=3 col-xs-4">
-          <div class="light-green-box left-corners">
-            <h3>212</h3>
-            <h5><small> Claim Court Cases</small></h5>
         </div>
-        </div>
-        <div class="col-lg-3 col-md=3 col-xs-4">
-          <div class="light-purple-box left-corners">
-            <h3>38</h3>
-            <h5><small>Mobile Court Cases</small></h5>
-        </div>
-        </div>
-      </div> 
       </div>
-     </div>
-     <div class="row ml-0 mr-0  shadow-bottom222"></div>
-     
-     <div class="row features-section-1 ml-0 mr-0">  
-     <div class="container">
-      <div class="d-flex">
-    <div class="col-lg-5 col-md-5 col-sm-5 col-xs-3">
-      <img src="../assets/img/feature-left-image.jpg" class="img-fluid">
+      <div class="col-lg-3 col-md=3 col-xs-4">
+        <div class="light-green-box left-corners">
+          <h3>212</h3>
+          <h5><small> Claim Court Cases</small></h5>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md=3 col-xs-4">
+        <div class="light-purple-box left-corners">
+          <h3>38</h3>
+          <h5><small>Mobile Court Cases</small></h5>
+        </div>
+      </div>
     </div>
-       <div  class="col-lg-7 col-md-7 col-sm-7 col-xs-9">
-          <div class="row">
-            <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center">
-              
-                    <div class="text-center">
-                      <div class="btn-sm">
-                        <h5>Change Icon</h5>
-                        <input type="file" class="upload-btn">
-                      </div>
-                    
-                    </div>
-                 
-                <div><img src="../assets/img/small-claim-icon.svg"></div>
-              
-              <input type="text" class="edit-tf h4-font text-center" value="Small Claims Court">
-              <textarea class="edit-ta-s w-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry</textarea>
-            </div> 
-            <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center">
-                
-                <div class="text-center">
-                    <div class="btn-sm">
-                      <h5>Change Icon</h5>
-                      <input type="file" class="upload-btn">
-                    </div>
-                  
-                  </div>
-              <div><img src="../assets/img/e-payments-icon.svg"></div>
-              <input type="text" class="edit-tf h4-font text-center" value="E Payments">
-              <textarea class="edit-ta-s w-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry</textarea>
-            </div>
-        </div>
-        <div class="row mt-3">
-          <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center">
-            <div class="text-center">
-                <div class="btn-sm">
-                  <h5>Change Icon</h5>
-                  <input type="file" class="upload-btn">
-                </div>
-              
-              </div>
-            <div><img src="../assets/img/ctc.svg"></div>
-            <input type="text" class="edit-tf h4-font text-center" value="CTC & Other Services">
-            <textarea class="edit-ta-s w-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry</textarea>
-          </div> 
-          <div  class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center">
-            <div class="text-center">
-                <div class="btn-sm">
-                  <h5>Change Icon</h5>
-                  <input type="file" class="upload-btn">
-                </div>
-              
-              </div>
-            <div><img src="../assets/img/forms.svg"></div>
-            <input type="text" class="edit-tf h4-font text-center" value="Forms" >
-            <textarea class="edit-ta-s w-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry</textarea>
-          </div>
+  </div>
+</div>
+<div class="row ml-0 mr-0 shadow-bottom222"></div>
+
+<div class="row features-section-1 ml-0 mr-0">
+  <div class="container">
+    <div class="d-flex">
+      <div class="col-lg-5 col-md-5 col-sm-5 col-xs-3">
+        <img src="../assets/img/feature-left-image.jpg" class="img-fluid" />
       </div>
-       </div> </div>
-  </div></div>
-  <div class="row mr-0 ml-0 abt-jis-hom-section pt-4">
-      <div class="container">
+      <div class="col-lg-7 col-md-7 col-sm-7 col-xs-9">
         <div class="row">
-          <div class="col-lg-7 col-md-7 col-sm-7 pt-4">
-            <input type="text" class="edit-tf h4-font" value="Information System">
-            <textarea class="edit-ta-s w-100">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s Lorem Ipsum is simply dummy text of the printing and typesetting industry. </textarea>
-            <input type="text" class="edit-tf h4-font mt-2" value="Commitment Statement">
-            <textarea class="edit-ta-s w-100">We the staff of Lagos State Judiciary are committed to Lagos State and the Community. Our mission is to provide quality and professional service in a knowledgeable manner. We take pride in our work and hold ourselves accountable to the highest standard of performance. Our goals are achieved through mutual co-operation, a strong sense of integrity</textarea>
-            <input type="text" class="edit-tf h4-font" value="Mission for Lagos State Judiciary">
-          <div class="row pt-2">
-              <div class="col-lg-4 text-center">
-                <div class="btn-sm">
-                  <h5>Change Icon</h5>
-                  <input type="file" class="upload-btn">
-                </div>
-                <div><img src="../assets/img/discipline.svg" class="svg50"></div>
-              <input type="text" class="edit-tf h4-font text-center" value="Discipline">
-            </div>
-            <div class="col-lg-4 text-center">
+          <div
+            class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center"
+          >
+            <div class="text-center">
               <div class="btn-sm">
                 <h5>Change Icon</h5>
-                <input type="file" class="upload-btn">
+                <input type="file" class="upload-btn" />
               </div>
-              <div><img src="../assets/img/honesty.svg"  class="svg50"></div>
-              <input type="text" class="edit-tf h4-font text-center" value="Honesty">
+            </div>
+
+            <div><img src="../assets/img/small-claim-icon.svg" /></div>
+
+            <input
+              type="text"
+              class="edit-tf h4-font text-center"
+             [(ngModel)]="featuremodel.featureTitle1"
+             name="featureTitle1"
+             placeholder="Enter feature title"
+            />
+            <textarea class="edit-ta-s w-100" 
+            [(ngModel)]="featuremodel.featureDesc1"
+            name="featureDesc1"
+            placeholder="Enter feature description">
+        </textarea>
+          </div>
+          <div
+            class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center"
+          >
+            <div class="text-center">
+              <div class="btn-sm">
+                <h5>Change Icon</h5>
+                <input type="file" class="upload-btn" />
+              </div>
+            </div>
+            <div><img src="../assets/img/e-payments-icon.svg" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center"
+              [(ngModel)]="featuremodel.featureTitle2"
+             name="featureTitle2"
+             placeholder="Enter feature title"
+            />
+            <textarea class="edit-ta-s w-100" 
+            [(ngModel)]="featuremodel.featureDesc2"
+            name="featureDesc2"
+            placeholder="Enter feature description">
+        </textarea>
+          </div>
+        </div>
+        
+        <div class="row mt-3">
+          <div
+            class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center"
+          >
+            <div class="text-center">
+              <div class="btn-sm">
+                <h5>Change Icon</h5>
+                <input type="file" class="upload-btn" />
+              </div>
+            </div>
+            <div><img src="../assets/img/ctc.svg" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center"
+              [(ngModel)]="featuremodel.featureTitle3"
+              name="featureTitle3"
+              placeholder="Enter feature title"
+             />
+             <textarea class="edit-ta-s w-100" 
+             [(ngModel)]="featuremodel.featureDesc3"
+             name="featureDesc3"
+             placeholder="Enter feature description"></textarea>
+          </div>
+          <div
+            class="col-lg-6 col-md-6 col-sm-6 col-xs-6 feat-icon text-center"
+          >
+            <div class="text-center">
+              <div class="btn-sm">
+                <h5>Change Icon</h5>
+                <input type="file" class="upload-btn" />
+              </div>
+            </div>
+            <div><img src="../assets/img/forms.svg" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center"
+              [(ngModel)]="featuremodel.featureTitle4"
+              name="featureTitle4"
+              placeholder="Enter feature title"
+             />
+             <textarea class="edit-ta-s w-100" 
+             [(ngModel)]="featuremodel.featureDesc4"
+             name="featureDesc4"
+             placeholder="Enter feature description"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row mr-0 ml-0 abt-jis-hom-section pt-4">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 col-md-7 col-sm-7 pt-4">
+        <input type="text" class="edit-tf h4-font" 
+        [(ngModel)]='AboutusModel.aboutTitle' 
+        name="aboutTitle"
+        placeholder="Enter about title"
+       />
+
+        <textarea class="edit-ta-s w-100"
+        [(ngModel)]='AboutusModel.aboutDesc'
+        name="aboutDesc"
+        placeholder="Enter about description"
+       >
+</textarea>
+
+        <input
+          type="text"
+          class="edit-tf h4-font mt-2"
+         [(ngModel)]="AboutusModel.aboutSecTitle"
+         name="aboutSecTitle"
+         placeholder="Enter about title"
+        
+        />
+        <textarea class="edit-ta-s w-100" 
+        [(ngModel)]='AboutusModel.aboutSecDesc'
+        name="aboutSecDesc"
+        placeholder="Enter about description"
+       >
+      </textarea>
+
+        <input
+          type="text"
+          class="edit-tf h4-font"
+         [(ngModel)]='MissionModel.missionsDesc'
+         name="missionsDesc"
+         placeholder="Enter mission title" 
+        />
+        <div class="row pt-2">
+          <div class="col-lg-4 text-center">
+            <div class="btn-sm">
+              <h5>Change Icon</h5>
+              <input type="file" class="upload-btn" />
+            </div>
+            <div><img src="../assets/img/discipline.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width "
+             [(ngModel)]="MissionModel.missionsTitle1"
+             name="missionsTitle1"
+             placeholder="Enter mission description"
+            />
           </div>
           <div class="col-lg-4 text-center">
             <div class="btn-sm">
               <h5>Change Icon</h5>
-              <input type="file" class="upload-btn">
+              <input type="file" class="upload-btn" />
             </div>
-            <div><img src="../assets/img/hardwork.svg"  class="svg50"></div>
-            <input type="text" class="edit-tf h4-font text-center" value="Hardwork">
-        </div>
-          </div>
-          <div class="row pt-4">
-            <div class="col-lg-4 text-center">
-              <div class="btn-sm">
-                <h5>Change Icon</h5>
-                <input type="file" class="upload-btn">
-              </div>
-              <div><img src="../assets/img/cdh.svg" class="svg50"></div>
-              <input type="text" class="edit-tf h4-font text-center" value="Credence, Dignity and Honour">
+            <div><img src="../assets/img/honesty.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width"
+              [(ngModel)]="MissionModel.missionsTitle2"
+              name="missionsTitle2"
+              placeholder="Enter mission description"
+            />
           </div>
           <div class="col-lg-4 text-center">
             <div class="btn-sm">
               <h5>Change Icon</h5>
-              <input type="file" class="upload-btn">
+              <input type="file" class="upload-btn" />
             </div>
-            <div><img src="../assets/img/security.svg"  class="svg50"></div>
-            <input type="text" class="edit-tf h4-font text-center" value="Integrity">
-        </div>
-        <div class="col-lg-4 text-center">
-          <div class="btn-sm">
-            <h5>Change Icon</h5>
-            <input type="file" class="upload-btn">
+            <div><img src="../assets/img/hardwork.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width"
+              [(ngModel)]="MissionModel.missionsTitle3"
+             name="missionsTitle3"
+             placeholder="Enter mission description"
+            />
           </div>
-          <div><img src="../assets/img/zeal.svg"  class="svg50"></div>
-          <input type="text" class="edit-tf h4-font text-center" value="Zeal for Results and Excellence">
-      </div>
         </div>
-          </div>
-          <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="row pt-4">
+          <div class="col-lg-4 text-center">
             <div class="btn-sm">
-              <h5>Change Image</h5>
-              <input type="file" class="upload-btn">
+              <h5>Change Icon</h5>
+              <input type="file" class="upload-btn" />
             </div>
-            <img  src="assets/img/abt-jis-section-img.png" class="img-fluid">
+            <div><img src="../assets/img/cdh.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width"
+              [(ngModel)]="MissionModel.missionsTitle4"
+              name="missionsTitle4"
+              placeholder="Enter mission description"
+            />
           </div>
-        </div>
-      </div> 
-  </div>
-  <div class="row mr-0 ml-0 home-gallery-bg">
-      <div class="container">
-        <h4 class="text-center mt-4 ">Recent Gallery</h4>
-        <div id="slider" class="mb-2">
-          <div class="slides">
-            <div class="slider">
-              <div class="legend"></div>
-              <div class="content">
-                <div class="content-txt">
-                  <h2>Lorem ipsum dolor</h2>
-                  <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                </div>
-              </div>
-              <div class="image"> <img src="../assets/img/gallery/1.jpg"> </div>
+          <div class="col-lg-4 text-center">
+            <div class="btn-sm">
+              <h5>Change Icon</h5>
+              <input type="file" class="upload-btn" />
             </div>
-            <div class="slider">
-              <div class="legend"></div>
-              <div class="content">
-                <div class="content-txt">
-                  <h2>Lorem ipsum dolor</h2>
-                  <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                </div>
-              </div>
-              <div class="image"> <img src="../assets/img/gallery/2.jpg"> </div>
-            </div>
-            <div class="slider">
-              <div class="legend"></div>
-              <div class="content">
-                <div class="content-txt">
-                  <h2>Lorem ipsum dolor</h2>
-                  <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                </div>
-              </div>
-              <div class="image"> <img src="../assets/img/gallery/3.jpg"> </div>
-            </div>
-            <div class="slider">
-              <div class="legend"></div>
-              <div class="content">
-                <div class="content-txt">
-                  <h2>Lorem ipsum dolor</h2>
-                  <p>Nam ultrices pellentesque facilisis. In semper tellus mollis nisl pulvinar vitae vulputate lorem consequat. Fusce odio tortor, pretium sit amet auctor ut, ultrices vel nibh.</p>
-                </div>
-              </div>
-              <div class="image"> <img src="../assets/img/gallery/4.jpg"> </div>
-            </div>
+            <div><img src="../assets/img/security.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width"
+              [(ngModel)]="MissionModel.missionsTitle5"
+             name="missionsTitle5"
+             placeholder="Enter mission description"
+            />
           </div>
-          <div class="switch">
-            <ul>
-              <li>
-                <div class="on"></div>
-              </li>
-              <li></li>
-              <li></li>
-              <li></li>
-            </ul>
+          <div class="col-lg-4 text-center">
+            <div class="btn-sm">
+              <h5>Change Icon</h5>
+              <input type="file" class="upload-btn" />
+            </div>
+            <div><img src="../assets/img/zeal.svg" class="svg50" /></div>
+            <input
+              type="text"
+              class="edit-tf h4-font text-center tf-width"
+              v [(ngModel)]="MissionModel.missionsTitle6"
+              name="missionsTitle6"
+              placeholder="Enter mission description"
+            />
           </div>
         </div>
       </div>
+      <div class="col-lg-5 col-md-5 col-sm-5">
+        <div class="btn-sm">
+          <h5>Change Image</h5>
+          <input type="file" class="upload-btn" />
+        </div>
+        <img src="assets/img/abt-jis-section-img.png" class="img-fluid" />
+      </div>
+    </div>
   </div>
-   <!--footer hstart ere-->
-   <section class="row ml-0 mr-0 pt-5 pb-3 white-bg">
-     <div class="container">
-       <div class="row">
-         <div class="col-lg-10 text-left"><h3>News and Events</h3></div>
-         <div class="col-lg-2 text-right">
-           <a href="#" class="arrows"><i class="bi bi-arrow-left-circle-fill"></i></a>
-           <a href="#" class="arrows"><i class="bi bi-arrow-right-circle-fill"></i></a>
-         </div>
-       </div>
-     <div class="row">
-       <div class="col-md-4">
-       <div class="shadow news-footer">
-       <h5><a href="#">Limit Your Social Circles, CJ Tells New Lagos Magistrates</a></h5>
-       <p>The Lagos State Magistrates’ Court on Wednesday received a boost to its workforce as 17 new magistrates were</p>
-       </div>
-     </div>
-     <div class="col-md-4">
-       <div class="shadow news-footer">
-       <h5><a href="#">Lagos CJ Welcomes Partnership Initiative with LASRAB</a></h5>
-       <p>Lagos State Chief Judge, Justice Kazeem Alogba has welcomed the partnership move initiated by the Lagos State  </p>
-       </div>
-     </div> 
-       <div class="col-md-4">
-         <div class="shadow news-footer">
-        <h5><a href="#">Limit Your Social Circles, CJ Tells New Lagos Magistrates</a></h5>
-       <p>The Lagos State Magistrates’ Court on Wednesday received a boost to its workforce as 17 new magistrates were</p>
-         </div>
-     </div> 
-     </div>
-     </div>
-   </section>
-   <section class="col-md-12 footer-link pl-0 pr-0 pt-5">
-         <div class="container">
-         <div class="col-md-12 text-center"><h3 class="mb-3">Related Links</h3></div>
-  
-         <div class="row">
-         <div class="col-md-4">
-           <a href="#">
-           Nigerian Bar Association </a>
-           <a href="#">Nigerian Law Library</a>
-           <a href="#">Frequently Asked Questions</a>
-  
-         </div>
-           <div class="col-md-4">
-           <a href="#">
-           Lagos State Government 
-  </a>
-           <a href="#">Contact Us</a>
-           <a href="#">Lagos Automated Probate Registry System 
-  (LAPRS)</a>
-  
-         </div>
-           <div class="col-md-4">
-           <a href="#">LSJ Email Login</a>
-           <a href="#">Gallery</a>
-           <a href="#">Lagos State Remote Court (Igbosere)</a>
-             <a href="#">Lagos State Remote Court 2 (Ikeja)</a>
-         </div>
-         </div>
-     <div class="row pt-5"><div class="col-lg-8">
-      <p> Copyright 2020 Office of The Chief Judge, Lagos State Judiciary, All rights reserved.</p>
-       <p>First Hightower Infotech</p>
-       </div>
-       <div class="col-lg-4 text-right"><a href="#" class="nobullet"><i class="bi bi-facebook" ></i></a> <a href="#" class="nobullet"><i class="bi bi-twitter"></i></a> <a href="#" class="nobullet"><i class="bi bi-instagram"></i></a> <a href="#" class="nobullet"><i class="bi bi-youtube" ></i></a></div>
-         </div>
-     </div>
-   </section>
+</div>
+<div class="row mr-0 ml-0 home-gallery-bg">
+  <div class="container">
+    <h4 class="text-center mt-4">Recent Gallery</h4>
+    <div id="slider" class="mb-2">
+      <div class="slides">
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h2>Lorem ipsum dolor</h2>
+              <p>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </p>
+            </div>
+          </div>
+          <div class="image"><img src="../assets/img/gallery/1.jpg" /></div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h2>Lorem ipsum dolor</h2>
+              <p>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </p>
+            </div>
+          </div>
+          <div class="image"><img src="../assets/img/gallery/2.jpg" /></div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h2>Lorem ipsum dolor</h2>
+              <p>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </p>
+            </div>
+          </div>
+          <div class="image"><img src="../assets/img/gallery/3.jpg" /></div>
+        </div>
+        <div class="slider">
+          <div class="legend"></div>
+          <div class="content">
+            <div class="content-txt">
+              <h2>Lorem ipsum dolor</h2>
+              <p>
+                Nam ultrices pellentesque facilisis. In semper tellus mollis
+                nisl pulvinar vitae vulputate lorem consequat. Fusce odio
+                tortor, pretium sit amet auctor ut, ultrices vel nibh.
+              </p>
+            </div>
+          </div>
+          <div class="image"><img src="../assets/img/gallery/4.jpg" /></div>
+        </div>
+      </div>
+      <div class="switch">
+        <ul>
+          <li>
+            <div class="on"></div>
+          </li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<!--footer hstart ere-->
+<section class="row ml-0 mr-0 pt-5 pb-3 white-bg">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 text-left"><h3>News and Events</h3></div>
+      <div class="col-lg-2 text-right">
+        <a href="#" class="arrows"
+          ><i class="bi bi-arrow-left-circle-fill"></i
+        ></a>
+        <a href="#" class="arrows"
+          ><i class="bi bi-arrow-right-circle-fill"></i
+        ></a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4">
+        <div class="shadow news-footer">
+          <h5>
+            <a href="#"
+              >Limit Your Social Circles, CJ Tells New Lagos Magistrates</a
+            >
+          </h5>
+          <p>
+            The Lagos State Magistrates’ Court on Wednesday received a boost to
+            its workforce as 17 new magistrates were
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="shadow news-footer">
+          <h5>
+            <a href="#">Lagos CJ Welcomes Partnership Initiative with LASRAB</a>
+          </h5>
+          <p>
+            Lagos State Chief Judge, Justice Kazeem Alogba has welcomed the
+            partnership move initiated by the Lagos State
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="shadow news-footer">
+          <h5>
+            <a href="#"
+              >Limit Your Social Circles, CJ Tells New Lagos Magistrates</a
+            >
+          </h5>
+          <p>
+            The Lagos State Magistrates’ Court on Wednesday received a boost to
+            its workforce as 17 new magistrates were
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="col-md-12 footer-link pl-0 pr-0 pt-5">
+  <div class="container">
+    <div class="col-md-12 text-center"><h3 class="mb-3">Related Links</h3></div>
+
+    <div class="row">
+      <div class="col-md-4">
+        <a href="#"> Nigerian Bar Association </a>
+        <a href="#">Nigerian Law Library</a>
+        <a href="#">Frequently Asked Questions</a>
+      </div>
+      <div class="col-md-4">
+        <a href="#"> Lagos State Government </a>
+        <a href="#">Contact Us</a>
+        <a href="#">Lagos Automated Probate Registry System (LAPRS)</a>
+      </div>
+      <div class="col-md-4">
+        <a href="#">LSJ Email Login</a>
+        <a href="#">Gallery</a>
+        <a href="#">Lagos State Remote Court (Igbosere)</a>
+        <a href="#">Lagos State Remote Court 2 (Ikeja)</a>
+      </div>
+    </div>
+    <div class="row pt-5">
+      <div class="col-lg-8">
+        <p>
+          Copyright 2020 Office of The Chief Judge, Lagos State Judiciary, All
+          rights reserved.
+        </p>
+        <p>First Hightower Infotech</p>
+      </div>
+      <div class="col-lg-4 text-right">
+        <a href="#" class="nobullet"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="nobullet"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="nobullet"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="nobullet"><i class="bi bi-youtube"></i></a>
+      </div>
+    </div>
+  </div>
+</section>

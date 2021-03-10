@@ -138,4 +138,71 @@ GetAddressDetails(User_id:any){
     })
 }
 
+GetBannerdata(bannerId:any,cmsHomeID:any){
+  let headers = new HttpHeaders()
+  return this.http.get(`${this.apiUrl}/api/Banner/GetCMSBannerDetails?bannerID=`+ bannerId +`&cmsHomeID=`+cmsHomeID,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+GetFeaturedata(featureID:any,cmsHomeID:any){
+  let headers = new HttpHeaders()
+  return this.http.get(`${this.apiUrl}/api/CMSFeatures/GetCMSFeaturesDetails?featureID=`+ featureID +`&cmsHomeID=`+cmsHomeID,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+GetMissiondata(missionsID:any,cmsHomeID:any){
+  let headers = new HttpHeaders()
+  return this.http.get(`${this.apiUrl}/api/CMSMissions/GetCMSMissionsDetails?missionsID=`+ missionsID +`&cmsHomeID=`+cmsHomeID,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+GetAboutdata(aboutJISID:any,cmsHomeID:any){
+  console.log(aboutJISID+cmsHomeID)
+  let headers = new HttpHeaders()
+  return this.http.get(`${this.apiUrl}/api/CMSAboutJIS/GetCMSAboutJISDetails?aboutJISID=`+ aboutJISID +`&cmsHomeID=`+cmsHomeID,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+PutAboutdata(AboutusObj:any){
+  console.log("aboutus data")
+  let headers = new HttpHeaders()
+  return this.http.put(`${this.apiUrl}/api/CMSAboutJIS/UpdateCMSAboutJISDetails`,AboutusObj,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+PutFeaturedata(FeatureObj:any){
+  console.log("FeatureObj data")
+  let headers = new HttpHeaders()
+  return this.http.put(`${this.apiUrl}/api/CMSFeatures/UpdateCMSFeaturesDetails`,FeatureObj,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+
+PutBannerdata(BannderObj:any){
+  console.log("BannderObj data")
+  let headers = new HttpHeaders()
+  return this.http.put(`${this.apiUrl}/api/Banner/UpdateCMSBannerDetails`,BannderObj,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
+PutMissiondata(MissionObj:any){
+  console.log("MissionObj data")
+  let headers = new HttpHeaders()
+  return this.http.put(`${this.apiUrl}/api/CMSMissions/UpdateCMSMissionsDetails`,MissionObj,{headers:headers}).pipe((data)=>{
+    // console.log(data)
+    return data
+  })
+}
 }

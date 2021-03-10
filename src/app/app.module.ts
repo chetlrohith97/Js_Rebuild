@@ -20,6 +20,7 @@ import { AuthService, ErrormessagesService } from './layout/shared/services';
 import { RecaptchaFormsModule, RecaptchaModule } from 'ng-recaptcha';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeAdminComponent } from './Administrator/Website-CMS/home-admin/home-admin.component';
+import { LcDashboardComponent } from './Legal-Counsel/LC_Dashboard/lc-dashboard/lc-dashboard.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import { HomeAdminComponent } from './Administrator/Website-CMS/home-admin/home-
     FooterComponent,
     LayoutComponent,
     HomeAdminComponent,
+    LcDashboardComponent,
   ],
   imports: [
     BrowserModule,

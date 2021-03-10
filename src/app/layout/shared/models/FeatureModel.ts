@@ -1,0 +1,22 @@
+export interface FeatureModel{
+    featureTitle :string,
+    featureDesc :string,
+    featureIconPath :string,
+    featureTitle1:string,
+    featureTitle2:string,
+    featureTitle3:string,
+    featureTitle4:string,
+    featureDesc1:string,
+    featureDesc2:string,
+    featureDesc3:string,
+    featureDesc4:string,
+    featureOnbj1:{featureTitle1 :string,featureDesc1 :string},
+    featureOnbj2:{featureTitle2 :string,featureDesc2 :string},
+    featureOnbj3:{featureTitle3 :string,featureDesc3 :string},
+    featureOnbj4:{featureTitle4 :string,featureDesc4 :string},
+    featureID1:string,
+    featureID2:string,
+    featureID3:string,
+    featureID4:string,
+    cmsHomeID:string
+}

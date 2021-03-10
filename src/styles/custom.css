@@ -1031,3 +1031,37 @@ h2,h3,h4,h5{
 .tf-width{
   width: 100%;
 }
+
+/****LC Dashboard***/
+.db-score{
+  width:19.1%;
+  text-align: center;
+  color:#000;
+  background:#fff;
+}
+.db-score p{
+  word-break:break-all;
+}
+.db-score:hover{
+ border:3px solid #e8c267;
+}
+.db-score h3{
+  color: #f16c20;
+  margin-top:5px;
+}
+.bg-rt-area{
+  background:#f4f5f7;
+}
+.svg-mid{
+  width: 60px;
+  height: 60px;
+}
+.icon-title{
+  font-size: 13px;
+  font-weight: bold;
+}
+.ft-icons:hover{
+  -webkit-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  -moz-box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}

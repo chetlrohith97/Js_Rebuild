@@ -6,6 +6,7 @@
     "paths": {
       "@env": ["environments/environment"],
       "@shared/*": ["app/layout/shared/*"],
+      "@models/*": ["app/layout/shared/models/*"],
       "@layout/*": ["app/layout/*"],
     },
     "outDir": "./dist/out-tsc",

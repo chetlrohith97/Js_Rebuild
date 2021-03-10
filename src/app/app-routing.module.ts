@@ -21,6 +21,11 @@ const routes: Routes = [
       import('./Administrator/Website-CMS/home-admin/home-admin-routing.module').then((m) => m.HomeAdminRoutingModule),
   },
   {
+    path: 'Legal-dashboard',
+    loadChildren: () =>
+      import('./Legal-Counsel/LC_Dashboard/lc-dashboard/lc-dashboard-routing.module').then((m) => m.LcDashboardRoutingModule),
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((m) => m.LoginModule),
