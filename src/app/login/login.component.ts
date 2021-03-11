@@ -57,6 +57,12 @@ export class LoginComponent implements OnInit {
               this.router.navigate(['/home-admin']);
             }, 2000);
           }
+          else if(this.data[0]?.user_Role_Name === "LegalCounsel"){
+            setTimeout(() => {
+              this.router.navigate(['/Legal-dashboard']);
+            }, 2000);
+            console.log('logged to console');
+           }
        else{
         setTimeout(() => {
           this.router.navigate(['/profile']);

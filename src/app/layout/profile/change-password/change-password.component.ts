@@ -156,12 +156,29 @@ export class ChangePasswordComponent implements OnInit {
         else
         {
           // this.toastr.success(" You can Update ");
-
           this.authService.UpdatePassword(UserPasswordPassingData).subscribe((result)=>
           {
 
             console.log(result);
-             this.toastr.success(result.toString());
+            console.log(result.toString());
+            if("Password Updated Succesfully"===result.toString())
+            {
+              this.toastr.success(result.toString(),'',{
+                timeOut:3000,
+              });
+              setTimeout(() => {
+                this.rotuer.navigate(['/edit-profile'])
+              }, 2000);
+              
+            }
+            else
+            {
+              this.toastr.error(result.toString(),'',{
+                timeOut:3000
+              });
+
+            }
+            //  this.toastr.success(result.toString());
 
             //  this.NewUser_Pass="";
 
