@@ -15,7 +15,7 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
               >
-                <span class="text-uppercase">Display Name</span>
+                <span class="text-uppercase">{{userName}}</span>
               </button>
               <small
                 ><span class="rollname text-uppercase text-left pl-2"
@@ -30,13 +30,13 @@
                   <a href="#" class="text-capitalize">User Signature</a>
                 </li>
                 <li class="p-0 ep">
-                  <a href="#" class="text-capitalize">Reset Password</a>
+                  <a [routerLink]="['/change-password']" class="text-capitalize">Reset Password</a>
                 </li>
                 <li class="p-0 ep">
                   <a href="" class="text-capitalize">My Schedules</a>
                 </li>
                 <li class="p-0 ep">
-                  <a href="javascript: void(0);" style="border-bottom:0px" class="text-capitalize">Logout</a>
+                  <a href="javascript: void(0);" style="border-bottom:0px" (click)="logout()" class="text-capitalize">Logout</a>
                 </li>
               </ul>
             </div>
