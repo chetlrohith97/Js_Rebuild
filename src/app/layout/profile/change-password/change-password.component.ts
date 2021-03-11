@@ -94,17 +94,17 @@ export class ChangePasswordComponent implements OnInit {
 
     this.User_ID = this.userData[0]?.user_ID;
 
-    this.userName = this.changePasswordData[0]?.User_Name;
-    this.profileID = this.changePasswordData[0]?.Profile_ID;
-    this.SecurityAnswer = this.changePasswordData[0]?.SecurityAnswer;
-    this.SecurityQuestionID = this.changePasswordData[0]?.SecurityQuestionID;
-    this.userPassword = this.changePasswordData[0]?.User_Pass;
-    this.firstName = this.changePasswordData[0]?.first_Name;
-    this.primaryEmailID = this.changePasswordData[0]?.primary_Email_ID;
+    // this.userName = this.changePasswordData[0]?.User_Name;
+    // this.profileID = this.changePasswordData[0]?.Profile_ID;
+    // this.SecurityAnswer = this.changePasswordData[0]?.SecurityAnswer;
+    // this.SecurityQuestionID = this.changePasswordData[0]?.SecurityQuestionID;
+    // this.userPassword = this.changePasswordData[0]?.User_Pass;
+    // this.firstName = this.changePasswordData[0]?.first_Name;
+    // this.primaryEmailID = this.changePasswordData[0]?.primary_Email_ID;
 
-    console.log(this.User_ID, this.profileID, this.userName, this.SecurityQuestionID,
-      this.SecurityAnswer, this.userPassword,
-      this.firstName, this.primaryEmailID);
+    // console.log(this.User_ID, this.profileID, this.userName, this.SecurityQuestionID,
+    //   this.SecurityAnswer, this.userPassword,
+    //   this.firstName, this.primaryEmailID);
 
     //only particular elements that are defines in Model are getting
     // console.log(this.changePasswordData[0]);
@@ -113,11 +113,11 @@ export class ChangePasswordComponent implements OnInit {
     this.authService.ChangePassword(this.User_ID).subscribe((result)=>
     {
       //debugger
-      console.log("gets the required values for Reset Password (Model Values)");
-      console.log(result); //gets the required values for Reset Password
+      // console.log("gets the required values for Reset Password (Model Values)");
+      // console.log(result); //gets the required values for Reset Password
 
-      console.log("Gets whole object value of particular user");
-      console.log(Object.values(result)[0]);
+      // console.log("Gets whole object value of particular user");
+      // console.log(Object.values(result)[0]);
 
       this.authService.StoreTheUserPasswordData(result);
 

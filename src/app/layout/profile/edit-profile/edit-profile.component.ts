@@ -277,9 +277,6 @@ getsec_LGA(event:any){
       this.isAddress_Same= Object.values(data)[0]?.isAddress_Same;
       this.national_ID= Object.values(data)[0]?.national_ID;
       this.organisationname = Object.values(data)[0]?.organization_Name;
-      // console.log(this.date_Of_Birth)
-      // console.log(this.City)
-      // console.log(this.State)
       this.getState(this.State);
       this.getSec_state(this.sec_State)
       
@@ -332,36 +329,15 @@ getsec_LGA(event:any){
       organization_Name:this.organisationname
 
     };
-   
-  //  if(this.PayerID == null){
-  //    console.log("null payerid")
-  //  }
-  //  else{
-  //    this.authService.VerifyPayerID(this.PayerID).subscribe((result)=>{
-  //      console.log(result)
-  //     // console.log(result.response.status )
-  //     // console.log(result.response.message )
-
-  //     //  if(result.response.status === 'Success'){
-  //       return false
         this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
         {
           console.log(ProfileData)
         console.log("success");
         console.log(data)
-        // console.log(this.Profile_ID);
         this.toastr.success("Edit profile update successfully");
         $("#"+nextTab).trigger("click");
         })
-      //  }
-      //  else{
-      //    this.toastr.warning(result.response.message,'Message',{
-      //      timeOut:3000
-      //    })
-      //  }
-    //  })
    }
-    // console.log("clicked");
   }
 
   
@@ -371,44 +347,21 @@ getsec_LGA(event:any){
     this.router.navigate(['/home']);
     this.toastr.success('Your Are Logged out');
   }
-  // GetHash(  hashKey: string,  ClientName: string,  LastName: string,  FirstName: string,  Email: string,  Phone: string,  Address: any){
-  //   // let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
-  //   let Hash = hashKey + ClientName + LastName + FirstName + Email + Phone + Address;
-  //   // console.log(Hash)
-  //   const Hvaluing = new Md5();
-  //   const Hashvalued = Hvaluing.appendStr(Hash).end()
-  //   // console.log(Hashvalued);
-  //   if (typeof Hashvalued === 'string') {
-  //   const  Hashvalue = Hashvalued.toUpperCase();
-  //   // console.log(Hashvalue);
-  //   localStorage.setItem('Hashvalue', Hashvalue);
-  // }
-  //   // let Hashvalue = CreateMD5(Hash);
-  //   // return Hashvalue.ToUpper();
-  // }
-//   ngAfterViewInit(){
-//     setTimeout(() => {
-//       this.LolStateName = localStorage.getItem('stateName')
-//     this.LolLgaName = localStorage.getItem('LgaName')
-//     this.LolCityName = localStorage.getItem('CityName')
-//     this.LolHashKey = localStorage.getItem('Hashvalue')
-//     }, 1000);
-//  }
-
-getHashIndividual(){
+getAddressDetails(){
+  // debugger
   this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
-    console.log(address)
+    console.log("get organisationid as 1st one")
     this.stateName = address[0].state
     this.LgaName = address[0].lga
     this.CityName = address[0].city
     console.log(this.stateName)
     console.log(this.LgaName)
     console.log(this.CityName)
-
   })
-  // this.LolStateName = localStorage.getItem('stateName')
-  //   this.LolLgaName = localStorage.getItem('LgaName')
-  //   this.LolCityName = localStorage.getItem('CityName')
+}
+
+getHashIndividual(){
+  // debugger
   let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
     this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
@@ -422,36 +375,18 @@ getHashIndividual(){
   // const  Hashvalue = Hashvalued.toUpperCase();
   this.LolHashKey = Hashvalued.toUpperCase();
   console.log(this.LolHashKey);
-  // localStorage.setItem('Hashvalue', Hashvalue);
-// }
-  // let Hashvalue = CreateMD5(Hash);
-  // return Hashvalue.ToUpper();
 }
 console.log(this.LolHashKey);
 
 }
 
 getHashOrganization(){
-  this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
-    console.log(address)
-    this.stateName = address[0].state
-    this.LgaName = address[0].lga
-    this.CityName = address[0].city
-    console.log(this.stateName)
-    console.log(this.LgaName)
-    console.log(this.CityName)
-
-  })
+  console.log("get organisationid as 2nd one")
   console.log(this.CityName)
-  // this.LolStateName = localStorage.getItem('stateName')
-  //   this.LolLgaName = localStorage.getItem('LgaName')
-  //   this.LolCityName = localStorage.getItem('CityName')
+  // debugger
   let hashkey = environment.SecretKey
     let clientName = environment.ClientCode;
-    // this.Address = this.address1+ " ," + this.LolCityName + " ," + this.LolLgaName + ' ,' + this.LolStateName
     this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
-  // let Hash = hashkey + clientName + this.lastName + this.firstName + this.email + this.phone + this.Address;
-  // let Hash = hashkey + clientName + '' + this.firstName + this.email + this.phone + this.Address
   let Hash = hashkey + clientName + '' + this.organisationname + this.email + this.phone + this.Address
 console.log(this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName)
   console.log(Hash)
@@ -460,44 +395,32 @@ console.log(this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + th
   const Hashvalued = Hvaluing.appendStr(Hash).end()
   console.log(Hashvalued);
   if (typeof Hashvalued === 'string') {
-  // const  Hashvalue = Hashvalued.toUpperCase();
   this.LolHashKey = Hashvalued.toUpperCase();
   console.log(this.LolHashKey);
-  // localStorage.setItem('Hashvalue', Hashvalue);
-// }
-  // let Hashvalue = CreateMD5(Hash);
-  // return Hashvalue.ToUpper();
 }
 console.log(this.LolHashKey);
 }
   generatePayerId(){
   console.log(this.UserType)
     if(this.UserType === "organisation"){
-    this.getOrganizationId()
+      this.getAddressDetails()
+    setTimeout(() => {
+      this.getOrganizationId()
+    }, 2000);
     console.log("organisation")    
     }
     else{
-      this.getIndividualId()
+      this.getAddressDetails()
+setTimeout(() => {
+  this.getIndividualId()
+}, 2000);
       console.log("individual")  
     }
   }
 
   getIndividualId(){
-    this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
-      console.log(address)
-      this.stateName = address[0].state
-      this.LgaName = address[0].lga
-      this.CityName = address[0].city
-      console.log(this.stateName)
-      console.log(this.LgaName)
-      console.log(this.CityName)
-  
-    })
     console.log(this.title)
 this.getHashIndividual()
-    // this.LolStateName = localStorage.getItem('stateName')
-    // this.LolLgaName = localStorage.getItem('LgaName')
-    // this.LolCityName = localStorage.getItem('CityName')
     this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
     let DOB=new Date(this.date_Of_Birth);
     let latest_date = this.datepipe.transform(DOB, 'yyyy-MM-ddTHH:mm:ss');
@@ -518,27 +441,15 @@ this.getHashIndividual()
       clientName :clientCode,
       hash:this.LolHashKey
       }
-        // console.log(UserData)
         this.authService.CreateIndividualId(UserData).subscribe((result)=>{
           console.log(result)
         })
   }
  
   getOrganizationId(){
-    this.authService.GetAddressDetails(this.user_ID).subscribe((address:any)=>{
-      console.log(address)
-      this.stateName = address[0].state
-      this.LgaName = address[0].lga
-      this.CityName = address[0].city
-      console.log(this.stateName)
-      console.log(this.LgaName)
-      console.log(this.CityName)
-  
-    })
+    // debugger
     console.log( this.organisationname)
-    // this.LolStateName = localStorage.getItem('stateName')
-    // this.LolLgaName = localStorage.getItem('LgaName')
-    // this.LolCityName = localStorage.getItem('CityName')
+   
     console.log(this.CityName)
     this.getHashOrganization()
     this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
@@ -552,24 +463,16 @@ this.getHashIndividual()
       clientName :clientName,
       hash: this.LolHashKey
     }
-    // console.log(OrganizData)
-    // debugger
+    // return false
     this.authService.CreteOrgnaizId(OrganizData).subscribe((result:any)=>{
-    // console.log(Object.values(result))
     console.log(result)
-    //   console.log(result.email)
-    // console.log(result.response)
-    // console.log(result.response.message)
-    // console.log(result.response.status)
     if(result.payerId === null){
-      // debugger
     this.loadSpin = true;
       this.toastr.warning(result.response.message,result.response.status,{
         timeOut: 5000,
       })
     }
     else{
-      // this.loading = true;
       this.toastr.success('PayerId Generated Successfully','',{
         timeOut: 5000,
       })
