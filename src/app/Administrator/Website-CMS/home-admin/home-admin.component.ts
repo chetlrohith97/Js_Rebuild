@@ -98,67 +98,65 @@ export class HomeAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.user_ID = this.userData[0]?.user_ID;
-    this.authService.GetBannerdata('1','1').subscribe((banner_obj:any)=>{
-      console.log(banner_obj)
-      console.log(banner_obj[0].bannerID)
-      // localStorage.setItem('Banner_obj',JSON.stringify(banner_obj))
-      // console.log( this.Banner_obj[0]?.cmsHomeID)
-      this.model.cmsHomeID = banner_obj[0]?.cmsHomeID
-      this.model.bannerID = banner_obj[0]?.bannerID
-      this.model.bannerDesc = banner_obj[0]?.bannerDesc,
-      this.model.bannerTitle1 = banner_obj[0]?.bannerTitle
-      this.model.bannerTitle2 = banner_obj[0]?.bannerTitle
-      this.model.judgeDesc = banner_obj[0]?.judgeDesc
-      this.model.judgeName = banner_obj[0]?.judgeName
-      this.model.judgeTitle = banner_obj[0]?.judgeTitle
-    })
+    let LocalData = JSON.parse(localStorage.getItem("Banner_Obj")|| '[]') //binding localstorage value to html page
+      console.log(LocalData[0])
+      console.log(LocalData[0]?.bannerTitle)
+  
+      this.model.cmsHomeID = LocalData[0]?.cmsHomeID
+      this.model.bannerID = LocalData[0]?.bannerID
+      this.model.bannerDesc = LocalData[0]?.bannerDesc,
+      this.model.bannerTitle1 = LocalData[0]?.bannerTitle
+      this.model.bannerTitle2 = LocalData[0]?.bannerTitle
+      this.model.judgeDesc = LocalData[0]?.judgeDesc
+      this.model.judgeName = LocalData[0]?.judgeName
+      this.model.judgeTitle = LocalData[0]?.judgeTitle
 
-    this.authService.GetFeaturedata('1','2').subscribe((feature:any)=>{
-      console.log(feature)
-      console.log(feature[1].featureTitle)
-      this.featuremodel.featureID1 =feature[0]?.featureID,
-      this.featuremodel.featureID2 =feature[1]?.featureID,
-      this.featuremodel.featureID3 =feature[2]?.featureID,
-      this.featuremodel.featureID4 =feature[3]?.featureID,
-      this.featuremodel.cmsHomeID =feature[0]?.cmsHomeID,
-      this.featuremodel.featureDesc1 = feature[0]?.featureDesc,
-      this.featuremodel.featureDesc2 = feature[1]?.featureDesc,
-      this.featuremodel.featureDesc3 = feature[2]?.featureDesc,
-      this.featuremodel.featureDesc4 = feature[3]?.featureDesc,
-      this.featuremodel.featureTitle1 = feature[0]?.featureTitle,
-      this.featuremodel.featureTitle2 = feature[1]?.featureTitle,
-      this.featuremodel.featureTitle3 = feature[2]?.featureTitle,
-      this.featuremodel.featureTitle4 = feature[3]?.featureTitle
-    })
+    let featureData = JSON.parse(localStorage.getItem("Feature_Obj")|| '[]') //binding localstorage value to html page
+    console.log(featureData[0])
+    console.log(featureData[0]?.featureTitle)
+      this.featuremodel.featureID1 =featureData[0]?.featureID,
+      this.featuremodel.featureID2 =featureData[1]?.featureID,
+      this.featuremodel.featureID3 =featureData[2]?.featureID,
+      this.featuremodel.featureID4 =featureData[3]?.featureID,
+      this.featuremodel.cmsHomeID =featureData[0]?.cmsHomeID,
+      this.featuremodel.featureDesc1 = featureData[0]?.featureDesc,
+      this.featuremodel.featureDesc2 = featureData[1]?.featureDesc,
+      this.featuremodel.featureDesc3 = featureData[2]?.featureDesc,
+      this.featuremodel.featureDesc4 = featureData[3]?.featureDesc,
+      this.featuremodel.featureTitle1 = featureData[0]?.featureTitle,
+      this.featuremodel.featureTitle2 = featureData[1]?.featureTitle,
+      this.featuremodel.featureTitle3 = featureData[2]?.featureTitle,
+      this.featuremodel.featureTitle4 = featureData[3]?.featureTitle
 
-    this.authService.GetMissiondata('1','4').subscribe((mission:any)=>{
-      console.log(mission)
-      // console.log(mission[0].cmsHomeID)missionsID
-      this.MissionModel.cmsHomeID = mission[0]?.cmsHomeID,
-      this.MissionModel.missionsTitle1 = mission[0]?.missionsTitle,
-      this.MissionModel.missionsTitle2 = mission[1]?.missionsTitle,
-      this.MissionModel.missionsTitle3 = mission[2]?.missionsTitle,
-      this.MissionModel.missionsTitle4 = mission[3]?.missionsTitle,
-      this.MissionModel.missionsTitle5 = mission[4]?.missionsTitle,
-      this.MissionModel.missionsTitle6 = mission[5]?.missionsTitle,
-      this.MissionModel.missionsID1 = mission[0]?.missionsID,
-      this.MissionModel.missionsID2 = mission[1]?.missionsID,
-      this.MissionModel.missionsID3 = mission[2]?.missionsID,
-      this.MissionModel.missionsID4 = mission[3]?.missionsID,
-      this.MissionModel.missionsID5 = mission[4]?.missionsID,
-      this.MissionModel.missionsID6 = mission[5]?.missionsID
-    })
+    let missionData = JSON.parse(localStorage.getItem("Mission_Obj")|| '[]') //binding localstorage value to html page
+    console.log(missionData[0])
+    console.log(missionData[0]?.missionsTitle)
+      this.MissionModel.cmsHomeID = missionData[0]?.cmsHomeID,
+      this.MissionModel.missionsTitle1 = missionData[0]?.missionsTitle,
+      this.MissionModel.missionsTitle2 = missionData[1]?.missionsTitle,
+      this.MissionModel.missionsTitle3 = missionData[2]?.missionsTitle,
+      this.MissionModel.missionsTitle4 = missionData[3]?.missionsTitle,
+      this.MissionModel.missionsTitle5 = missionData[4]?.missionsTitle,
+      this.MissionModel.missionsTitle6 = missionData[5]?.missionsTitle,
+      this.MissionModel.missionsID1 = missionData[0]?.missionsID,
+      this.MissionModel.missionsID2 = missionData[1]?.missionsID,
+      this.MissionModel.missionsID3 = missionData[2]?.missionsID,
+      this.MissionModel.missionsID4 = missionData[3]?.missionsID,
+      this.MissionModel.missionsID5 = missionData[4]?.missionsID,
+      this.MissionModel.missionsID6 = missionData[5]?.missionsID
 
-    this.authService.GetAboutdata('1','3').subscribe((about:any)=>{
-      console.log(about)
-      this.AboutusModel.cmsHomeID  = about[0]?.cmsHomeID,
-      this.AboutusModel.aboutJISID = about[0]?.aboutJISID,
-      this.AboutusModel.aboutDesc = about[0]?.aboutDesc,
-      this.AboutusModel.aboutSecDesc = about[0]?.aboutSecDesc,
-      this.AboutusModel.aboutTitle = about[0]?.aboutTitle,
-      this.AboutusModel.aboutSecTitle = about[0]?.aboutSecTitle
-    })
+    
+    let aboutUsData = JSON.parse(localStorage.getItem("Aboutus_Obj")|| '[]') //binding localstorage value to html page
+    console.log(aboutUsData[0])
+    console.log(aboutUsData[0]?.aboutSecTitle)
+      this.AboutusModel.cmsHomeID  = aboutUsData[0]?.cmsHomeID,
+      this.AboutusModel.aboutJISID = aboutUsData[0]?.aboutJISID,
+      this.AboutusModel.aboutDesc = aboutUsData[0]?.aboutDesc,
+      this.AboutusModel.aboutSecDesc = aboutUsData[0]?.aboutSecDesc,
+      this.AboutusModel.aboutTitle = aboutUsData[0]?.aboutTitle,
+      this.AboutusModel.aboutSecTitle = aboutUsData[0]?.aboutSecTitle
   }
+
   logout() {
     localStorage.removeItem(this.userData);
     this.authService.logout();
@@ -167,25 +165,22 @@ export class HomeAdminComponent implements OnInit {
   }
   StoreProfile(){
     console.log("hit")
-    const BannerObj ={
-      bannerTitle:this.model.bannerTitle1 + ' '+ this.model.bannerTitle2,
+    const BannerObj =[
+      {
+      // bannerTitle:this.model.bannerTitle1 + ' '+ this.model.bannerTitle2,
+      bannerTitle:this.model.bannerTitle1,
       bannerDesc : this.model.bannerDesc,
       cmsHomeID :  this.model.cmsHomeID,
       judgeTitle :this.model.judgeTitle,
       judgeName : this.model.judgeName,
       judgeDesc : this.model.judgeDesc,
       bannerID : this.model.bannerID
-    }
+       } ]
     console.log(BannerObj)
     localStorage.setItem('Banner_Obj',JSON.stringify(BannerObj))
-    // this.authService.PutBannerdata(BannderObj).subscribe((bannerData:any)=>{
-    //   console.log(bannerData)
-    // })
-// debugger
+
     const FeatureObj =[
-      // featureTitle: this.Featuremodel.featureTitle,
-      // featureDesc: this.Featuremodel.featureDesc,
-      // featureOnbj:{
+  
         {
           cmsHomeID: this.featuremodel.cmsHomeID,
           featureID : this.featuremodel.featureID1,
@@ -210,32 +205,21 @@ export class HomeAdminComponent implements OnInit {
           featureTitle: this.featuremodel.featureTitle4,
           featureDesc: this.featuremodel.featureDesc4,
         }
-      // }
     ]
     console.log(FeatureObj)
     localStorage.setItem('Feature_Obj',JSON.stringify(FeatureObj))
-    
-    // this.authService.PutFeaturedata(FeatureObj).subscribe((featuredata:any)=>{
-    //   console.log(featuredata)
-    // })
-    // console.log(FeatureObj.featureOnbj.featureOnbj1.featureTitle)
 
-
-    const AboutusObj ={
+    const AboutusObj =[{
       cmsHomeID: this.AboutusModel.cmsHomeID,
       aboutJISID :  this.AboutusModel.aboutJISID,
       aboutTitle :this.AboutusModel.aboutTitle,
       aboutDesc : this.AboutusModel.aboutDesc,
       aboutSecTitle:this.AboutusModel.aboutSecTitle,
       aboutSecDesc :this.AboutusModel.aboutSecDesc
-    }
+    }]
     console.log(AboutusObj)
     localStorage.setItem('Aboutus_Obj',JSON.stringify(AboutusObj))
 
-    // this.authService.PutAboutdata(AboutusObj).subscribe((data)=>{
-    //   console.log(data)
-    //   // alert("success")
-    // })
 
     const MissionObj = [
      
@@ -276,9 +260,6 @@ export class HomeAdminComponent implements OnInit {
     this.toastr.warning('Save is for preview, please click on "Publish" to save the changes permanently','Note:-',{
       timeOut:5000
     })
-    // this.authService.PutMissiondata(MissionObj).subscribe((mission:any)=>{
-    //   console.log(mission)
-    // })
   }
   updateProfile(){
     const BannerObj ={

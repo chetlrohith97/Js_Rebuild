@@ -53,11 +53,35 @@ export class LoginComponent implements OnInit {
           console.log(this.data[0]?.user_Role_ID);
           if(this.data[0]?.user_Role_ID ===2){
             console.log("role_id")
+            // api calls to store home-admin to localstorage
+            this.authService.GetBannerdata('1','1').subscribe((BannerObj:any)=>{
+              console.log(BannerObj)
+         localStorage.setItem('Banner_Obj',JSON.stringify(BannerObj))
+             })
+          
+        
+         this.authService.GetFeaturedata('1','2').subscribe((featureObj:any)=>{
+              console.log(featureObj)
+               localStorage.setItem('Feature_Obj',JSON.stringify(featureObj))
+           })
+        
+         this.authService.GetMissiondata('1','4').subscribe((missionObj:any)=>{
+              console.log(missionObj)
+             localStorage.setItem('Mission_Obj',JSON.stringify(missionObj))
+            })
+        
+        
+        this.authService.GetAboutdata('1','3').subscribe((aboutObj:any)=>{
+              console.log(aboutObj)
+             localStorage.setItem('About_Obj',JSON.stringify(aboutObj))
+            })
             setTimeout(() => {
               this.router.navigate(['/home-admin']);
+            
             }, 2000);
           }
           else if(this.data[0]?.user_Role_Name === "LegalCounsel"){
+          
             setTimeout(() => {
               this.router.navigate(['/Legal-dashboard']);
             }, 2000);
