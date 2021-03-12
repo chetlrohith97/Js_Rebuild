@@ -146,7 +146,7 @@ export class HomeAdminComponent implements OnInit {
       this.MissionModel.missionsID6 = missionData[5]?.missionsID
 
     
-    let aboutUsData = JSON.parse(localStorage.getItem("Aboutus_Obj")|| '[]') //binding localstorage value to html page
+    let aboutUsData = JSON.parse(localStorage.getItem("About_Obj")|| '[]') //binding localstorage value to html page
     console.log(aboutUsData[0])
     console.log(aboutUsData[0]?.aboutSecTitle)
       this.AboutusModel.cmsHomeID  = aboutUsData[0]?.cmsHomeID,
@@ -218,7 +218,7 @@ export class HomeAdminComponent implements OnInit {
       aboutSecDesc :this.AboutusModel.aboutSecDesc
     }]
     console.log(AboutusObj)
-    localStorage.setItem('Aboutus_Obj',JSON.stringify(AboutusObj))
+    localStorage.setItem('About_Obj',JSON.stringify(AboutusObj))
 
 
     const MissionObj = [
