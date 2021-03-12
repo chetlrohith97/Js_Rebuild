@@ -1,18 +1,18 @@
 {
-    "/api": {
-      "target": "https://lagos.qpay.ng/PaymentGateway/CreateCorporatePayer",
+    "/Ind": {
+      "target": "https://qpay.ng/PaymentGateway/CreateCorporatePayer",
       "secure": true,
       "pathRewrite": {
-        "^/api": ""
+        "^/Ind": ""
       },
       "changeOrigin": true,
       "logLevel": "debug"
         },
-    "/Ind": {
+    "/api": {
       "target": "https://qpay.ng/PaymentGateway/CreateIndividualPayer",
       "secure": true,
       "pathRewrite": {
-        "^/Ind": ""
+        "^/api": ""
       },
       "changeOrigin": true,
       "logLevel": "debug"

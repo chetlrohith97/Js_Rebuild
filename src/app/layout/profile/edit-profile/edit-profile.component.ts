@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import {Md5} from 'ts-md5/dist/md5';
 import { environment } from '@env';
+import { escapeSelector } from 'jquery';
 declare var jquery:any;
 declare var $ :any;
 // import * as $ from 'jquery'
@@ -329,13 +330,27 @@ getsec_LGA(event:any){
       organization_Name:this.organisationname
 
     };
-        this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data)=>
+        this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data:any)=>
         {
-          console.log(ProfileData)
-        console.log("success");
-        console.log(data)
-        this.toastr.success("Edit profile update successfully");
-        $("#"+nextTab).trigger("click");
+        console.log(ProfileData.PayerID)
+        // related to the payerId verification
+          // if(ProfileData.PayerID !== (null || undefined)){
+          //   this.authService.VerifyPayerID(ProfileData.PayerID).subscribe((result:any)=>{
+          //     if(result.response.status === "Failed"){
+          //       this.toastr.warning(result.response.message,result.result.status,{
+          //         timeOut:3000
+          //       })
+          //     }
+          //   })
+          // }
+          // else{
+            console.log(ProfileData)
+            console.log("success");
+            console.log(data)
+            this.toastr.success("Edit profile update successfully");
+            $("#"+nextTab).trigger("click");
+          // }
+       
         })
    }
   }
@@ -406,14 +421,14 @@ console.log(this.LolHashKey);
       this.getAddressDetails()
     setTimeout(() => {
       this.getOrganizationId()
-    }, 2000);
+    }, 1000);
     console.log("organisation")    
     }
     else{
       this.getAddressDetails()
 setTimeout(() => {
   this.getIndividualId()
-}, 2000);
+}, 1000);
       console.log("individual")  
     }
   }
@@ -441,8 +456,20 @@ this.getHashIndividual()
       clientName :clientCode,
       hash:this.LolHashKey
       }
-        this.authService.CreateIndividualId(UserData).subscribe((result)=>{
+        this.authService.CreateIndividualId(UserData).subscribe((result:any)=>{
           console.log(result)
+          if(result.response.status ==="Failed"){
+            this.loadSpin = true;
+            this.toastr.warning(result.response.message,'',{
+              timeOut: 5000,
+            })
+          }
+        else{
+          this.toastr.success('PayerId Generated Successfully','',{
+            timeOut: 5000,
+          })
+          this.PayerID = result.payerId
+        }
         })
   }
  

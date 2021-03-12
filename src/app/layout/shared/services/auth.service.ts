@@ -89,9 +89,14 @@ GetCityFields(id:any){
 
 CreateIndividualId(data:any){
   console.log(data)
-  let headers = new HttpHeaders()
-  headers.append('Access-Control-Allow-Origin' , '*');
-  return this.http.post(`/Ind`,data,{headers:headers}).pipe((data)=>{
+  let headers = new HttpHeaders(   )
+    // { 
+    //  'Content-Type': 'application/json', 
+    //   'Access-Control-Allow-Origin': '*',
+    //   'Access-Control-Allow-Credentials': 'true'
+    // })
+  // headers.append('Access-Control-Allow-Origin' , '*');
+  return this.http.post(`/api`,data,{headers:headers}).pipe((data)=>{
     console.log(data)  
   return data             
 
@@ -109,7 +114,7 @@ CreteOrgnaizId(data:any){
 // })
   // debugger
   headers.append('Access-Control-Allow-Origin' , '*');
-  return this.http.post(`/api`,data,{headers: headers}).pipe((data)=>{
+  return this.http.post(`/Ind`,data,{headers: headers}).pipe((data)=>{
   console.log(data)  
   return data
   })
