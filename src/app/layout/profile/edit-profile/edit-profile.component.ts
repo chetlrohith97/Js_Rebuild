@@ -73,7 +73,6 @@ SecCitys:any
 organisationname:any
 individual = 'individual';
 organisation = 'organisation';
-
   constructor(private authService: AuthService,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -91,45 +90,9 @@ organisation = 'organisation';
       this.States =  data;
       this.sec_States =data
       console.log(this.sec_States)
-      // let stationNewName = Stations.STATIONS.find((s) => s.stationName === myStation);
-
-    //   this.stateName = data.find( ({ state_ID }:any) => state_ID === this.State )?.state_Name;
-      
-    //  console.log( this.stateName)
-  //     for(let i=0; i<=this.States.length;i++){ //for getting an State_Name
-  //       if(this.State == this.States[i]?.state_ID){
-  //         this.stateName =this.States[i].state_Name
-  //         // this.stateName= stateName
-  //         console.log(this.stateName)
-  //         console.log("success")
-  //       }
-  //  }    
-  // //  setTimeout(() => {
-  // //    alert("hi")
-  
-  //   // console.log(this.stateName) 
-  //   if(this.stateName === undefined){
-  //   console.log('Nothing')
-  //   }
-  //   else if (this.stateName === this.stateName ){
-  //   localStorage.setItem('stateName', this.stateName);
-  //   console.log("their")
-  //   }
-  //  }, 2000);
-  //  setTimeout(() => {
-  //   //  alert("hi")
-  //   this.getHashIndividual()
-  //   this.getHashOrganization()
-  //  }, 2000);
-
-    // this.LolLgaName = localStorage.getItem('LgaName')
-    // this.LolCityName = localStorage.getItem('CityName')
     console.log( this.stateName)
     })
-  
-
     }
-
   
 
   onlyNumbers(event: any): boolean {
@@ -141,7 +104,6 @@ organisation = 'organisation';
   }
 
 getState(event :any){
-  
   this.state = event
   console.log(event)
   this.authService.GetLgaFields(this.state).subscribe((data:any)=>{
@@ -149,31 +111,6 @@ getState(event :any){
     console.log(this.Lgas)
     this.getLga(this.LGA);
     console.log(data)
-
-
-  // if(this.state){
-  //   this.LgaName = data.find( ({ localGovtAreaId }:any) => localGovtAreaId === this.LGA )?.localGovtAreaName;
-      
-  //   console.log( this.LgaName)
-  // }
-  //   for(let i=0; i<=this.Lgas.length;i++){ //for getting an State_Name
-  //     if(this.LGA == this.Lgas[i]?.localGovtAreaId){
-  //       this.LgaName =this.Lgas[i].localGovtAreaName
-  //       console.log(this.LgaName)
-  //       console.log("success")
-  //     }
-  //   }
-  // //  setTimeout(() => {
-  //   if(this.LgaName === undefined){
-  //     console.log('Nothing')
-  //     }
-  //     else if (this.LgaName){
-  //     localStorage.setItem('LgaName', this.LgaName);
-  //     console.log("their")
-  //     }
-    // console.log(this.LgaName) 
-    // localStorage.setItem('LgaName', this.LgaName);
-  //  }, 2000);
  })
 
 }
@@ -184,34 +121,6 @@ getLga(event :any){
   this.authService.GetCityFields(this.Lga).subscribe((data:any)=>{
     this.Citys = data
     console.log(this.Citys)
-
-
-  //  if(this.Lga){
-  //   this.CityName = data.find( ({ city_ID }:any) => city_ID === this.City )?.city_Name;
-      
-  //   console.log( this.CityName)
-  //  }
-    // for(let i=0; i<=this.Citys.length;i++){ //for getting an State_Name
-    //   if(this.City == this.Citys[i]?.city_ID){
-    //     this.CityName =this.Citys[i].city_Name
-    //     console.log(this.CityName)
-    //     console.log("success")
-    //   }
-    // }
-    // if(this.CityName === undefined){
-    //   console.log('Nothing')
-    //   }
-    //   else if (this.CityName){
-    //     console.log(this.CityName)
-    //   localStorage.setItem('CityName', this.CityName);
-    //   console.log("their")
-    //   }
-    //   console.log(this.CityName) 
-    // localStorage.setItem('CityName', this.CityName);
-    // $(window).on('load',  () => { alert("Window Loaded"); 
-    // localStorage.setItem('CityName', this.CityName)
-    // console.log(localStorage.setItem('CityName', this.CityName))});
-    // }, 2000);
   })
 
 }
@@ -221,22 +130,14 @@ getSec_state(event:any){
   console.log(event)
   this.authService.GetLgaFields(this.sec_State).subscribe((data)=>{
     this.SecLgas = data
-    // console.log(this.LgaObject)
     this.getsec_LGA(this.sec_LGA);
 
  })
 }
 getsec_LGA(event:any){
   this.sec_LGA = event
-  // console.log(event)
   this.authService.GetCityFields(this.sec_LGA).subscribe((data)=>{
     this.SecCitys = data
-    // console.log(this.CityObject)
-
-  // setTimeout(() => {
-      console.log(this.sec_City) 
-    // localStorage.setItem('CityName', this.CityName);
-    // }, 2000);
   })
 }
   editProfile() {
@@ -245,25 +146,20 @@ getsec_LGA(event:any){
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
       this.UserType = Object.values(data)[0]?.userType
       console.log(data)
-      // console.log( Object.values(data)[0])
      var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
      console.log(MMddyyyy); //output - 14-02-2019
-      // console.log(Object.values(data)[0]?.date_Of_Birth);
+     this.title = Object.values(data)[0]?.suffix
       this.User_Name = Object.values(data)[0]?.user_Name
        this.Profile_ID = Object.values(data)[0]?.profile_ID
-      // console.log(Object.values(data)[0]);
       this.firstName = Object.values(data)[0]?.first_Name;
       this.lastName = Object.values(data)[0]?.last_Name;
       this.middleName = Object.values(data)[0]?.middle_Name;
       this.phone = Object.values(data)[0]?.primary_Contact_Number;
-      // this.userName = Object.values(data)[0]?.userName;
       this.email = Object.values(data)[0]?.primary_Email_ID;
       this.State = Object.values(data)[0]?.state;
       this.LGA = Object.values(data)[0]?.lga;
       this.City = Object.values(data)[0]?.city;
-      // this.date_Of_Birth = Object.values(data)[0]?.date_Of_Birth
       this.date_Of_Birth = MMddyyyy
-
       this.address1 = Object.values(data)[0]?.address_1;
       this.address2 = Object.values(data)[0]?.address_2;
       this.Securityquestion = Object.values(data)[0]?.securityQuestionID;
@@ -280,8 +176,6 @@ getsec_LGA(event:any){
       this.organisationname = Object.values(data)[0]?.organization_Name;
       this.getState(this.State);
       this.getSec_state(this.sec_State)
-      
-    
     });
   }
   showtab(){
@@ -333,28 +227,55 @@ getsec_LGA(event:any){
         this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data:any)=>
         {
         console.log(ProfileData.PayerID)
-        // related to the payerId verification
-          // if(ProfileData.PayerID !== (null || undefined)){
-          //   this.authService.VerifyPayerID(ProfileData.PayerID).subscribe((result:any)=>{
-          //     if(result.response.status === "Failed"){
-          //       this.toastr.warning(result.response.message,result.result.status,{
-          //         timeOut:3000
-          //       })
-          //     }
-          //   })
-          // }
-          // else{
             console.log(ProfileData)
             console.log("success");
             console.log(data)
             this.toastr.success("Edit profile update successfully");
             $("#"+nextTab).trigger("click");
-          // }
-       
         })
    }
   }
+  Save(myForm1:any){
+    if(!myForm1.form.valid){
+      console.log("Error in my code")
+ }
+ else if(myForm1.form.valid){
+   console.log("success")
 
+ const ProfileData = {
+   suffix: this.title,
+   first_Name: this.firstName,
+   middle_Name: this.middleName,
+   last_Name: this.lastName,
+   primary_Contact_Number: this.phone,
+   Profile_ID: this.Profile_ID,
+   primary_Email_ID: this.email,
+   SecurityQuestionID: this.Securityquestion, // need to update field
+   SecurityAnswer: this.Securityanswer, // need to update field
+   address_1: this.address1,
+   address_2: this.address2,
+   date_Of_Birth: this.date_Of_Birth,
+   State: this.State,
+   LGA: this.LGA,
+   City: this.City,
+   Sex: this.gender,
+   PayerID: this.PayerID,
+   Marital_Status:this.MaritalStatus,
+   Bank_Verification_Number :this.BVN,
+   National_ID:this.national_ID,
+   Sec_State:this.sec_State,
+   Sec_LGA:this.sec_LGA,
+   Sec_City:this.sec_City,
+   IsAddress_Same:this.isAddress_Same,
+   organization_Name:this.organisationname
+
+ };
+     this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data:any)=>
+     {
+      this.toastr.success("Edit profile update successfully");
+     })
+}
+  }
   
   logout() {
     localStorage.removeItem(this.userData);

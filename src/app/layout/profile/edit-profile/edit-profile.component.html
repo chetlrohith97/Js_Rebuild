@@ -526,7 +526,7 @@
                       required
                       #ref4="ngModel"
                       minlength="10"
-                      maxlength="12"
+                      maxlength="10"
                       [(ngModel)]="phone"
                       name="phone"
                       placeholder="Mobile"
@@ -589,7 +589,7 @@
 
               <div class="row btn-position w-100">
                 <span class="col-lg-6">
-                  <button class="btn btn-primary" type="submit">
+                  <button class="btn btn-primary"  type="button" (click)="Save(myForm)">
                     <span
                       *ngIf="loading"
                       class="spinner-border spinner-border-sm mr-1"
@@ -920,7 +920,7 @@
               </div>
               <div class="row btn-position w-100">
                 <span class="col-lg-6">
-                  <button class="btn btn-primary" type="submit">
+                  <button class="btn btn-primary" type="button" (click)="Save(myForm1)">
                     <span
                       *ngIf="loading"
                       class="spinner-border spinner-border-sm mr-1"
@@ -1256,7 +1256,7 @@
 
               <div class="row btn-position w-100">
                 <span class="col-lg-6"
-                  ><button class="btn btn-primary" type="submit">
+                  ><button class="btn btn-primary"  type="button" (click)="Save(myForm2)">
                     <span
                       *ngIf="loading"
                       class="spinner-border spinner-border-sm mr-1"

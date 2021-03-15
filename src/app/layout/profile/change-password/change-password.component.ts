@@ -167,7 +167,7 @@ export class ChangePasswordComponent implements OnInit {
                 timeOut:3000,
               });
               setTimeout(() => {
-                this.rotuer.navigate(['/edit-profile'])
+                this.rotuer.navigate(['/Legal-dashboard'])
               }, 2000);
               
             }
