@@ -106,7 +106,7 @@ export class HomeAdminComponent implements OnInit {
       this.model.bannerID = LocalData[0]?.bannerID
       this.model.bannerDesc = LocalData[0]?.bannerDesc,
       this.model.bannerTitle1 = LocalData[0]?.bannerTitle
-      this.model.bannerTitle2 = LocalData[0]?.bannerTitle
+      // this.model.bannerTitle2 = LocalData[0]?.bannerTitle
       this.model.judgeDesc = LocalData[0]?.judgeDesc
       this.model.judgeName = LocalData[0]?.judgeName
       this.model.judgeTitle = LocalData[0]?.judgeTitle
@@ -167,7 +167,6 @@ export class HomeAdminComponent implements OnInit {
     console.log("hit")
     const BannerObj =[
       {
-      // bannerTitle:this.model.bannerTitle1 + ' '+ this.model.bannerTitle2,
       bannerTitle:this.model.bannerTitle1,
       bannerDesc : this.model.bannerDesc,
       cmsHomeID :  this.model.cmsHomeID,
@@ -261,9 +260,103 @@ export class HomeAdminComponent implements OnInit {
       timeOut:5000
     })
   }
+
+  SaveToPublish(){
+    const BannerObj =[
+      {
+      bannerTitle:this.model.bannerTitle1,
+      bannerDesc : this.model.bannerDesc,
+      cmsHomeID :  this.model.cmsHomeID,
+      judgeTitle :this.model.judgeTitle,
+      judgeName : this.model.judgeName,
+      judgeDesc : this.model.judgeDesc,
+      bannerID : this.model.bannerID
+       } ]
+    console.log(BannerObj)
+    localStorage.setItem('Banner_Obj',JSON.stringify(BannerObj))
+
+    const FeatureObj =[
+  
+        {
+          cmsHomeID: this.featuremodel.cmsHomeID,
+          featureID : this.featuremodel.featureID1,
+          featureTitle: this.featuremodel.featureTitle1,
+          featureDesc: this.featuremodel.featureDesc1,
+        },
+        {
+          cmsHomeID: this.featuremodel.cmsHomeID,
+          featureID : this.featuremodel.featureID2,
+          featureTitle: this.featuremodel.featureTitle2,
+          featureDesc: this.featuremodel.featureDesc2,
+        },
+        {
+          cmsHomeID: this.featuremodel.cmsHomeID,
+          featureID : this.featuremodel.featureID3,
+          featureTitle: this.featuremodel.featureTitle3,
+          featureDesc: this.featuremodel.featureDesc3,
+        },
+       {
+          cmsHomeID: this.featuremodel.cmsHomeID,
+          featureID : this.featuremodel.featureID4,
+          featureTitle: this.featuremodel.featureTitle4,
+          featureDesc: this.featuremodel.featureDesc4,
+        }
+    ]
+    console.log(FeatureObj)
+    localStorage.setItem('Feature_Obj',JSON.stringify(FeatureObj))
+
+    const AboutusObj =[{
+      cmsHomeID: this.AboutusModel.cmsHomeID,
+      aboutJISID :  this.AboutusModel.aboutJISID,
+      aboutTitle :this.AboutusModel.aboutTitle,
+      aboutDesc : this.AboutusModel.aboutDesc,
+      aboutSecTitle:this.AboutusModel.aboutSecTitle,
+      aboutSecDesc :this.AboutusModel.aboutSecDesc
+    }]
+    console.log(AboutusObj)
+    localStorage.setItem('About_Obj',JSON.stringify(AboutusObj))
+
+
+    const MissionObj = [
+     
+      {
+          cmsHomeID:this.MissionModel.cmsHomeID,
+          missionsID:this.MissionModel.missionsID1,
+          missionsTitle: this.MissionModel.missionsTitle1
+      },
+    {
+          cmsHomeID:this.MissionModel.cmsHomeID,
+          missionsID:this.MissionModel.missionsID2,
+          missionsTitle: this.MissionModel.missionsTitle2,
+      },
+      {
+        cmsHomeID:this.MissionModel.cmsHomeID,
+        missionsID:this.MissionModel.missionsID3,
+        missionsTitle: this.MissionModel.missionsTitle3
+      },
+     {
+        cmsHomeID:this.MissionModel.cmsHomeID,
+        missionsID:this.MissionModel.missionsID4,
+        missionsTitle: this.MissionModel.missionsTitle4
+      },
+     {
+        cmsHomeID:this.MissionModel.cmsHomeID,
+        missionsID:this.MissionModel.missionsID5,
+        missionsTitle: this.MissionModel.missionsTitle5
+      },
+      {
+        cmsHomeID:this.MissionModel.cmsHomeID,
+        missionsID:this.MissionModel.missionsID6,
+        missionsTitle: this.MissionModel.missionsTitle6
+      }
+      ]
+    console.log(MissionObj)
+    localStorage.setItem('Mission_Obj',JSON.stringify(MissionObj))
+
+  }
   updateProfile(){
     const BannerObj ={
-      bannerTitle:this.model.bannerTitle1 + ' '+ this.model.bannerTitle2,
+      bannerTitle:this.model.bannerTitle1,
       bannerDesc : this.model.bannerDesc,
       cmsHomeID :  this.model.cmsHomeID,
       judgeTitle :this.model.judgeTitle,
@@ -273,11 +366,8 @@ export class HomeAdminComponent implements OnInit {
     }
     console.log(BannerObj)
    
-// debugger
     const FeatureObj =[
-      // featureTitle: this.Featuremodel.featureTitle,
-      // featureDesc: this.Featuremodel.featureDesc,
-      // featureOnbj:{
+     
         {
           cmsHomeID: this.featuremodel.cmsHomeID,
           featureID : this.featuremodel.featureID1,
@@ -357,6 +447,7 @@ export class HomeAdminComponent implements OnInit {
     console.log(MissionObj)
    
     if (confirm('Are you sure you want to save this thing into the database?')) {
+      this.SaveToPublish()
       this.authService.PutBannerdata(BannerObj).subscribe((bannerData:any)=>{
         console.log(bannerData)
       })
@@ -378,6 +469,7 @@ export class HomeAdminComponent implements OnInit {
       });
 
     } else {
+      this.SaveToPublish()
       // Do nothing!
       this.toastr.warning('Thing was not saved to the database.','',{
         timeOut:3000
