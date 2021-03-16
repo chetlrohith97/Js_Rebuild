@@ -351,7 +351,7 @@
                     <select
                       id="ddltitle"
                       class="form-control"
-                      [(ngModel)]="title"
+                      [(ngModel)]="BasicModel.title"
                       name="title"
                     >
                       <option selected value="Mr">Mr</option>
@@ -382,11 +382,11 @@
                 </div>
                 <div class="col-lg-4">
                   <p>User Types</p>
-                  <div class="form-check form-check-inline" *ngIf="UserType === individual">
+                  <div class="form-check form-check-inline" *ngIf="BasicModel.UserType === individual">
                     <input
                       class="form-check-input"
                       type="radio"
-                      [(ngModel)]="UserType"
+                      [(ngModel)]="BasicModel.UserType"
                       name="UserType"
                       value="individual"
                     />
@@ -397,11 +397,11 @@
                 <!-- </div>
                 <div class="col-lg-4"> -->
                
-                  <div class="form-check form-check-inline " *ngIf="UserType === organisation">
+                  <div class="form-check form-check-inline " *ngIf="BasicModel.UserType === organisation">
                     <input
                       class="form-check-input"
                       type="radio"
-                      [(ngModel)]="UserType" 
+                      [(ngModel)]="BasicModel.UserType" 
                       name="UserType"
                       value="organisation"
                     />
@@ -412,7 +412,7 @@
                 </div>
               </div>
 
-              <div class="row pt-2" *ngIf="UserType === individual">
+              <div class="row pt-2" *ngIf="BasicModel.UserType === individual">
                 <div class="col-lg-4">
                   <div class="form-group">
                     <label>First Name</label><span class="text-danger pl-2">*</span>
@@ -421,7 +421,7 @@
                       required
                       class="form-control"
                       #ref1="ngModel"
-                      [(ngModel)]="firstName"
+                      [(ngModel)]="BasicModel.firstName"
                       name="firstName"
                       placeholder="Firstname"
                     />
@@ -447,7 +447,7 @@
                       required
                       #ref2="ngModel"
                       class="form-control"
-                      [(ngModel)]="middleName"
+                      [(ngModel)]="BasicModel.middleName"
                       name="middleName"
                       placeholder="Middlename"
                     />
@@ -472,7 +472,7 @@
                       required
                       #ref3="ngModel"
                       class="form-control"
-                      [(ngModel)]="lastName"
+                      [(ngModel)]="BasicModel.lastName"
                       name="lastName"
                       placeholder="Lastname"
                     />
@@ -491,7 +491,7 @@
                 </div>
               </div>
               <div class="row" >
-                <div class="col-lg-4" *ngIf="UserType === organisation">
+                <div class="col-lg-4" *ngIf="BasicModel.UserType === organisation">
                   <div class="form-group">
                     <label>Organisation Name</label><span class="text-danger pl-2">*</span>
                     <input
@@ -499,7 +499,7 @@
                       required
                       #refOrg='ngModel'
                       class="form-control"
-                      [(ngModel)]="organisationname"
+                      [(ngModel)]="BasicModel.organisationname"
                       name="organisationname"
                       placeholder="Organisationname"
                     /> <label
@@ -527,7 +527,7 @@
                       #ref4="ngModel"
                       minlength="10"
                       maxlength="10"
-                      [(ngModel)]="phone"
+                      [(ngModel)]="BasicModel.phone"
                       name="phone"
                       placeholder="Mobile"
                       (keypress)="onlyNumbers($event)"
@@ -561,7 +561,7 @@
                       #ref5="ngModel"
                       required
                       pattern="[A-Za-z0-9].*[@].*[.].*"
-                      [(ngModel)]="email"
+                      [(ngModel)]="BasicModel.email"
                       name="email"
                       placeholder="Email"
                     />
@@ -653,7 +653,7 @@
                       #ref8="ngModel"
                       required
                       name="address1"
-                      [(ngModel)]="address1"
+                      [(ngModel)]="AddressModel.address1"
                       autosize
                     />
 
@@ -797,7 +797,7 @@
                       class="form-control"
                       type="text"
                       name="address2"
-                      [(ngModel)]="address2"
+                      [(ngModel)]="AddressModel.address2"
                       autosize
                     />
                   </div>
@@ -959,7 +959,7 @@
               class="form-signin"
               novalidate
             >
-            <div *ngIf="UserType === organisation">
+            <div *ngIf="BasicModel.UserType === organisation">
               <div class="row pt-2">
                 <div class="col-lg-4">
                   <div class="form-group">
@@ -967,7 +967,7 @@
                     <input
                       type="text"
                       class="form-control"
-                      [(ngModel)]="national_ID"
+                      [(ngModel)]="PersonalModel.national_ID"
                       name="national_ID"
                       placeholder="Enter Nationalid"
                     />
@@ -988,7 +988,7 @@
                       required
                       #refPAID='ngModel'
                       name="PayerID"
-                      [(ngModel)]="PayerID"
+                      [(ngModel)]="PersonalModel.PayerID"
                       class="form-control"
                       placeholder="N-444875"
                     />
@@ -1017,7 +1017,7 @@
                   <!-- <p style="font-size: small;">If you don't have a Payer PayerID? <br> <a href="Click Here To Generate" style="text-decoration: underline">Click Here To Generate</a></p> -->
                 </div>
               </div></div>
-              <div *ngIf="UserType === individual">
+              <div *ngIf="BasicModel.UserType === individual">
                 <div class="row pt-2">
                   <div class="col-lg-4">
                     <div class="form-group">
@@ -1028,7 +1028,7 @@
                         required
                         #ref15="ngModel"
                         class="form-control"
-                        [(ngModel)]="gender"
+                        [(ngModel)]="PersonalModel.gender"
                         name="gender"
                       >
                         <option value="M">Male</option>
@@ -1078,7 +1078,7 @@
                         #ref13="ngModel"
                         required
                         class="form-control"
-                        [(ngModel)]="MaritalStatus"
+                        [(ngModel)]="PersonalModel.MaritalStatus"
                         name="MaritalStatus"
                       >
                       <option value="0">Select</option>
@@ -1108,7 +1108,7 @@
                         name="BVN"
                         required
                         #refBVN='ngModel'
-                        [(ngModel)]="BVN"
+                        [(ngModel)]="PersonalModel.BVN"
                         class="form-control"
                       />
                       <label
@@ -1131,7 +1131,7 @@
                       <input
                         type="text"
                         class="form-control"
-                        [(ngModel)]="national_ID"
+                        [(ngModel)]="PersonalModel.national_ID"
                         name="national_ID"
                         placeholder="Enter Nationalid"
                       />
@@ -1149,7 +1149,7 @@
                         required
                         #refPAID='ngModel'
                         name="PayerID"
-                        [(ngModel)]="PayerID"
+                        [(ngModel)]="PersonalModel.PayerID"
                         class="form-control"
                         placeholder="N-444875"
                       />
@@ -1200,7 +1200,7 @@
                       required
                       #refAN1S="ngModel"
                       class="form-control"
-                      [(ngModel)]="Securityquestion"
+                      [(ngModel)]="PersonalModel.Securityquestion"
                       name="Securityquestion"
                     >
                       <option value="1">What Is your NickName?</option>
@@ -1237,7 +1237,7 @@
                       #refANS="ngModel"
                       class="form-control"
                       name="Securityanswer"
-                      [(ngModel)]="Securityanswer"
+                      [(ngModel)]="PersonalModel.Securityanswer"
                     />
                     <label
                       *ngIf="

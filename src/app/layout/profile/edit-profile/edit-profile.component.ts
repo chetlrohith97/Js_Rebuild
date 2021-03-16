@@ -5,7 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { DatePipe } from '@angular/common';
 import {Md5} from 'ts-md5/dist/md5';
 import { environment } from '@env';
-import { escapeSelector } from 'jquery';
+import {BasicProfileModel,AddressInfoModel,PersonalInfoModel} from '@models/index'
 declare var jquery:any;
 declare var $ :any;
 // import * as $ from 'jquery'
@@ -73,6 +73,39 @@ SecCitys:any
 organisationname:any
 individual = 'individual';
 organisation = 'organisation';
+
+BasicModel:BasicProfileModel ={
+  title:'',
+  UserType:'',
+  firstName:'',
+  lastName:'',
+  middleName:'',
+  phone:'',
+  email:'',
+  organisationname:'',
+} 
+
+AddressModel : AddressInfoModel= {
+  State:'',
+  LGA:'',
+  City:'',
+  address1:'',
+  address2:'',
+  sec_State:'',
+  sec_LGA:'',
+  sec_City:'',
+}
+
+PersonalModel : PersonalInfoModel = {
+  date_Of_Birth:'',
+    Securityquestion:'',
+    Securityanswer:'',
+    gender:'',
+    MaritalStatus:'',
+    BVN:'',
+    PayerID:'',
+    national_ID:'',
+}
   constructor(private authService: AuthService,
     public datepipe: DatePipe,
     private toastr:ToastrService,
@@ -144,36 +177,36 @@ getsec_LGA(event:any){
    
 
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
-      this.UserType = Object.values(data)[0]?.userType
       console.log(data)
-     var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
-     console.log(MMddyyyy); //output - 14-02-2019
-     this.title = Object.values(data)[0]?.suffix
+      var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
+      console.log(MMddyyyy); //output - 14-02-2019
+      this.BasicModel.UserType = Object.values(data)[0]?.userType
+      this.BasicModel.title = Object.values(data)[0]?.suffix
       this.User_Name = Object.values(data)[0]?.user_Name
        this.Profile_ID = Object.values(data)[0]?.profile_ID
-      this.firstName = Object.values(data)[0]?.first_Name;
-      this.lastName = Object.values(data)[0]?.last_Name;
-      this.middleName = Object.values(data)[0]?.middle_Name;
-      this.phone = Object.values(data)[0]?.primary_Contact_Number;
-      this.email = Object.values(data)[0]?.primary_Email_ID;
+      this.BasicModel.firstName = Object.values(data)[0]?.first_Name;
+      this.BasicModel.lastName = Object.values(data)[0]?.last_Name;
+      this.BasicModel.middleName = Object.values(data)[0]?.middle_Name;
+      this.BasicModel.phone = Object.values(data)[0]?.primary_Contact_Number;
+      this.BasicModel.email = Object.values(data)[0]?.primary_Email_ID;
+      this.BasicModel.organisationname = Object.values(data)[0]?.organization_Name;
+      this.AddressModel.address1 = Object.values(data)[0]?.address_1;
+      this.AddressModel.address2 = Object.values(data)[0]?.address_2;
       this.State = Object.values(data)[0]?.state;
       this.LGA = Object.values(data)[0]?.lga;
       this.City = Object.values(data)[0]?.city;
-      this.date_Of_Birth = MMddyyyy
-      this.address1 = Object.values(data)[0]?.address_1;
-      this.address2 = Object.values(data)[0]?.address_2;
-      this.Securityquestion = Object.values(data)[0]?.securityQuestionID;
-      this.Securityanswer = Object.values(data)[0]?.securityAnswer;
-      this.gender = Object.values(data)[0]?.sex;
-      this.MaritalStatus = Object.values(data)[0]?.marital_Status;
-      this.BVN = Object.values(data)[0]?.bank_Verification_Number;
-      this.PayerID = Object.values(data)[0]?.payerID;
       this.sec_State= Object.values(data)[0]?.sec_State;
       this.sec_LGA= Object.values(data)[0]?.sec_LGA;
       this.sec_City= Object.values(data)[0]?.sec_City;
       this.isAddress_Same= Object.values(data)[0]?.isAddress_Same;
-      this.national_ID= Object.values(data)[0]?.national_ID;
-      this.organisationname = Object.values(data)[0]?.organization_Name;
+      this.PersonalModel.Securityquestion = Object.values(data)[0]?.securityQuestionID;
+      this.PersonalModel.Securityanswer = Object.values(data)[0]?.securityAnswer;
+      this.PersonalModel.gender = Object.values(data)[0]?.sex;
+      this.PersonalModel.MaritalStatus = Object.values(data)[0]?.marital_Status;
+      this.PersonalModel.BVN = Object.values(data)[0]?.bank_Verification_Number;
+      this.PersonalModel.PayerID = Object.values(data)[0]?.payerID;
+      this.PersonalModel.national_ID= Object.values(data)[0]?.national_ID;
+      this.date_Of_Birth = MMddyyyy
       this.getState(this.State);
       this.getSec_state(this.sec_State)
     });
@@ -197,32 +230,31 @@ getsec_LGA(event:any){
       console.log("success")
    
     const ProfileData = {
-      suffix: this.title,
-      first_Name: this.firstName,
-      middle_Name: this.middleName,
-      last_Name: this.lastName,
-      primary_Contact_Number: this.phone,
+      suffix: this.BasicModel.title,
+      first_Name: this.BasicModel.firstName,
+      middle_Name: this.BasicModel.middleName,
+      last_Name: this.BasicModel.lastName,
+      primary_Contact_Number: this.BasicModel.phone,
       Profile_ID: this.Profile_ID,
-      primary_Email_ID: this.email,
-      SecurityQuestionID: this.Securityquestion, // need to update field
-      SecurityAnswer: this.Securityanswer, // need to update field
-      address_1: this.address1,
-      address_2: this.address2,
-      date_Of_Birth: this.date_Of_Birth,
+      primary_Email_ID: this.BasicModel.email,
+      organization_Name:this.BasicModel.organisationname,
+      address_1: this.AddressModel.address1,
+      address_2: this.AddressModel.address2,
       State: this.State,
       LGA: this.LGA,
       City: this.City,
-      Sex: this.gender,
-      PayerID: this.PayerID,
-      Marital_Status:this.MaritalStatus,
-      Bank_Verification_Number :this.BVN,
-      National_ID:this.national_ID,
+      IsAddress_Same:this.isAddress_Same,
       Sec_State:this.sec_State,
       Sec_LGA:this.sec_LGA,
       Sec_City:this.sec_City,
-      IsAddress_Same:this.isAddress_Same,
-      organization_Name:this.organisationname
-
+      Sex: this.PersonalModel.gender,
+      PayerID: this.PersonalModel.PayerID,
+      Marital_Status:this.PersonalModel.MaritalStatus,
+      Bank_Verification_Number :this.PersonalModel.BVN,
+      National_ID:this.PersonalModel.national_ID,
+      date_Of_Birth: this.date_Of_Birth,
+      SecurityQuestionID: this.PersonalModel.Securityquestion, // need to update field
+      SecurityAnswer: this.PersonalModel.Securityanswer, // need to update field
     };
         this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data:any)=>
         {
@@ -243,31 +275,31 @@ getsec_LGA(event:any){
    console.log("success")
 
  const ProfileData = {
-   suffix: this.title,
-   first_Name: this.firstName,
-   middle_Name: this.middleName,
-   last_Name: this.lastName,
-   primary_Contact_Number: this.phone,
-   Profile_ID: this.Profile_ID,
-   primary_Email_ID: this.email,
-   SecurityQuestionID: this.Securityquestion, // need to update field
-   SecurityAnswer: this.Securityanswer, // need to update field
-   address_1: this.address1,
-   address_2: this.address2,
-   date_Of_Birth: this.date_Of_Birth,
-   State: this.State,
-   LGA: this.LGA,
-   City: this.City,
-   Sex: this.gender,
-   PayerID: this.PayerID,
-   Marital_Status:this.MaritalStatus,
-   Bank_Verification_Number :this.BVN,
-   National_ID:this.national_ID,
-   Sec_State:this.sec_State,
-   Sec_LGA:this.sec_LGA,
-   Sec_City:this.sec_City,
-   IsAddress_Same:this.isAddress_Same,
-   organization_Name:this.organisationname
+  suffix: this.BasicModel.title,
+      first_Name: this.BasicModel.firstName,
+      middle_Name: this.BasicModel.middleName,
+      last_Name: this.BasicModel.lastName,
+      primary_Contact_Number: this.BasicModel.phone,
+      Profile_ID: this.Profile_ID,
+      primary_Email_ID: this.BasicModel.email,
+      organization_Name:this.BasicModel.organisationname,
+      address_1: this.AddressModel.address1,
+      address_2: this.AddressModel.address2,
+      State: this.State,
+      LGA: this.LGA,
+      City: this.City,
+      IsAddress_Same:this.isAddress_Same,
+      Sec_State:this.sec_State,
+      Sec_LGA:this.sec_LGA,
+      Sec_City:this.sec_City,
+      Sex: this.PersonalModel.gender,
+      PayerID: this.PersonalModel.PayerID,
+      Marital_Status:this.PersonalModel.MaritalStatus,
+      Bank_Verification_Number :this.PersonalModel.BVN,
+      National_ID:this.PersonalModel.national_ID,
+      date_Of_Birth: this.date_Of_Birth,
+      SecurityQuestionID: this.PersonalModel.Securityquestion, // need to update field
+      SecurityAnswer: this.PersonalModel.Securityanswer, // need to update field
 
  };
      this.authService.UpdateProfile(this.Profile_ID,ProfileData).subscribe((data:any)=>
