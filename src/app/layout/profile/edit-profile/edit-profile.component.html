@@ -687,7 +687,7 @@
                     >
                       <option value="0">Select</option>
                       <option
-                        *ngFor="let state of States"
+                        *ngFor="let state of States | async"
                         value="{{ state.state_ID }}"
                       >
                         {{ state.state_Name }}
@@ -721,7 +721,7 @@
                     >
                       <option value="0">Select</option>
                       <option
-                        *ngFor="let Lga of Lgas"
+                        *ngFor="let Lga of Lgas | async"
                         value="{{ Lga.localGovtAreaId }}"
                       >
                         {{ Lga.localGovtAreaName }}
@@ -751,7 +751,7 @@
                     >
                       <option value="0">Select</option>
                       <option
-                        *ngFor="let City of Citys"
+                        *ngFor="let City of Citys |async"
                         value="{{ City.city_ID }}"
                       >
                         {{ City.city_Name }}
@@ -840,7 +840,7 @@
                       >
                         <option value="0">Select</option>
                         <option
-                          *ngFor="let state of sec_States"
+                          *ngFor="let state of sec_States | async"
                           value="{{ state.state_ID }}"
                         >
                           {{ state.state_Name }}
@@ -871,7 +871,7 @@
                       >
                         <option value="0">Select</option>
                         <option
-                          *ngFor="let Lga of SecLgas"
+                          *ngFor="let Lga of SecLgas |async"
                           value="{{ Lga.localGovtAreaId }}"
                         >
                           {{ Lga.localGovtAreaName }}
@@ -900,7 +900,7 @@
                       >
                         <option value="0">Select</option>
                         <option
-                          *ngFor="let City of SecCitys"
+                          *ngFor="let City of SecCitys | async"
                           value="{{ City.city_ID }}"
                         >
                           {{ City.city_Name }}

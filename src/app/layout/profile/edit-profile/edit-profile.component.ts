@@ -118,13 +118,15 @@ PersonalModel : PersonalInfoModel = {
     console.log(this.user_ID)
     //  state drop start
     // var stateName;
-    this.authService.GetStatefields().subscribe((data:any)=>
-    {
-      this.States =  data;
-      this.sec_States =data
-      console.log(this.sec_States)
-    console.log( this.stateName)
-    })
+    // this.authService.GetStatefields().subscribe((data:any)=>
+    // {
+    //   this.States =  data;
+    //   this.sec_States =data
+    //   console.log(this.sec_States)
+    // console.log( this.stateName)
+    // })
+    this.States = this.authService.GetStatefields()
+    this.sec_States = this.authService.GetStatefields()
     }
   
 
@@ -139,39 +141,39 @@ PersonalModel : PersonalInfoModel = {
 getState(event :any){
   this.state = event
   console.log(event)
-  this.authService.GetLgaFields(this.state).subscribe((data:any)=>{
-    this.Lgas = data
-    console.log(this.Lgas)
-    this.getLga(this.LGA);
-    console.log(data)
- })
-
+//   this.authService.GetLgaFields(this.state).subscribe((data:any)=>{
+//     this.Lgas = data
+//     console.log(this.Lgas)
+//     this.getLga(this.LGA);
+//     console.log(data)
+//  })
+this.Lgas = this.authService.GetLgaFields(this.state)
+this.getLga(this.LGA);
 }
 getLga(event :any){
   this.Lga = event
-  console.log(this.state)
-  console.log(event)
-  this.authService.GetCityFields(this.Lga).subscribe((data:any)=>{
-    this.Citys = data
-    console.log(this.Citys)
-  })
+  // this.authService.GetCityFields(this.Lga).subscribe((data:any)=>{
+  //   this.Citys = data
+  //   console.log(this.Citys)
+  // })
+  this.Citys = this.authService.GetCityFields(this.Lga)
 
 }
 
 getSec_state(event:any){
   this.sec_State = event
   console.log(event)
-  this.authService.GetLgaFields(this.sec_State).subscribe((data)=>{
-    this.SecLgas = data
-    this.getsec_LGA(this.sec_LGA);
+//   this.authService.GetLgaFields(this.sec_State).subscribe((data)=>{
+//     this.SecLgas = data
+//     this.getsec_LGA(this.sec_LGA);
 
- })
+//  })
+this.SecLgas = this.authService.GetLgaFields(this.sec_State)
+  this.getsec_LGA(this.sec_LGA);
 }
 getsec_LGA(event:any){
   this.sec_LGA = event
-  this.authService.GetCityFields(this.sec_LGA).subscribe((data)=>{
-    this.SecCitys = data
-  })
+this.SecCitys =  this.authService.GetCityFields(this.sec_LGA)
 }
   editProfile() {
    
