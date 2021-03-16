@@ -20,21 +20,21 @@ declare var $ :any;
 export class EditProfileComponent implements OnInit {
   userData = JSON.parse(localStorage.getItem('user_data') || '[]');
   title = 'Mr';
-  firstName!: string;
-  middleName!: string;
-  lastName!: string;
-  phone!: string;
-  userName!: string;
-  email!: string;
-  Securityquestion!: string;
-  Securityanswer!: string;
-  address1!: string;
-  address2!: string;
+  // firstName!: string;
+  // middleName!: string;
+  // lastName!: string;
+  // phone!: string;
+  // userName!: string;
+  // email!: string;
+  // Securityquestion = 0;
+  // Securityanswer!: string;
+  // address1!: string;
+  // address2!: string;
   date_Of_Birth: any;
   State = 0;
   LGA = 0;
   City = 0;
-  gender!: string;
+  gender=0
   PayerID!: string;
   profileId!: string;
   loading = false;
@@ -98,9 +98,9 @@ AddressModel : AddressInfoModel= {
 
 PersonalModel : PersonalInfoModel = {
   date_Of_Birth:'',
-    Securityquestion:'',
+    Securityquestion:'0',
     Securityanswer:'',
-    gender:'',
+    gender:'0',
     MaritalStatus:'',
     BVN:'',
     PayerID:'',
@@ -179,8 +179,9 @@ this.SecCitys =  this.authService.GetCityFields(this.sec_LGA)
    
 
     this.authService.EditProfile(this.user_ID || '').subscribe((data) => {
-      console.log(data)
-      var MMddyyyy = this.datepipe.transform(new Date(Object.values(data)[0]?.date_Of_Birth),"yyyy-MM-dd");
+      console.log(Object.values(data)[0]?.date_Of_Birth)
+      console.log(new Date())
+      var MMddyyyy = this.datepipe.transform(Object.values(data)[0]?.date_Of_Birth,"yyyy-MM-dd");
       console.log(MMddyyyy); //output - 14-02-2019
       this.BasicModel.UserType = Object.values(data)[0]?.userType
       this.BasicModel.title = Object.values(data)[0]?.suffix
@@ -213,16 +214,16 @@ this.SecCitys =  this.authService.GetCityFields(this.sec_LGA)
       this.getSec_state(this.sec_State)
     });
   }
-  showtab(){
-    console.log("INNN");
+  // showtab(){
+  //   console.log("INNN");
 
-    if(true){
-      $("#contact-tab").trigger("click");
-    }else{
+  //   if(true){
+  //     $("#contact-tab").trigger("click");
+  //   }else{
 
-    }
+  //   }
  
-  }
+  // }
   updateProfile(v: object, myForm1:any,nextTab:any) {
     console.log("test" +nextTab)
     if(!myForm1.form.valid){
@@ -334,8 +335,8 @@ getHashIndividual(){
   // debugger
   let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
-    this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
-  let Hash = hashkey + clientCode + this.lastName + this.firstName + this.email + this.phone + this.Address;
+    this.Address = this.AddressModel.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
+  let Hash = hashkey + clientCode + this.BasicModel.lastName + this.BasicModel.firstName + this.BasicModel.email + this.BasicModel.phone + this.Address;
   console.log(Hash)
   console.log(this.Address)
   const Hvaluing = new Md5();
@@ -356,9 +357,9 @@ getHashOrganization(){
   // debugger
   let hashkey = environment.SecretKey
     let clientName = environment.ClientCode;
-    this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
-  let Hash = hashkey + clientName + '' + this.organisationname + this.email + this.phone + this.Address
-console.log(this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName)
+    this.Address = this.AddressModel.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
+  let Hash = hashkey + clientName + '' + this.BasicModel.organisationname + this.BasicModel.email + this.BasicModel.phone + this.Address
+console.log(this.AddressModel.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName)
   console.log(Hash)
   console.log(this.Address)
   const Hvaluing = new Md5();
@@ -371,8 +372,8 @@ console.log(this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + th
 console.log(this.LolHashKey);
 }
   generatePayerId(){
-  console.log(this.UserType)
-    if(this.UserType === "organisation"){
+  console.log(this.BasicModel.UserType)
+    if(this.BasicModel.UserType === "organisation"){
       this.getAddressDetails()
     setTimeout(() => {
       this.getOrganizationId()
@@ -391,23 +392,23 @@ setTimeout(() => {
   getIndividualId(){
     console.log(this.title)
 this.getHashIndividual()
-    this.Address = this.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
+    this.Address = this.AddressModel.address1+ " ," + this.CityName + " ," + this.LgaName + ' ,' + this.stateName
     let DOB=new Date(this.date_Of_Birth);
     let latest_date = this.datepipe.transform(DOB, 'yyyy-MM-ddTHH:mm:ss');
     let hashkey = environment.SecretKey
     let clientCode = environment.ClientCode;
     const UserData ={
-      title :this.title,
-      lastName:this.lastName,
-      firstName: this.firstName,
-      otherName:this.middleName,
-      email:this.email,
+      title :this.BasicModel.title,
+      lastName:this.BasicModel.lastName,
+      firstName: this.BasicModel.firstName,
+      otherName:this.BasicModel.middleName,
+      email:this.BasicModel.email,
       address:this.Address,
-      phone: this.phone,
+      phone: this.BasicModel.phone,
       birthDate:latest_date,
-      bvnNumber:this.BVN,
-      sex:this.gender,
-      maritalStatus:this.MaritalStatus,
+      bvnNumber:this.PersonalModel.BVN,
+      sex:this.PersonalModel.gender,
+      maritalStatus:this.PersonalModel.MaritalStatus,
       clientName :clientCode,
       hash:this.LolHashKey
       }
@@ -423,25 +424,25 @@ this.getHashIndividual()
           this.toastr.success('PayerId Generated Successfully','',{
             timeOut: 5000,
           })
-          this.PayerID = result.payerId
+          this.PersonalModel.PayerID = result.payerId
         }
         })
   }
  
   getOrganizationId(){
     // debugger
-    console.log( this.organisationname)
+    console.log( this.BasicModel.organisationname)
    
     console.log(this.CityName)
     this.getHashOrganization()
-    this.Address = this.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
+    this.Address = this.AddressModel.address1+ " ,"+ this.CityName + " ," + this.LgaName + ' ,' + this.stateName;
     console.log(this.Address)
     let clientName=environment.ClientCode;
     const OrganizData ={
-      name:this.organisationname,
-      email:this.email,
+      name:this.BasicModel.organisationname,
+      email:this.BasicModel.email,
       address: this.Address,
-      phone:this.phone,
+      phone:this.BasicModel.phone,
       clientName :clientName,
       hash: this.LolHashKey
     }
@@ -458,7 +459,7 @@ this.getHashIndividual()
       this.toastr.success('PayerId Generated Successfully','',{
         timeOut: 5000,
       })
-      this.PayerID = result.payerId
+      this.PersonalModel.PayerID = result.payerId
     }
     this.loadSpin = false;
     })
