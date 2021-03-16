@@ -186,4 +186,9 @@ export class ChangePasswordComponent implements OnInit {
 
         }
      }
+     Reset(){
+      this.User_Pass='',
+      this.NewUser_Pass= '',
+      this.confirmPassword =''
+    }
 }
